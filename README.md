@@ -50,11 +50,7 @@ Every skill in this repository is created through a rigorous, evidence-based pro
 
 **1. Real-World Issue Collection**
 
-Skills are sourced from actual developer pain points:
-- GitHub Issues (vuejs/core, vuejs/language-tools, vitejs/vite-plugin-vue, vuejs/pinia, vuejs/router)
-- Stack Overflow high-vote questions
-- Reddit r/vuejs discussions
-- GitHub Discussions
+Skills are sourced from actual developer pain points encountered in production.
 
 **2. Multi-Model Verification**
 
@@ -69,13 +65,11 @@ Skills are tested across model capabilities:
 
 | Model | Without Skill | With Skill | Requirement |
 |-------|--------------|------------|-------------|
-| Haiku | Expected: Fail | Bonus: Pass | Optional |
-| Sonnet | Verified: Fail | **Must: Pass** | **Minimum bar** |
+| Haiku | Expected: Fail | Pass | Skill kept |
+| Sonnet | Expected: Fail | Pass | Skill kept |
 | Opus | May pass | Should pass | Reference |
 
-**Acceptance criteria**: Sonnet must consistently solve the problem with the skill installed.
-
-This ensures skills provide genuine value—teaching AI what it doesn't already know, not duplicating existing knowledge.
+**Acceptance criteria**: A skill is only kept if it enables Haiku or Sonnet to solve a problem they couldn't solve without it.
 
 ## License
 
