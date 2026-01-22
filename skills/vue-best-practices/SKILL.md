@@ -1,13 +1,11 @@
 ---
 name: vue-best-practices
-description: Vue 3 TypeScript, vue-tsc, Volar, Vite, component props, testing, composition API.
+description: Vue 3 and Vue.js best practices for TypeScript, vue-tsc, and Volar. This skill should be used when writing, reviewing, or refactoring Vue components to ensure correct typing patterns. Triggers on tasks involving Vue components, props extraction, wrapper components, template type checking, or Volar configuration.
 license: MIT
 metadata:
   author: hyf0
-  version: "7.0.0"
+  version: "8.0.0"
 ---
-
-# Vue Best Practices
 
 ## Capability Rules
 
@@ -20,13 +18,10 @@ metadata:
 | [data-attributes-config](rules/data-attributes-config.md) | data-*, strictTemplates, attribute | Allow data-* attributes |
 | [volar-3-breaking-changes](rules/volar-3-breaking-changes.md) | volar, vue-language-server, editor | Fix Volar 3.0 upgrade issues |
 | [module-resolution-bundler](rules/module-resolution-bundler.md) | cannot find module, @vue/tsconfig, moduleResolution | Fix module resolution errors |
-| [codeactions-save-performance](rules/codeactions-save-performance.md) | slow save, vscode, performance | Fix slow save in large projects |
-| [duplicate-plugin-detection](rules/duplicate-plugin-detection.md) | duplicate plugin, vite, vue plugin | Detect duplicate plugins |
 | [define-model-update-event](rules/define-model-update-event.md) | defineModel, update event, undefined | Fix model update errors |
 | [with-defaults-union-types](rules/with-defaults-union-types.md) | withDefaults, union type, default | Fix union type defaults |
 | [deep-watch-numeric](rules/deep-watch-numeric.md) | watch, deep, array, Vue 3.5 | Efficient array watching |
 | [vue-directive-comments](rules/vue-directive-comments.md) | @vue-ignore, @vue-skip, template | Control template type checking |
-| [script-setup-jsdoc](rules/script-setup-jsdoc.md) | jsdoc, script setup, documentation | Add JSDoc to script setup |
 | [vue-router-typed-params](rules/vue-router-typed-params.md) | route params, typed router, unplugin | Fix route params typing |
 
 ## Efficiency Rules
@@ -39,4 +34,5 @@ metadata:
 ## Reference
 
 - [Vue Language Tools](https://github.com/vuejs/language-tools)
+- [vue-component-type-helpers](https://github.com/vuejs/language-tools/tree/master/packages/component-type-helpers)
 - [Vue 3 Documentation](https://vuejs.org/)

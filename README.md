@@ -14,22 +14,26 @@ Agent skills for Vue 3 development.
 npx add-skill hyf0/vue-skills
 ```
 
+## Usage
+
+For most reliable results, prefix your prompt with `use vue skill`:
+
+```
+Use vue skill, <your prompt here>
+```
+
+This explicitly triggers the skill and ensures the AI follows the documented patterns. Without the prefix, skill triggering may be inconsistent depending on how closely your prompt matches the skill's description keywords.
+
 ## Available Skills
 
 ### vue-best-practices (17 rules)
 
-Vue 3 development best practices covering TypeScript configuration, tooling troubleshooting, and testing patterns.
+Vue 3 development best practices covering TypeScript configuration, component typing, tooling troubleshooting, and testing patterns.
 
 | Type | Count | Examples |
 |------|-------|----------|
-| Capability | 15 | vue-tsc strictTemplates, Volar 3.0 breaking changes, Vue 3.5 deep watch, @vue-ignore directives |
+| Capability | 15 | Component props extraction, vue-tsc strictTemplates, Volar 3.0 breaking changes, @vue-ignore directives |
 | Efficiency | 2 | HMR in SSR, Pinia store mocking |
-
-**Key rules that models don't know without the skill:**
-- `vue-tsc-strict-templates` - vueCompilerOptions.strictTemplates config
-- `deep-watch-numeric` - Vue 3.5 `deep: 1` for efficient partial-depth watching
-- `vue-directive-comments` - @vue-ignore, @vue-expect-error, @vue-skip directives
-- `pinia-store-mocking` - createSpy requirement in @pinia/testing 1.0+
 
 ## Rule Types
 
