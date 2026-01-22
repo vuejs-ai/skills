@@ -47,8 +47,7 @@ Update to latest Vue plugin. If issues persist, disable and re-enable the Vue pl
 
 | Feature | Volar 2.x | Volar 3.0 |
 |---------|-----------|-----------|
-| Package name | volar | vue_ls |
-| TypeScript integration | ts_ls/tsserver | vtsls required |
+| TypeScript integration | ts_ls/tsserver | vtsls recommended (Neovim) |
 | Hybrid mode | Optional | Default |
 
 ## Workaround: Stay on 2.x

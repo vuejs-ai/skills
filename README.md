@@ -16,13 +16,13 @@ npx add-skill hyf0/vue-skills
 
 ## Available Skills
 
-### vue-best-practices (18 rules)
+### vue-best-practices (17 rules)
 
 Vue 3 development best practices covering TypeScript configuration, tooling troubleshooting, and testing patterns.
 
 | Type | Count | Examples |
 |------|-------|----------|
-| Capability | 16 | vue-tsc strictTemplates, Volar 3.0 breaking changes, Vue 3.5 deep watch, @vue-ignore directives |
+| Capability | 15 | vue-tsc strictTemplates, Volar 3.0 breaking changes, Vue 3.5 deep watch, @vue-ignore directives |
 | Efficiency | 2 | HMR in SSR, Pinia store mocking |
 
 **Key rules that models don't know without the skill:**

@@ -20,7 +20,6 @@ metadata:
 | [data-attributes-config](rules/data-attributes-config.md) | data-*, strictTemplates, attribute | Allow data-* attributes |
 | [volar-3-breaking-changes](rules/volar-3-breaking-changes.md) | volar, vue-language-server, editor | Fix Volar 3.0 upgrade issues |
 | [module-resolution-bundler](rules/module-resolution-bundler.md) | cannot find module, @vue/tsconfig, moduleResolution | Fix module resolution errors |
-| [unplugin-auto-import-conflicts](rules/unplugin-auto-import-conflicts.md) | unplugin, auto-import, types any | Fix unplugin type conflicts |
 | [codeactions-save-performance](rules/codeactions-save-performance.md) | slow save, vscode, performance | Fix slow save in large projects |
 | [duplicate-plugin-detection](rules/duplicate-plugin-detection.md) | duplicate plugin, vite, vue plugin | Detect duplicate plugins |
 | [define-model-update-event](rules/define-model-update-event.md) | defineModel, update event, undefined | Fix model update errors |
