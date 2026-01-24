@@ -72,6 +72,11 @@ Each skill undergoes systematic testing:
 
 **Acceptance criteria**: A skill is only kept if it enables Haiku or Sonnet to solve a problem they couldn't solve without it.
 
+## Related projects
+
+- [vueuse/vueuse-skills](https://github.com/vueuse/vueuse-skills) - Agent skills for VueUse development
+- [onmax/nuxt-skills](https://github.com/onmax/nuxt-skills) - Agent skills for Nuxt development
+
 ## License
 
 MIT
