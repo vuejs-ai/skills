@@ -74,8 +74,8 @@ Each skill undergoes systematic testing:
 
 ## Related projects
 
-- [vueuse-skills](https://github.com/vueuse/vueuse-skills) - Agent skills for VueUse development
-- [nuxt-skills](https://github.com/onmax/nuxt-skills) - Agent skills for Nuxt development
+- [vueuse/vueuse-skills](https://github.com/vueuse/vueuse-skills) - Agent skills for VueUse development
+- [onmax/nuxt-skills](https://github.com/onmax/nuxt-skills) - Agent skills for Nuxt development
 
 ## License
 
