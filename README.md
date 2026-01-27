@@ -30,13 +30,13 @@ This explicitly triggers the skill and ensures the AI follows the documented pat
 
 ## Available Skills
 
-### vue-best-practices (17 rules)
+### vue-best-practices (18 rules)
 
 Vue 3 development best practices covering TypeScript configuration, component typing, tooling troubleshooting, and testing patterns.
 
 | Type | Count | Examples |
 |------|-------|----------|
-| Capability | 15 | Component props extraction, vue-tsc strictTemplates, Volar 3.0 breaking changes, @vue-ignore directives |
+| Capability | 16 | Component props extraction, vue-tsc strictTemplates, Volar 3.0 breaking changes, Vapor Mode (Vue 3.6 beta) |
 | Efficiency | 2 | HMR in SSR, Pinia store mocking |
 
 ## Rule Types

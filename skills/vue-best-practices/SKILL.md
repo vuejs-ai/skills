@@ -23,6 +23,7 @@ metadata:
 | [deep-watch-numeric](rules/deep-watch-numeric.md) | watch, deep, array, Vue 3.5 | Efficient array watching |
 | [vue-directive-comments](rules/vue-directive-comments.md) | @vue-ignore, @vue-skip, template | Control template type checking |
 | [vue-router-typed-params](rules/vue-router-typed-params.md) | route params, typed router, unplugin | Fix route params typing |
+| [vue-3-6-vapor-mode](rules/vue-3-6-vapor-mode.md) | vapor, Vue 3.6, beta, createVaporApp, vaporInteropPlugin, interop | Adopt Vue 3.6 Vapor Mode (beta) safely |
 
 ## Efficiency Rules
 
