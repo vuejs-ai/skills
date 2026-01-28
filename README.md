@@ -49,7 +49,7 @@ create a todo app
 - More readable [code](demo/todo-app/with-skills/App.vue)
 - [Components](demo/todo-app/with-skills/components) split
 - Moved states into composables ([useTodos.ts](demo/todo-app/with-skills/composables/useTodos.ts))
-- Use `shallowRef` for primitive reactive data (see [Reactivity Guide](skills/vue-best-prastice/references/reactivity-guide.md))
+- Use `shallowRef` for primitive reactive data (see [Reactivity Guide](skills/vue-development-guides/references/reactivity-guide.md))
 
 ### create-adaptable-composable
 
