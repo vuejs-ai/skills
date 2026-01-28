@@ -2,15 +2,9 @@
 
 Agent skills for Vue 3 development.
 
-> 🚧 **Early Experiment**
+> 🚧 **Early Experiment / Community Project**
 >
-> This repository is an early experiment in creating specialized skills for AI agents to enhance their capabilities in Vue 3 development. The skills are derived from real-world issues and best practices, but might be incomplete or inaccurate due to hallucinations.
->
-> Please give feedback when encountering any issues.
->
-> 🚧 **This is a community project**
->
-> I created this project to explore how AI can improve Vue 3 development. If it proves valuable, I plan to propose transferring it to the Vue organization so it can benefit the wider community.
+> This repository is an early experiment in creating specialized skills for AI agents to enhance Vue 3 development. Skills are derived from real-world issues but may be incomplete due to hallucinations—please give feedback. If valuable, I plan to propose transferring this project to the Vue organization to benefit the wider community.
 
 ## Installation
 
@@ -29,6 +23,19 @@ Use vue skill, <your prompt here>
 This explicitly triggers the skill and ensures the AI follows the documented patterns. Without the prefix, skill triggering may be inconsistent depending on how closely your prompt matches the skill's description keywords.
 
 ## Available Skills
+
+| Skill | When to use | Description |
+|-------|-------------|-------------|
+| **vue-best-practices** | Vue 3 + Composition API + TypeScript | Common gotchas, reactivity patterns, SSR, performance |
+| **vue-options-api-best-practices** | Options API (`data()`, `methods`) | `this` context, lifecycle, TypeScript with Options API |
+| **vue-router-best-practices** | Vue Router 4 | Navigation guards, route params, route-component lifecycle |
+| **vue-pinia-best-practices** | Pinia for state management | Store setup, reactivity, state patterns |
+| **vue-testing-best-practices** | Writing component or E2E tests | Vitest, Vue Test Utils, Playwright |
+| **vue-jsx-best-practices** | JSX in Vue | Syntax differences from React JSX |
+| **vue-development-guides** | Building a Vue/Nuxt project | Component splitting, data flow, core principles |
+| **create-adaptable-composable** | Creating reusable composables | `MaybeRef`/`MaybeRefOrGetter` input patterns |
+
+## Examples
 
 ### vue-development-guides
 
@@ -54,7 +61,6 @@ create a todo app
 ### create-adaptable-composable
 
 Original from `create-agnostic-composable` of [`serkodev/vue-skills`](https://github.com/serkodev/vue-skills/tree/main)
-
 
 #### Demo - useHidden
 
@@ -83,24 +89,17 @@ export function useHidden(
 )
 ```
 
-### vue-best-practices (17 rules)
+## Methodology
 
-Vue 3 development best practices covering TypeScript configuration, component typing, tooling troubleshooting, and testing patterns.
+### Skill Types
 
-| Type | Count | Examples |
-|------|-------|----------|
-| Capability | 15 | Component props extraction, vue-tsc strictTemplates, Volar 3.0 breaking changes, @vue-ignore directives |
-| Efficiency | 2 | HMR in SSR, Pinia store mocking |
-
-## Rule Types
-
-Rules are classified into two categories:
+Skills are classified into two categories:
 
 - **Capability**: AI *cannot* solve the problem without the skill. These address version-specific issues, undocumented behaviors, recent features, or edge cases outside AI's training data.
 
 - **Efficiency**: AI *can* solve the problem but not well. These provide optimal patterns, best practices, and consistent approaches that improve solution quality.
 
-## Methodology
+### Validation Process
 
 Every skill in this repository is created through a rigorous, evidence-based process:
 
