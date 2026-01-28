@@ -84,7 +84,7 @@ Good: use shorthand syntax
 </MyComponent>
 ```
 
-[Referece](https://vuejs.org/guide/components/slots.html#named-slots)
+[Reference](https://vuejs.org/guide/components/slots.html#named-slots)
 
 ## Access DOM / component refs
 
