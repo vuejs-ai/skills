@@ -6,7 +6,6 @@
       "name": "create-adaptable-composable",
       "source": "./",
       "description": "Create a library-grade Vue composable that accepts maybe-reactive inputs (MaybeRef / MaybeRefOrGetter) so callers can pass a plain value, ref, or getter. Normalize inputs with toValue()/toRef() inside reactive effects (watch/watchEffect) to keep behavior predictable and reactive. Use this skill when user asks for creating adaptable or reusable composables.",
-      "keywords": ["vue", "skill", "agentskill"],
       "skills": [
         "./skills/create-adaptable-composable"
       ]
@@ -15,7 +14,6 @@
       "name": "vue-best-practices",
       "source": "./",
       "description": "MUST be used for Vue.js tasks. Strongly recommends Composition API with `<script setup>` and TypeScript as the standard approach. Covers Vue 3, SSR, Volar, vue-tsc. Load for any Vue, .vue files, Vue Router, Pinia, or Vite with Vue work. ALWAYS use Composition API unless the project explicitly requires Options API.",
-      "keywords": ["vue", "skill", "agentskill"],
       "skills": [
         "./skills/vue-best-practices"
       ]
@@ -24,7 +22,6 @@
       "name": "vue-development-guides",
       "source": "./",
       "description": "A collection of best practices and tips for developing applications using Vue.js. This skill MUST be apply when developing, refactoring or reviewing Vue.js or Nuxt projects.",
-      "keywords": ["vue", "skill", "agentskill"],
       "skills": [
         "./skills/vue-development-guides"
       ]
@@ -33,7 +30,6 @@
       "name": "vue-jsx-best-practices",
       "source": "./",
       "description": "JSX syntax in Vue (e.g., class vs className, JSX plugin config).",
-      "keywords": ["vue", "skill", "agentskill"],
       "skills": [
         "./skills/vue-jsx-best-practices"
       ]
@@ -42,7 +38,6 @@
       "name": "vue-options-api-best-practices",
       "source": "./",
       "description": "Vue 3 Options API style (data(), methods, this context). Each reference shows Options API solution only.",
-      "keywords": ["vue", "skill", "agentskill"],
       "skills": [
         "./skills/vue-options-api-best-practices"
       ]
@@ -51,7 +46,6 @@
       "name": "vue-pinia-best-practices",
       "source": "./",
       "description": "Pinia stores, state management patterns, store setup, and reactivity with stores.",
-      "keywords": ["vue", "skill", "agentskill"],
       "skills": [
         "./skills/vue-pinia-best-practices"
       ]
@@ -60,7 +54,6 @@
       "name": "vue-router-best-practices",
       "source": "./",
       "description": "Vue Router 4 patterns, navigation guards, route params, and route-component lifecycle interactions.",
-      "keywords": ["vue", "skill", "agentskill"],
       "skills": [
         "./skills/vue-router-best-practices"
       ]
@@ -69,7 +62,6 @@
       "name": "vue-testing-best-practices",
       "source": "./",
       "description": "Use for Vue.js testing. Covers Vitest, Vue Test Utils, component testing, mocking, testing patterns, and Playwright for E2E testing.",
-      "keywords": ["vue", "skill", "agentskill"],
       "skills": [
         "./skills/vue-testing-best-practices"
       ]
