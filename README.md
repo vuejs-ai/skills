@@ -12,6 +12,21 @@ Agent skills for Vue 3 development.
 npx skills add vuejs-ai/skills
 ```
 
+### Claude Code Marketplace
+
+An alternative for Claude Code users:
+
+```bash
+# Add marketplace
+/plugin marketplace add vuejs-ai/skills
+
+# Install individual skills
+/plugin install create-adaptable-composable@vue-skills
+
+# Install multiple skills
+/plugin install create-adaptable-composable@vue-skills vue-best-practices@vue-skills  vue-development-guides@vue-skills 
+```
+
 ## Usage
 
 For most reliable results, prefix your prompt with `use vue skill`:
