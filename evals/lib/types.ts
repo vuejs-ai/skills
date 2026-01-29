@@ -3,6 +3,7 @@ export interface EvalConfig {
   query: string;
   files: string[];
   expected_behavior: string[];
+  template?: string | false;
 }
 
 export interface RunOptions {
@@ -11,6 +12,7 @@ export interface RunOptions {
   baseline: boolean;
   timeout: number;
   verbose: boolean;
+  templatePath?: string;
 }
 
 export interface RunResult {

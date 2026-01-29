@@ -162,13 +162,13 @@ function findSuites(name: string): SuiteInfo[] {
 }
 
 // Get skill from eval.json
-function getSkillFromConfig(suitePath: string): string | undefined {
+function fetchEvalConfigFromPath(suitePath: string): EvalConfig | undefined {
   const configPath = join(suitePath, "eval.json");
   if (!existsSync(configPath)) return undefined;
 
   try {
     const config: EvalConfig = JSON.parse(readFileSync(configPath, "utf-8"));
-    return config.skills[0];
+    return config
   } catch {
     return undefined;
   }
@@ -298,10 +298,14 @@ for (const suite of suites) {
 
   for (const config of runConfigs) {
     const isBaseline = config.tier === "baseline";
-    const skill = isBaseline ? undefined : getSkillFromConfig(suite.path);
+    const suitConfig = fetchEvalConfigFromPath(suite.path);
+    const skill = isBaseline ? undefined : suitConfig?.skills?.[0];
     const tierLabel = config.tier;
     const runLabel = runBothTiers || runs > 1 ? ` [${tierLabel}${runs > 1 ? `#${config.runIndex + 1}` : ""}]` : "";
     const isTTY = process.stdout.isTTY;
+
+    const template = suitConfig?.template ?? "default"
+    const templatePath = template !== false ? join(evalsDir, "templates", template) : undefined;
 
     // Progress callback - updates the line in place (only on TTY)
     const onProgress = isTTY
@@ -323,6 +327,7 @@ for (const suite of suites) {
           baseline: isBaseline,
           timeout: 600000, // 10 minutes
           verbose,
+          templatePath
         },
         onProgress
       );

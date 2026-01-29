@@ -41,6 +41,10 @@ export async function runEval(
 
   try {
     // 1. Copy suite to temp dir (excluding test files)
+    if (options.templatePath) {
+      log(`copying template: ${options.templatePath}`);
+      copyDir(options.templatePath, workDir);
+    }
     log("copying files");
     copyDir(suitePath, workDir, (name) => !isTestFile(name));
 
