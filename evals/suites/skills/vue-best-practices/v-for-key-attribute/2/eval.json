@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-best-practices"],
+  "query": "Create a Vue component `src/components/CommentList.vue` that:\n\n1. Receives a `comments` array prop with objects containing `id` (number), `author` (string), `text` (string), and `isHighlighted` (boolean)\n2. Renders each comment as a div showing the author and text\n3. Allows clicking on a comment to toggle its highlighted state (emit 'highlight' event with comment id)\n4. Highlighted comments should have a yellow background",
+  "files": ["src/components/CommentList.vue"],
+  "expected_behavior": [
+    "Uses :key attribute with v-for",
+    "Uses unique identifier for key, not array index",
+    "Properly iterates with v-for"
+  ]
+}

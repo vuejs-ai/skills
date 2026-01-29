@@ -1,0 +1,16 @@
+{
+  "name": "@vue-skills/evals",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "eval": "tsx lib/cli.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}

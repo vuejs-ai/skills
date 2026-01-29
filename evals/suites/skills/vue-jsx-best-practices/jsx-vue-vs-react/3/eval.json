@@ -1,0 +1,11 @@
+{
+  "skills": ["vue-jsx-best-practices"],
+  "query": "Create a Vue component `src/components/FormField.tsx` using JSX (TSX) that:\n\n1. Renders a form field wrapper with CSS class \"form-field\"\n2. Has a label element with class \"form-label\" that points to the input using `for` attribute\n3. Has an input element with class \"form-input\" and an `id` attribute\n4. Accepts `label`, `id`, and `modelValue` props\n5. Emits update:modelValue when the input changes\n\nUse proper Vue JSX conventions for attributes.",
+  "files": ["src/components/FormField.tsx"],
+  "expected_behavior": [
+    "Uses 'class' instead of 'className'",
+    "Uses 'for' instead of 'htmlFor' for label",
+    "Uses Vue JSX syntax",
+    "Has proper class attributes"
+  ]
+}

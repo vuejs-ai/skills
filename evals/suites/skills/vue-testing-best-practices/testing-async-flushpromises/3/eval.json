@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-testing-best-practices"],
+  "query": "Create a test file `src/components/FormSubmit.test.ts` for a FormSubmit component that:\n\n1. Tests that the form shows 'Ready' status initially\n2. Tests that submitting the form shows 'Submitting...' then 'Success'\n3. Tests that the submit button is disabled while submitting\n\nThe FormSubmit component (already exists):\n- Has a form with data-testid=\"form\"\n- Has a status display with data-testid=\"status\"\n- Has a submit button with data-testid=\"submit-btn\"\n\nUse Vitest, @vue/test-utils, and properly handle async operations with flushPromises.",
+  "files": ["src/components/FormSubmit.test.ts"],
+  "expected_behavior": [
+    "Uses async/await for test functions",
+    "Uses flushPromises for async operations",
+    "Awaits trigger calls"
+  ]
+}

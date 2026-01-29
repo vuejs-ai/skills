@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-best-practices"],
+  "query": "Create a Vue component `src/components/ItemList.vue` that:\n\n1. Receives an `items` array prop with objects containing `id` (number), `title` (string), and `completed` (boolean)\n2. Renders each item as a list item (`<li>`) showing the title\n3. Allows clicking on an item to toggle its completed state (emit 'toggle' event with item id)\n4. Completed items should have a line-through style",
+  "files": ["src/components/ItemList.vue"],
+  "expected_behavior": [
+    "Uses :key attribute with v-for",
+    "Uses unique identifier for key, not array index",
+    "Properly iterates with v-for"
+  ]
+}

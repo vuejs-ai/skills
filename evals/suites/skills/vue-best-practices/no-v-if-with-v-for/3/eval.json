@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-best-practices"],
+  "query": "Create a Vue component `src/components/NotificationList.vue` that:\n\n1. Receives a `notifications` array prop with items containing `id` (number), `message` (string), `timestamp` (string), and `isUnread` (boolean)\n2. Receives a `showPanel` boolean prop that controls whether the notification panel is visible\n3. When `showPanel` is true, displays only unread notifications (where `isUnread` is true)\n4. Each notification item should display the message and timestamp",
+  "files": ["src/components/NotificationList.vue"],
+  "expected_behavior": [
+    "Does not use v-if and v-for on the same element",
+    "Uses computed property for filtering unread notifications",
+    "Handles showPanel prop correctly"
+  ]
+}

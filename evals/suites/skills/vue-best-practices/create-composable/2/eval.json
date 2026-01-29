@@ -1,0 +1,12 @@
+{
+  "skills": ["vue-best-practices"],
+  "query": "Create a composable `src/composables/useDebounce.ts` that:\n\n1. Accepts a ref value and a delay in milliseconds\n2. Returns a new ref that updates only after the delay has passed since the last change\n3. Cancels pending updates when the source value changes\n4. Provides a `flush` function to immediately apply pending value\n5. Cleans up timers when the component unmounts\n\nExample usage:\n```ts\nconst searchQuery = ref('')\nconst debouncedQuery = useDebounce(searchQuery, 300)\n```",
+  "files": ["src/composables/useDebounce.ts"],
+  "expected_behavior": [
+    "Returns reactive debounced ref",
+    "Accepts ref and delay as parameters",
+    "Uses setTimeout/clearTimeout for debouncing",
+    "Cleans up on unmount",
+    "Uses Vue reactivity primitives"
+  ]
+}

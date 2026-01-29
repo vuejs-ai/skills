@@ -1,0 +1,11 @@
+{
+  "skills": ["vue-router-best-practices"],
+  "query": "Create a Vue component `src/components/ArticleView.vue` that:\n\n1. Displays article data based on route params `category` and `slug` (e.g., /articles/:category/:slug)\n2. Fetches article data whenever any route param changes (including initial load)\n3. Shows a loading state while fetching\n4. Works correctly when navigating between /articles/tech/ai-future and /articles/science/climate (same component, different params)\n\nThe component should properly handle route param changes without relying solely on onMounted.",
+  "files": ["src/components/ArticleView.vue"],
+  "expected_behavior": [
+    "Uses watch on route params or onBeforeRouteUpdate",
+    "Has immediate option for initial load if using watch",
+    "Does not rely solely on onMounted for data fetching",
+    "Uses vue-router composables"
+  ]
+}

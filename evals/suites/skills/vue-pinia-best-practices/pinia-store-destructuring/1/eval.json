@@ -1,0 +1,11 @@
+{
+  "skills": ["vue-pinia-best-practices"],
+  "query": "Create a Vue component `src/components/UserCard.vue` that:\n\n1. Uses the user store (useUserStore) which has:\n   - State: `name` (string), `email` (string)\n   - Getter: `displayName` (computed from name)\n   - Actions: `updateName(name)`, `updateEmail(email)`\n2. Displays the user's display name and email\n3. Has input fields to edit the name and email with buttons to save changes\n4. The displayed values should update reactively when the store changes\n\nMake sure to properly maintain reactivity when extracting values from the store.",
+  "files": ["src/components/UserCard.vue"],
+  "expected_behavior": [
+    "Uses storeToRefs for extracting state and getters",
+    "Does not destructure state directly without storeToRefs",
+    "Destructures actions directly from store (not through storeToRefs)",
+    "Uses the user store"
+  ]
+}

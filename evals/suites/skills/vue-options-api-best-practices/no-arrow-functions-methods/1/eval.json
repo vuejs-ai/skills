@@ -1,0 +1,11 @@
+{
+  "skills": ["vue-options-api-best-practices"],
+  "query": "Create a Vue component `src/components/ClickCounter.vue` using the **Options API** (not Composition API) that:\n\n1. Has a `count` data property starting at 0\n2. Has a `message` data property starting as empty string\n3. Has an `increment` method that increases count by 1\n4. Has a `setMessage` method that takes a string parameter and sets the message\n5. Displays the count and message in the template\n6. Has buttons to increment and set a test message\n\nUse proper method syntax that allows `this` to work correctly.",
+  "files": ["src/components/ClickCounter.vue"],
+  "expected_behavior": [
+    "Uses regular function syntax for methods, not arrow functions",
+    "Has increment method that uses this",
+    "Has setMessage method",
+    "Uses Options API structure"
+  ]
+}

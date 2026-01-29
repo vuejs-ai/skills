@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-testing-best-practices"],
+  "query": "Create a test file `src/components/DataLoader.test.ts` for a DataLoader component that:\n\n1. Tests that the component shows a loading state initially\n2. Tests that after data loads, it displays the fetched data\n3. Tests that clicking the refresh button reloads the data\n\nThe DataLoader component (already exists):\n- Shows \"Loading...\" when loading\n- Displays fetched user name when loaded\n- Has a refresh button that triggers a new fetch\n\nUse Vitest, @vue/test-utils, and properly handle async operations with flushPromises.",
+  "files": ["src/components/DataLoader.test.ts"],
+  "expected_behavior": [
+    "Uses async/await for test functions",
+    "Uses flushPromises for async operations",
+    "Awaits trigger calls"
+  ]
+}

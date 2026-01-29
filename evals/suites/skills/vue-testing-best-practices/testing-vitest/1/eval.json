@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-testing-best-practices"],
+  "query": "Create a test file `src/components/Counter.test.ts` for the Counter component that:\n\n1. Tests that the counter displays initial count of 0\n2. Tests that clicking the increment button increases the count\n3. Tests that clicking the decrement button decreases the count\n\nThe Counter component (already exists) has:\n- A display showing the current count with data-testid=\"count\"\n- An increment button with data-testid=\"increment\"\n- A decrement button with data-testid=\"decrement\"\n\nUse Vitest and @vue/test-utils for testing.",
+  "files": ["src/components/Counter.test.ts"],
+  "expected_behavior": [
+    "Uses Vitest test APIs",
+    "Uses @vue/test-utils mount",
+    "Tests component interactions"
+  ]
+}

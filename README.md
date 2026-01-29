@@ -101,28 +101,17 @@ Skills are classified into two categories:
 
 ### Validation Process
 
-Every skill in this repository is created through a rigorous, evidence-based process:
+Each skill rule is validated through automated evals:
 
-**1. Real-World Issue Collection**
+1. **Baseline**: Run without skill installed
+2. **With-skill**: Run with skill installed
 
-Skills are sourced from actual developer pain points encountered in production.
+A rule is kept only if it enables the model to solve problems it couldn't solve without it.
 
-**2. Multi-Model Verification**
-
-Each skill undergoes systematic testing:
-- **Baseline test**: Verify the model fails to solve the problem *without* the skill
-- **Skill test**: Confirm the model correctly solves the problem *with* the skill
-- **Deletion criteria**: If both Sonnet AND Haiku pass without the skill, the rule will be deleted
-
-**3. Model Tier Validation**
-
-| Model | Without Skill | With Skill | Action |
-|-------|--------------|------------|--------|
-| Haiku | Fail | Pass | Keep |
-| Sonnet | Fail | Pass | Keep |
-| Both | Pass | - | Delete |
-
-**Acceptance criteria**: A skill is only kept if it enables Haiku or Sonnet to solve a problem they couldn't solve without it.
+| Baseline | With Skill | Action |
+|----------|------------|--------|
+| Fail | Pass | Keep |
+| Pass | Pass | Considered removed |
 
 ## Contributing
 

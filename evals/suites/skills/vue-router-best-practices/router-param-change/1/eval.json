@@ -1,0 +1,11 @@
+{
+  "skills": ["vue-router-best-practices"],
+  "query": "Create a Vue component `src/components/UserProfile.vue` that:\n\n1. Displays user data based on the route param `id` (e.g., /users/:id)\n2. Fetches user data whenever the route param changes (including initial load)\n3. Shows a loading state while fetching\n4. Works correctly when navigating between /users/1 and /users/2 (same component, different params)\n\nThe component should properly handle route param changes without relying solely on onMounted.",
+  "files": ["src/components/UserProfile.vue"],
+  "expected_behavior": [
+    "Uses watch on route params or onBeforeRouteUpdate",
+    "Has immediate option for initial load if using watch",
+    "Does not rely solely on onMounted for data fetching",
+    "Uses vue-router composables"
+  ]
+}

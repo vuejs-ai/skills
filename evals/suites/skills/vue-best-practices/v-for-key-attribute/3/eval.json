@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-best-practices"],
+  "query": "Create a Vue component `src/components/FileList.vue` that:\n\n1. Receives a `files` array prop with objects containing `id` (string), `name` (string), `size` (number), and `isSelected` (boolean)\n2. Renders each file as a row showing the name and formatted size\n3. Allows clicking on a file to toggle its selection state (emit 'select' event with file id)\n4. Selected files should have a blue background",
+  "files": ["src/components/FileList.vue"],
+  "expected_behavior": [
+    "Uses :key attribute with v-for",
+    "Uses unique identifier for key, not array index",
+    "Properly iterates with v-for"
+  ]
+}

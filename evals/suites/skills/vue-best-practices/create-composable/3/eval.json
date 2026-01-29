@@ -1,0 +1,12 @@
+{
+  "skills": ["vue-best-practices"],
+  "query": "Create a composable `src/composables/useLocalStorage.ts` that:\n\n1. Accepts a key string and an initial value\n2. Returns a ref that syncs with localStorage\n3. Automatically serializes/deserializes JSON values\n4. Updates localStorage whenever the ref value changes\n5. Handles SSR by checking for window availability\n\nExample usage:\n```ts\nconst theme = useLocalStorage('theme', 'light')\ntheme.value = 'dark' // automatically persists to localStorage\n```",
+  "files": ["src/composables/useLocalStorage.ts"],
+  "expected_behavior": [
+    "Returns reactive ref synced with localStorage",
+    "Accepts key and initial value as parameters",
+    "Uses JSON.stringify/parse for serialization",
+    "Watches for changes to update localStorage",
+    "Uses Vue reactivity primitives"
+  ]
+}

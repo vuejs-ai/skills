@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-best-practices"],
+  "query": "Create a Vue component `src/components/ContactSearch.vue` that:\n\n1. Receives a `contacts` array prop with items containing `id` (number), `name` (string), `email` (string), `department` (string), and `isActive` (boolean)\n2. Has a search input bound to a local ref that filters contacts by name or email (case-insensitive)\n3. Has a department filter dropdown that can filter by department\n4. Displays only the contacts matching both filters, sorted alphabetically by name\n5. Shows the count of matching contacts\n\nThe component should efficiently derive and cache the filtered/sorted list.",
+  "files": ["src/components/ContactSearch.vue"],
+  "expected_behavior": [
+    "Uses computed property for filtered list, not a method",
+    "Filters and sorts within the computed property",
+    "Does not call filtering function in template"
+  ]
+}

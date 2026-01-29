@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-best-practices"],
+  "query": "Create a Vue component `src/components/TaskBoard.vue` that:\n\n1. Receives a `tasks` array prop with items containing `id` (number), `title` (string), `status` (string: 'pending' | 'in-progress' | 'done'), `priority` (number 1-5), and `dueDate` (string ISO date)\n2. Displays only pending and in-progress tasks, sorted by priority (highest first), then by due date (earliest first)\n3. Shows the total count of active tasks above the list\n\nThe component should efficiently derive and cache the filtered/sorted list.",
+  "files": ["src/components/TaskBoard.vue"],
+  "expected_behavior": [
+    "Uses computed property for filtered list, not a method",
+    "Sorts within the computed property",
+    "Does not call filtering function in template"
+  ]
+}

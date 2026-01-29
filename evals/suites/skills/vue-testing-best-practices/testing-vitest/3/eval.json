@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-testing-best-practices"],
+  "query": "Create a test file `src/components/InputField.test.ts` for the InputField component that:\n\n1. Tests that the input is empty initially\n2. Tests that typing in the input updates the displayed value\n3. Tests that clicking the clear button empties the input\n\nThe InputField component (already exists) has:\n- An input field with data-testid=\"input\"\n- A clear button with data-testid=\"clear-btn\"\n- A display showing the current value with data-testid=\"value\"\n\nUse Vitest and @vue/test-utils for testing.",
+  "files": ["src/components/InputField.test.ts"],
+  "expected_behavior": [
+    "Uses Vitest test APIs",
+    "Uses @vue/test-utils mount",
+    "Tests component interactions"
+  ]
+}

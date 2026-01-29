@@ -1,0 +1,11 @@
+{
+  "skills": ["vue-pinia-best-practices"],
+  "query": "Create a Vue component `src/components/SettingsPanel.vue` that:\n\n1. Uses the settings store (useSettingsStore) which has:\n   - State: `theme` (string), `language` (string), `notifications` (boolean)\n   - Getter: `settingsSummary` (computed description of current settings)\n   - Actions: `setTheme(theme)`, `setLanguage(lang)`, `toggleNotifications()`\n2. Displays the current theme, language, and notifications status\n3. Has controls to change each setting\n4. The displayed values should update reactively when the store changes\n\nMake sure to properly maintain reactivity when extracting values from the store.",
+  "files": ["src/components/SettingsPanel.vue"],
+  "expected_behavior": [
+    "Uses storeToRefs for extracting state and getters",
+    "Does not destructure state directly without storeToRefs",
+    "Destructures actions directly from store (not through storeToRefs)",
+    "Uses the settings store"
+  ]
+}

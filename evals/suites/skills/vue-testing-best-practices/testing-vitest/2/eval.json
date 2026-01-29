@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-testing-best-practices"],
+  "query": "Create a test file `src/components/Toggle.test.ts` for the Toggle component that:\n\n1. Tests that the toggle displays 'OFF' initially\n2. Tests that clicking the toggle switches it to 'ON'\n3. Tests that clicking again switches it back to 'OFF'\n\nThe Toggle component (already exists) has:\n- A display showing the current state with data-testid=\"status\"\n- A button with data-testid=\"toggle-btn\"\n\nUse Vitest and @vue/test-utils for testing.",
+  "files": ["src/components/Toggle.test.ts"],
+  "expected_behavior": [
+    "Uses Vitest test APIs",
+    "Uses @vue/test-utils mount",
+    "Tests component interactions"
+  ]
+}

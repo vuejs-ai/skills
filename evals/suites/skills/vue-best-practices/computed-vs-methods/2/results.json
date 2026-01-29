@@ -1,0 +1,24 @@
+{
+  "haiku": {
+    "timestamp": "2026-01-29T11:49:48.150Z",
+    "tiers": {
+      "with-skill": {
+        "passed": true,
+        "duration": 41386
+      },
+      "baseline": {
+        "passed": true,
+        "duration": 35160
+      }
+    }
+  },
+  "sonnet": {
+    "timestamp": "2026-01-29T11:39:37.823Z",
+    "tiers": {
+      "with-skill": {
+        "passed": true,
+        "duration": 49571
+      }
+    }
+  }
+}

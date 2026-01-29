@@ -1,0 +1,12 @@
+{
+  "skills": ["vue-best-practices"],
+  "query": "Create a composable `src/composables/useAsync.ts` that:\n\n1. Accepts an async function as a parameter\n2. Returns reactive state: `data`, `loading`, `error`\n3. Provides an `execute` function to trigger the async operation\n4. Automatically handles loading state (true while executing, false when done)\n5. Captures any errors that occur during execution\n6. Can be called with `immediate: true` option to execute immediately\n\nExample usage:\n```ts\nconst { data, loading, error, execute } = useAsync(fetchUser, { immediate: true })\n```",
+  "files": ["src/composables/useAsync.ts"],
+  "expected_behavior": [
+    "Returns reactive state (data, loading, error)",
+    "Accepts a function as parameter",
+    "Has execute function",
+    "Handles loading state",
+    "Uses Vue reactivity primitives"
+  ]
+}

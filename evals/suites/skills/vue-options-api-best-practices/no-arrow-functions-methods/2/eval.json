@@ -1,0 +1,11 @@
+{
+  "skills": ["vue-options-api-best-practices"],
+  "query": "Create a Vue component `src/components/FormValidator.vue` using the **Options API** (not Composition API) that:\n\n1. Has an `email` data property starting as empty string\n2. Has an `isValid` data property starting as false\n3. Has a `validate` method that validates the email format and sets isValid\n4. Has a `clearForm` method that resets email and isValid\n5. Displays the email input and validation status in the template\n6. Has buttons to validate and clear the form\n\nUse proper method syntax that allows `this` to work correctly.",
+  "files": ["src/components/FormValidator.vue"],
+  "expected_behavior": [
+    "Uses regular function syntax for methods, not arrow functions",
+    "Has validate method that uses this",
+    "Has clearForm method",
+    "Uses Options API structure"
+  ]
+}

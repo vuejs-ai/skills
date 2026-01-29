@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-testing-best-practices"],
+  "query": "Create a test file `src/components/SearchResults.test.ts` for a SearchResults component that:\n\n1. Tests that the component shows 'No results' initially\n2. Tests that after searching, it displays the search results\n3. Tests that clicking the search button with a query triggers a search\n\nThe SearchResults component (already exists):\n- Shows \"No results\" when empty\n- Has an input with data-testid=\"search-input\"\n- Has a search button with data-testid=\"search-btn\"\n- Displays results in a list with data-testid=\"results\"\n\nUse Vitest, @vue/test-utils, and properly handle async operations with flushPromises.",
+  "files": ["src/components/SearchResults.test.ts"],
+  "expected_behavior": [
+    "Uses async/await for test functions",
+    "Uses flushPromises for async operations",
+    "Awaits trigger calls"
+  ]
+}

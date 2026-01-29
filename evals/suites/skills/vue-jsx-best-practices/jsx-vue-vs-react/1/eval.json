@@ -1,0 +1,11 @@
+{
+  "skills": ["vue-jsx-best-practices"],
+  "query": "Create a Vue component `src/components/Button.tsx` using JSX (TSX) that:\n\n1. Renders a button with a CSS class \"btn btn-primary\"\n2. Accepts a `label` prop for the button text\n3. Emits a `click` event when clicked\n4. Has a wrapper div with class \"button-wrapper\"\n\nUse proper Vue JSX conventions for attributes.",
+  "files": ["src/components/Button.tsx"],
+  "expected_behavior": [
+    "Uses 'class' instead of 'className'",
+    "Does not use React-style htmlFor",
+    "Uses Vue JSX syntax",
+    "Has proper class attributes"
+  ]
+}

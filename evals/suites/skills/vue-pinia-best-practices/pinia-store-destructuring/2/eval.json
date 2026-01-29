@@ -1,0 +1,11 @@
+{
+  "skills": ["vue-pinia-best-practices"],
+  "query": "Create a Vue component `src/components/CartSummary.vue` that:\n\n1. Uses the cart store (useCartStore) which has:\n   - State: `items` (array), `discount` (number)\n   - Getter: `totalPrice` (computed from items and discount)\n   - Actions: `addItem(item)`, `clearCart()`\n2. Displays the total price and number of items\n3. Has a button to clear the cart\n4. The displayed values should update reactively when the store changes\n\nMake sure to properly maintain reactivity when extracting values from the store.",
+  "files": ["src/components/CartSummary.vue"],
+  "expected_behavior": [
+    "Uses storeToRefs for extracting state and getters",
+    "Does not destructure state directly without storeToRefs",
+    "Destructures actions directly from store (not through storeToRefs)",
+    "Uses the cart store"
+  ]
+}

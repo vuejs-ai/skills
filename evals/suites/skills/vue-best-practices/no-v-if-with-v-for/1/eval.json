@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-best-practices"],
+  "query": "Create a Vue component `src/components/UserList.vue` that:\n\n1. Receives a `users` array prop with items containing `id` (number), `name` (string), and `isActive` (boolean)\n2. Receives a `showList` boolean prop that controls whether the list is shown at all\n3. When `showList` is true, displays only active users (where `isActive` is true)\n4. Each user item should display the user's name",
+  "files": ["src/components/UserList.vue"],
+  "expected_behavior": [
+    "Does not use v-if and v-for on the same element",
+    "Uses computed property for filtering active users",
+    "Handles showList prop correctly"
+  ]
+}

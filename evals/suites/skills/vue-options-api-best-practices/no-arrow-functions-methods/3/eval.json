@@ -1,0 +1,11 @@
+{
+  "skills": ["vue-options-api-best-practices"],
+  "query": "Create a Vue component `src/components/Timer.vue` using the **Options API** (not Composition API) that:\n\n1. Has a `seconds` data property starting at 0\n2. Has an `isRunning` data property starting as false\n3. Has a `start` method that starts the timer\n4. Has a `stop` method that stops the timer\n5. Has a `reset` method that stops and resets seconds to 0\n6. Displays the elapsed seconds in the template\n7. Has buttons to start, stop, and reset the timer\n\nUse proper method syntax that allows `this` to work correctly.",
+  "files": ["src/components/Timer.vue"],
+  "expected_behavior": [
+    "Uses regular function syntax for methods, not arrow functions",
+    "Has start method that uses this",
+    "Has stop and reset methods",
+    "Uses Options API structure"
+  ]
+}

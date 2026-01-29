@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-best-practices"],
+  "query": "Create a Vue component `src/components/ProductList.vue` that:\n\n1. Receives a `products` array prop with items containing `name` (string), `price` (number), and `inStock` (boolean)\n2. Displays only in-stock products sorted by price (lowest first)\n3. Shows the total count of in-stock products above the list\n\nThe component should efficiently derive and cache the filtered/sorted list.",
+  "files": ["src/components/ProductList.vue"],
+  "expected_behavior": [
+    "Uses computed property for filtered list, not a method",
+    "Sorts within the computed property",
+    "Does not call filtering function in template"
+  ]
+}

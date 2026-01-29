@@ -1,0 +1,10 @@
+{
+  "name": "vue-skills",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "eval": "pnpm --filter @vue-skills/evals eval",
+    "test": "pnpm --filter @vue-skills/evals test",
+    "typecheck": "pnpm --filter @vue-skills/evals typecheck"
+  }
+}

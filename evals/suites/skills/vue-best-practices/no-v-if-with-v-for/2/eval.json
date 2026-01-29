@@ -1,0 +1,10 @@
+{
+  "skills": ["vue-best-practices"],
+  "query": "Create a Vue component `src/components/OrderList.vue` that:\n\n1. Receives an `orders` array prop with items containing `id` (number), `customerName` (string), `total` (number), and `isPending` (boolean)\n2. Receives an `isExpanded` boolean prop that controls whether the order details are shown\n3. When `isExpanded` is true, displays only pending orders (where `isPending` is true)\n4. Each order item should display the customer name and total",
+  "files": ["src/components/OrderList.vue"],
+  "expected_behavior": [
+    "Does not use v-if and v-for on the same element",
+    "Uses computed property for filtering pending orders",
+    "Handles isExpanded prop correctly"
+  ]
+}

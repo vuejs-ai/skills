@@ -1,0 +1,11 @@
+{
+  "skills": ["vue-jsx-best-practices"],
+  "query": "Create a Vue component `src/components/Card.tsx` using JSX (TSX) that:\n\n1. Renders a card with a CSS class \"card card-bordered\"\n2. Has a header section with class \"card-header\"\n3. Has a body section with class \"card-body\"\n4. Accepts `title` and `content` props\n5. Displays the title in the header and content in the body\n\nUse proper Vue JSX conventions for attributes.",
+  "files": ["src/components/Card.tsx"],
+  "expected_behavior": [
+    "Uses 'class' instead of 'className'",
+    "Does not use React-style htmlFor",
+    "Uses Vue JSX syntax",
+    "Has proper class attributes"
+  ]
+}
