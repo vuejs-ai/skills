@@ -1,0 +1,70 @@
+{
+  "name": "vue-skills",
+  "description": "A collection of skills for Vue.js development.",
+  "plugins": [
+    {
+      "name": "create-adaptable-composable",
+      "source": "./",
+      "description": "Create a library-grade Vue composable that accepts maybe-reactive inputs (MaybeRef / MaybeRefOrGetter) so callers can pass a plain value, ref, or getter. Normalize inputs with toValue()/toRef() inside reactive effects (watch/watchEffect) to keep behavior predictable and reactive. Use this skill when user asks for creating adaptable or reusable composables.",
+      "skills": [
+        "./skills/create-adaptable-composable"
+      ]
+    },
+    {
+      "name": "vue-best-practices",
+      "source": "./",
+      "description": "MUST be used for Vue.js tasks. Strongly recommends Composition API with `<script setup>` and TypeScript as the standard approach. Covers Vue 3, SSR, Volar, vue-tsc. Load for any Vue, .vue files, Vue Router, Pinia, or Vite with Vue work. ALWAYS use Composition API unless the project explicitly requires Options API.",
+      "skills": [
+        "./skills/vue-best-practices"
+      ]
+    },
+    {
+      "name": "vue-development-guides",
+      "source": "./",
+      "description": "A collection of best practices and tips for developing applications using Vue.js. This skill MUST be apply when developing, refactoring or reviewing Vue.js or Nuxt projects.",
+      "skills": [
+        "./skills/vue-development-guides"
+      ]
+    },
+    {
+      "name": "vue-jsx-best-practices",
+      "source": "./",
+      "description": "JSX syntax in Vue (e.g., class vs className, JSX plugin config).",
+      "skills": [
+        "./skills/vue-jsx-best-practices"
+      ]
+    },
+    {
+      "name": "vue-options-api-best-practices",
+      "source": "./",
+      "description": "Vue 3 Options API style (data(), methods, this context). Each reference shows Options API solution only.",
+      "skills": [
+        "./skills/vue-options-api-best-practices"
+      ]
+    },
+    {
+      "name": "vue-pinia-best-practices",
+      "source": "./",
+      "description": "Pinia stores, state management patterns, store setup, and reactivity with stores.",
+      "skills": [
+        "./skills/vue-pinia-best-practices"
+      ]
+    },
+    {
+      "name": "vue-router-best-practices",
+      "source": "./",
+      "description": "Vue Router 4 patterns, navigation guards, route params, and route-component lifecycle interactions.",
+      "skills": [
+        "./skills/vue-router-best-practices"
+      ]
+    },
+    {
+      "name": "vue-testing-best-practices",
+      "source": "./",
+      "description": "Use for Vue.js testing. Covers Vitest, Vue Test Utils, component testing, mocking, testing patterns, and Playwright for E2E testing.",
+      "skills": [
+        "./skills/vue-testing-best-practices"
+      ]
+    }
+  ]
+}
