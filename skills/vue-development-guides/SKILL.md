@@ -3,8 +3,8 @@ name: vue-development-guides
 description: A collection of best practices and tips for developing applications using Vue.js. This skill MUST be apply when developing, refactoring or reviewing Vue.js or Nuxt projects.
 license: MIT
 metadata:
-    author: SerKo <https://github.com/serkodev>
-    version: "0.1"
+  author: github.com/vuejs-ai
+  version: "17.0.0"
 compatibility: Requires Vue 3 (or above) or Nuxt 3 (or above) project
 ---
 

@@ -3,8 +3,8 @@ name: create-adaptable-composable
 description: Create a library-grade Vue composable that accepts maybe-reactive inputs (MaybeRef / MaybeRefOrGetter) so callers can pass a plain value, ref, or getter. Normalize inputs with toValue()/toRef() inside reactive effects (watch/watchEffect) to keep behavior predictable and reactive. Use this skill when user asks for creating adaptable or reusable composables.
 license: MIT
 metadata:
-    author: SerKo <https://github.com/serkodev>
-    version: "0.1"
+  author: github.com/vuejs-ai
+  version: "17.0.0"
 compatibility: Requires Vue 3 (or above) or Nuxt 3 (or above) project
 ---
 

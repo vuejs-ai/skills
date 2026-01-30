@@ -8,6 +8,10 @@ on:
         required: true
         default: ''
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -24,21 +28,42 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Sync files to main
+        id: sync
         run: |
-          # Checkout main branch
+          # Make sure we have up-to-date refs
+          git fetch origin main dev
+
+          # Start from main
           git checkout main
+          git pull --ff-only origin main
 
-          # Remove all tracked files except .git
+          # Create a new branch for the sync
+          BRANCH="sync/dev-to-main-$(date +%Y%m%d%H%M%S)"
+          git checkout -b "$BRANCH"
+
           git rm -rf . || true
+          git checkout origin/dev -- skills/ .github/ README.md AGENTS.md CLAUDE.md LICENSE
 
-          # Checkout specific files from dev
-          git checkout dev -- skills/ .github/ README.md AGENTS.md CLAUDE.md LICENSE
-
-          # Commit and push if there are changes
           git add -A
           if git diff --staged --quiet; then
             echo "No changes to sync"
-          else
-            git commit -m "sync: update from dev branch"
-            git push origin main
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
+
+          git commit -m "sync: update from dev branch"
+          git push -u origin "$BRANCH"
+
+          echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+
+      - name: Create Pull Request
+        if: steps.sync.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --base main \
+            --head "${{ steps.sync.outputs.branch }}" \
+            --title "sync: update from dev branch" \
+            --body "Automated sync of selected files from \`dev\` into \`main\`."

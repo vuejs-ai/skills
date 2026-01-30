@@ -12,6 +12,21 @@ Agent skills for Vue 3 development.
 npx skills add vuejs-ai/skills
 ```
 
+### Claude Code Marketplace
+
+An alternative for Claude Code users:
+
+```bash
+# Add marketplace
+/plugin marketplace add vuejs-ai/skills
+
+# Install individual skills
+/plugin install create-adaptable-composable@vue-skills
+
+# Install multiple skills
+/plugin install create-adaptable-composable@vue-skills vue-best-practices@vue-skills  vue-development-guides@vue-skills 
+```
+
 ## Usage
 
 For most reliable results, prefix your prompt with `use vue skill`:
@@ -26,13 +41,14 @@ This explicitly triggers the skill and ensures the AI follows the documented pat
 
 | Skill | When to use | Description |
 |-------|-------------|-------------|
-| **vue-best-practices** | Vue 3 + Composition API + TypeScript | Common gotchas, reactivity patterns, SSR, performance |
+| **vue-best-practices** | Vue 3 + Composition API + TypeScript | Best practices, common gotchas, SSR guidance, performance |
 | **vue-options-api-best-practices** | Options API (`data()`, `methods`) | `this` context, lifecycle, TypeScript with Options API |
 | **vue-router-best-practices** | Vue Router 4 | Navigation guards, route params, route-component lifecycle |
 | **vue-pinia-best-practices** | Pinia for state management | Store setup, reactivity, state patterns |
 | **vue-testing-best-practices** | Writing component or E2E tests | Vitest, Vue Test Utils, Playwright |
 | **vue-jsx-best-practices** | JSX in Vue | Syntax differences from React JSX |
 | **vue-development-guides** | Building a Vue/Nuxt project | Component splitting, data flow, core principles |
+| **vue-debug-guides** | Debugging Vue 3 issues | Runtime errors, warnings, async error handling, hydration issues |
 | **create-adaptable-composable** | Creating reusable composables | `MaybeRef`/`MaybeRefOrGetter` input patterns |
 
 ## Examples
@@ -49,13 +65,13 @@ Prompt
 create a todo app
 ```
 
-🔎 See demo [full output](./demo/todo-app).
+🔎 See demo [full output](https://github.com/vuejs-ai/skills/tree/dev/demo/todo-app).
 
 #### Changes after using skill
 
-- More readable [code](demo/todo-app/with-skills/App.vue)
-- [Components](demo/todo-app/with-skills/components) split
-- Moved states into composables ([useTodos.ts](demo/todo-app/with-skills/composables/useTodos.ts))
+- More readable [code](https://github.com/vuejs-ai/skills/tree/dev/demo/todo-app/with-skills/App.vue)
+- [Components](https://github.com/vuejs-ai/skills/tree/dev/demo/todo-app/with-skills/components) split
+- Moved states into composables ([useTodos.ts](https://github.com/vuejs-ai/skills/tree/dev/demo/todo-app/with-skills/composables/useTodos.ts))
 - Use `shallowRef` for primitive reactive data (see [Reactivity Guide](skills/vue-development-guides/references/reactivity-guide.md))
 
 ### create-adaptable-composable
@@ -70,7 +86,7 @@ Prompt
 create a reusable composable for controlling hidden for a element
 ```
 
-🔎 See demo [full output](./demo/hidden-composable).
+🔎 See demo [full output](https://github.com/vuejs-ai/skills/tree/dev/demo/hidden-composable).
 
 #### Changes after using skill
 
@@ -101,28 +117,17 @@ Skills are classified into two categories:
 
 ### Validation Process
 
-Every skill in this repository is created through a rigorous, evidence-based process:
+Each skill rule is validated through automated evals:
 
-**1. Real-World Issue Collection**
+1. **Baseline**: Run without skill installed
+2. **With-skill**: Run with skill installed
 
-Skills are sourced from actual developer pain points encountered in production.
+A rule is kept only if it enables the model to solve problems it couldn't solve without it.
 
-**2. Multi-Model Verification**
-
-Each skill undergoes systematic testing:
-- **Baseline test**: Verify the model fails to solve the problem *without* the skill
-- **Skill test**: Confirm the model correctly solves the problem *with* the skill
-- **Deletion criteria**: If both Sonnet AND Haiku pass without the skill, the rule will be deleted
-
-**3. Model Tier Validation**
-
-| Model | Without Skill | With Skill | Action |
-|-------|--------------|------------|--------|
-| Haiku | Fail | Pass | Keep |
-| Sonnet | Fail | Pass | Keep |
-| Both | Pass | - | Delete |
-
-**Acceptance criteria**: A skill is only kept if it enables Haiku or Sonnet to solve a problem they couldn't solve without it.
+| Baseline | With Skill | Action |
+|----------|------------|--------|
+| Fail | Pass | Keep |
+| Pass | Pass | Considered removed |
 
 ## Contributing
 
@@ -135,6 +140,7 @@ Development happens on the `dev` branch. The `main` branch is reserved for publi
 
 ## Related projects
 
+- [antfu/skills](https://github.com/antfu/skills) - Anthony Fu's curated collection of agent skills for Vue/Vite/Nuxt
 - [vueuse/vueuse-skills](https://github.com/vueuse/vueuse-skills) - Agent skills for VueUse development
 - [onmax/nuxt-skills](https://github.com/onmax/nuxt-skills) - Agent skills for Nuxt development
 
