@@ -2,7 +2,7 @@
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, join, resolve } from "path";
 import { fileURLToPath } from "url";
-import { runEval, type RunResult } from "./runner.js";
+import { runEval, type RunResult } from "./claude-runner.js";
 import type { EvalConfig, ResultsFile, ModelResult } from "./types.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -296,7 +296,15 @@ for (const suite of suites) {
     }
   }
 
+  // Track failed tiers for fail-fast behavior
+  const failedTiers = new Set<"baseline" | "with-skill">();
+
   for (const config of runConfigs) {
+    // Fail-fast: skip remaining runs for a tier that already failed
+    if (failedTiers.has(config.tier)) {
+      continue;
+    }
+
     const isBaseline = config.tier === "baseline";
     const suitConfig = fetchEvalConfigFromPath(suite.path);
     const skill = isBaseline ? undefined : suitConfig?.skills?.[0];
@@ -357,6 +365,11 @@ for (const suite of suites) {
 
       // Save result to results.json using short model name as key, with version field
       saveResult(suite.path, model, isBaseline, result);
+
+      // Fail-fast: if this run failed, mark tier as failed to skip remaining runs
+      if (!result.success) {
+        failedTiers.add(config.tier);
+      }
     } catch (error) {
       if (isTTY) {
         process.stdout.clearLine?.(0);
@@ -364,13 +377,18 @@ for (const suite of suites) {
         process.stdout.write(`  Running${runLabel}... `);
       }
       console.log(`✗ ERROR: ${error}`);
-      suiteResults.push({
+      const failedResult: RunResult = {
         success: false,
         buildSuccess: false,
         testSuccess: false,
         duration: 0,
         output: String(error),
-      });
+      };
+      suiteResults.push(failedResult);
+
+      // Fail-fast: errors also stop remaining runs for this tier
+      saveResult(suite.path, model, isBaseline, failedResult);
+      failedTiers.add(config.tier);
     }
   }
 

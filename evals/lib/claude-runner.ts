@@ -1,4 +1,4 @@
-import { spawn, execSync } from "child_process";
+import { spawn } from "child_process";
 import {
   cpSync,
   existsSync,
@@ -63,8 +63,10 @@ export async function runEval(
         { cwd: workDir }
       );
 
-      if (skillResult.exitCode !== 0 && options.verbose) {
-        console.log(`  Skill install warning: ${skillResult.stderr}`);
+      if (skillResult.exitCode !== 0) {
+        throw new Error(
+          `Skill install failed (exit code ${skillResult.exitCode}): ${skillResult.stderr}`
+        );
       }
     }
 
@@ -177,14 +179,10 @@ async function runClaudeCode(
   disableSkills: boolean,
   verbose: boolean = false
 ): Promise<ClaudeResult> {
-  // Write prompt to a file to avoid shell escaping issues
-  const promptFile = join(cwd, ".eval-prompt.txt");
   const enhancedPrompt = `${prompt}\n\nDo not run npm, pnpm, yarn, or any package manager commands. Just write the code files.`;
-  writeFileSync(promptFile, enhancedPrompt);
 
-  // Build command
+  // Build args array for spawn (no shell expansion)
   const args = [
-    "claude",
     "--print",
     "--model",
     model,
@@ -201,76 +199,80 @@ async function runClaudeCode(
     args.push("--disable-slash-commands");
   }
 
-  // Use cat to read the prompt file
-  const command = `${args.join(" ")} "$(cat '${promptFile}')"`;
+  // Add prompt as final argument (no shell expansion with spawn)
+  args.push(enhancedPrompt);
 
   if (verbose) {
-    console.log(`  Claude command: ${args.join(" ")} "<prompt from file>"`);
+    console.log(`  Claude command: claude ${args.slice(0, -1).join(" ")} "<prompt>"`);
   }
 
-  try {
-    const stdout = execSync(command, {
+  return new Promise((resolve) => {
+    const child = spawn("claude", args, {
       cwd,
-      timeout,
-      encoding: "utf-8",
-      maxBuffer: 50 * 1024 * 1024, // 50MB buffer
+      shell: false, // Prevent shell expansion of $route, $refs, etc.
+      env: process.env,
     });
 
-    // Parse JSON response to extract model ID
-    let modelId: string | undefined;
-    let result: string | undefined;
-    try {
-      const response = JSON.parse(stdout);
-      // Extract model ID from modelUsage keys
-      if (response.modelUsage && typeof response.modelUsage === "object") {
-        const modelIds = Object.keys(response.modelUsage);
-        if (modelIds.length > 0) {
-          modelId = modelIds[0];
+    let stdout = "";
+    let stderr = "";
+
+    child.stdout.on("data", (d: Buffer) => {
+      stdout += d.toString();
+    });
+
+    child.stderr.on("data", (d: Buffer) => {
+      stderr += d.toString();
+    });
+
+    child.on("error", (err) => {
+      if (verbose) {
+        console.log(`  Claude spawn error: ${err.message}`);
+      }
+      resolve({ stdout, stderr, exitCode: 1 });
+    });
+
+    const timer = setTimeout(() => {
+      child.kill();
+      if (verbose) {
+        console.log(`  Claude timeout after ${timeout}ms`);
+      }
+      resolve({ stdout, stderr, exitCode: 1 });
+    }, timeout);
+
+    child.on("close", (code) => {
+      clearTimeout(timer);
+
+      // Parse JSON response to extract model ID
+      let modelId: string | undefined;
+      let result: string | undefined;
+      try {
+        const response = JSON.parse(stdout);
+        // Extract model ID from modelUsage keys
+        if (response.modelUsage && typeof response.modelUsage === "object") {
+          const modelIds = Object.keys(response.modelUsage);
+          if (modelIds.length > 0) {
+            modelId = modelIds[0];
+          }
+        }
+        // Extract actual result text
+        result = response.result;
+      } catch {
+        // If parsing fails, use raw stdout
+        result = stdout;
+      }
+
+      if (verbose) {
+        console.log(`  Claude exit code: ${code}`);
+        console.log(`  Model ID: ${modelId || "unknown"}`);
+        console.log(`  Claude result (first 200): ${(result || stdout).slice(0, 200)}`);
+        if (stderr) {
+          console.log(`  Claude stderr: ${stderr.slice(0, 500)}`);
         }
       }
-      // Extract actual result text
-      result = response.result;
-    } catch {
-      // If parsing fails, use raw stdout
-      result = stdout;
-    }
 
-    if (verbose) {
-      console.log(`  Claude exit code: 0`);
-      console.log(`  Model ID: ${modelId || "unknown"}`);
-      console.log(`  Claude result (first 200): ${(result || stdout).slice(0, 200)}`);
-    }
-
-    // Clean up prompt file
-    try {
-      rmSync(promptFile);
-    } catch {
-      // Ignore
-    }
-
-    return { stdout, stderr: "", exitCode: 0, modelId, result };
-  } catch (error: unknown) {
-    const err = error as { stdout?: string; stderr?: string; status?: number };
-    if (verbose) {
-      console.log(`  Claude error: ${err}`);
-      if (err.stderr) {
-        console.log(`  Claude stderr: ${err.stderr.slice(0, 500)}`);
-      }
-    }
-
-    // Clean up prompt file
-    try {
-      rmSync(promptFile);
-    } catch {
-      // Ignore
-    }
-
-    return {
-      stdout: err.stdout || "",
-      stderr: err.stderr || "",
-      exitCode: err.status || 1,
-    };
-  }
+      resolve({ stdout, stderr, exitCode: code ?? 1, modelId, result });
+    });
+  });
 }
 
 async function execAsync(
