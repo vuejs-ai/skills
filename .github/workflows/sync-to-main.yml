@@ -49,7 +49,7 @@ jobs:
 
           # ...then re-apply only whitelisted paths from dev
           git restore --source=origin/dev --staged --worktree -- \
-            skills/ .github/ README.md AGENTS.md CLAUDE.md LICENSE
+            skills/ .github/ .claude-plugin/ README.md AGENTS.md CLAUDE.md LICENSE
 
           git add -A
           if git diff --staged --quiet; then
