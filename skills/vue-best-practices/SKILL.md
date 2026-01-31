@@ -126,22 +126,14 @@ Vue 3 best practices, common gotchas, and performance optimization.
 - Migrating Vue 2 directives to Vue 3 → See [directive-vue2-migration-hooks](reference/directive-vue2-migration-hooks.md)
 
 ### Transitions
-- Wrapping multiple elements or components in transitions → See [transition-single-element-slot](reference/transition-single-element-slot.md)
-- Transitioning between same element types without animation → See [transition-key-for-same-element](reference/transition-key-for-same-element.md)
-- Using JavaScript animations without calling done callback → See [transition-js-hooks-done-callback](reference/transition-js-hooks-done-callback.md)
-- Animating lists with TransitionGroup without unique keys → See [transition-group-key-requirement](reference/transition-group-key-requirement.md)
-- Performance problems with janky list animations → See [transition-animate-transform-opacity](reference/transition-animate-transform-opacity.md)
-- Move animations failing on inline list elements → See [transition-group-flip-inline-elements](reference/transition-group-flip-inline-elements.md)
-- List items jumping instead of smoothly animating → See [transition-group-move-animation-position-absolute](reference/transition-group-move-animation-position-absolute.md)
-- Vue 2 to Vue 3 transition layout breaks unexpectedly → See [transition-group-no-default-wrapper-vue3](reference/transition-group-no-default-wrapper-vue3.md)
-- Trying to sequence list animations with mode prop → See [transition-group-no-mode-prop](reference/transition-group-no-mode-prop.md)
-- Creating cascading delays for list item animations → See [transition-group-staggered-animations](reference/transition-group-staggered-animations.md)
-- Overlapping elements or layout jumping during transitions → See [transition-mode-out-in](reference/transition-mode-out-in.md)
-- Nested transition animations cutting off prematurely → See [transition-nested-duration](reference/transition-nested-duration.md)
-- Reusable transition components with scoped styles breaking → See [transition-reusable-scoped-style](reference/transition-reusable-scoped-style.md)
-- RouterView transitions unexpectedly animating on page load → See [transition-router-view-appear](reference/transition-router-view-appear.md)
-- Mixing CSS transitions and animations causing timing issues → See [transition-type-when-mixed](reference/transition-type-when-mixed.md)
-- Component cleanup not firing during fast transition replacements → See [transition-unmount-hook-timing](reference/transition-unmount-hook-timing.md)
+
+`<Transition>` animates a single element or component entering/leaving. Use it for view swaps, toggling UI states, or simple enter/leave effects.
+
+- Transition usage patterns and performance best practices → See [transition](reference/component-transition.md)
+
+`<TransitionGroup>` animates lists of items entering, leaving, and moving. Use it for `v-for` lists where items change over time.
+
+- TransitionGroup list animation patterns and keying guidance → See [transition-group](reference/component-transition-group.md)
 
 ### Animation
 - Need to animate elements staying in DOM → See [animation-class-based-technique](reference/animation-class-based-technique.md)

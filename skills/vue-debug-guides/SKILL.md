@@ -95,6 +95,17 @@ For development best practices and common gotchas, use `vue-best-practices`.
 - Child components mount twice with nested Vue Router routes → See [keepalive-router-nested-double-mount](reference/keepalive-router-nested-double-mount.md)
 - Memory grows when combining KeepAlive with Transition animations → See [keepalive-transition-memory-leak](reference/keepalive-transition-memory-leak.md)
 
+### Transitions
+- JavaScript transition hooks hang without done callback → See [transition-js-hooks-done-callback](reference/transition-js-hooks-done-callback.md)
+- Move animations fail on inline list elements → See [transition-group-flip-inline-elements](reference/transition-group-flip-inline-elements.md)
+- List items jump instead of smoothly animating → See [transition-group-move-animation-position-absolute](reference/transition-group-move-animation-position-absolute.md)
+- Vue 2 to Vue 3 TransitionGroup wrapper changes break layout → See [transition-group-no-default-wrapper-vue3](reference/transition-group-no-default-wrapper-vue3.md)
+- Nested transitions cut off before finishing → See [transition-nested-duration](reference/transition-nested-duration.md)
+- Scoped styles stop working in reusable transition wrappers → See [transition-reusable-scoped-style](reference/transition-reusable-scoped-style.md)
+- RouterView transitions animate unexpectedly on first render → See [transition-router-view-appear](reference/transition-router-view-appear.md)
+- Mixing CSS transitions and animations causes timing issues → See [transition-type-when-mixed](reference/transition-type-when-mixed.md)
+- Cleanup hooks missed during rapid transition swaps → See [transition-unmount-hook-timing](reference/transition-unmount-hook-timing.md)
+
 ### Teleport
 - Teleport target element not found in DOM → See [teleport-target-must-exist](reference/teleport-target-must-exist.md)
 - Teleported content breaks SSR hydration → See [teleport-ssr-hydration](reference/teleport-ssr-hydration.md)
