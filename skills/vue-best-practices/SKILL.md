@@ -12,15 +12,6 @@ Vue 3 best practices, common gotchas, and performance optimization.
 ## Reactivity
 - Core reactivity patterns for ref(), shallowRef(), external state, and computed() → See [reactivity](reference/reactivity.md)
 
-## Computed
-- Computed getter is making API calls or mutations → See [computed-no-side-effects](reference/computed-no-side-effects.md)
-- Mutating computed values causes lost changes unexpectedly → See [computed-return-value-readonly](reference/computed-return-value-readonly.md)
-- Computed property doesn't update when expected → See [computed-conditional-dependencies](reference/computed-conditional-dependencies.md)
-- Sorting or reversing arrays destroys original data → See [computed-array-mutation](reference/computed-array-mutation.md)
-- Expensive operations running too frequently every render → See [computed-vs-methods-caching](reference/computed-vs-methods-caching.md)
-- Trying to pass arguments to computed properties → See [computed-no-parameters](reference/computed-no-parameters.md)
-- Complex conditions bloating inline class bindings → See [computed-properties-for-class-logic](reference/computed-properties-for-class-logic.md)
-
 ## Watchers
 - Need to watch a reactive object property → See [watch-reactive-property-getter](reference/watch-reactive-property-getter.md)
 - Large nested data structures causing performance issues → See [watch-deep-performance](reference/watch-deep-performance.md)

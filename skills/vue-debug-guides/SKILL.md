@@ -16,6 +16,13 @@ For development best practices and common gotchas, use `vue-best-practices`.
 - Third-party instances breaking when proxied → See [reactivity-markraw-for-non-reactive](reference/reactivity-markraw-for-non-reactive.md)
 - Watchers only firing once per tick unexpectedly → See [reactivity-same-tick-batching](reference/reactivity-same-tick-batching.md)
 
+### Computed
+- Computed getter triggers mutations or requests unexpectedly → See [computed-no-side-effects](reference/computed-no-side-effects.md)
+- Mutating computed values causes changes to disappear → See [computed-return-value-readonly](reference/computed-return-value-readonly.md)
+- Computed value never updates after conditional logic → See [computed-conditional-dependencies](reference/computed-conditional-dependencies.md)
+- Sorting or reversing arrays breaks original state → See [computed-array-mutation](reference/computed-array-mutation.md)
+- Passing parameters to computed properties fails → See [computed-no-parameters](reference/computed-no-parameters.md)
+
 ### Watchers
 - Async operations overwriting with stale data → See [watch-async-cleanup](reference/watch-async-cleanup.md)
 - Creating watchers inside async callbacks → See [watch-async-creation-memory-leak](reference/watch-async-creation-memory-leak.md)

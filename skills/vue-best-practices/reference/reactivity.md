@@ -92,7 +92,9 @@ export const store = {
 }
 ```
 
-## Use `computed()` for derived state
+## Computed
+
+### Prefer computed for derived state instead of watcher
 
 **Incorrect:**
 ```javascript
@@ -117,8 +119,94 @@ const total = computed(() =>
 )
 ```
 
+### Use computed for cached derivations (vs methods)
+
+**Incorrect:**
+```vue
+<template>
+  <!-- Runs on every re-render -->
+  <p>{{ getFilteredItems() }}</p>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const items = ref([{ name: 'A', active: true }, { name: 'B', active: false }])
+
+function getFilteredItems() {
+  return items.value.filter(item => item.active)
+}
+</script>
+```
+
+**Correct:**
+```vue
+<template>
+  <!-- Cached until items change -->
+  <p>{{ filteredItems }}</p>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+
+const items = ref([{ name: 'A', active: true }, { name: 'B', active: false }])
+
+const filteredItems = computed(() => {
+  return items.value.filter(item => item.active)
+})
+</script>
+```
+
+### Use computed for complex class/style bindings
+
+**Incorrect:**
+```vue
+<template>
+  <button
+    :class="{
+      'btn': true,
+      'btn-primary': type === 'primary' && !disabled,
+      'btn-secondary': type === 'secondary' && !disabled,
+      'btn-disabled': disabled,
+      'btn-loading': isLoading
+    }"
+  >
+    {{ label }}
+  </button>
+</template>
+```
+
+**Correct:**
+```vue
+<script setup>
+import { computed } from 'vue'
+
+const props = defineProps({
+  type: { type: String, default: 'primary' },
+  disabled: Boolean,
+  isLoading: Boolean,
+  label: String
+})
+
+const buttonClasses = computed(() => ({
+  btn: true,
+  [`btn-${props.type}`]: !props.disabled,
+  'btn-disabled': props.disabled,
+  'btn-loading': props.isLoading
+}))
+</script>
+
+<template>
+  <button :class="buttonClasses">
+    {{ label }}
+  </button>
+</template>
+```
+
 ## Reference
 - [Vue.js Reactivity Fundamentals](https://vuejs.org/guide/essentials/reactivity-fundamentals.html)
 - [Vue.js shallowRef API](https://vuejs.org/api/reactivity-advanced.html#shallowref)
 - [Vue.js computed API](https://vuejs.org/api/reactivity-core.html#computed)
 - [Vue.js watchEffect API](https://vuejs.org/api/reactivity-core.html#watcheffect)
+- [Vue.js Computed Caching vs Methods](https://vuejs.org/guide/essentials/computed.html#computed-caching-vs-methods)
+- [Vue.js Class and Style Bindings](https://vuejs.org/guide/essentials/class-and-style.html)
