@@ -132,15 +132,10 @@ Props, emits, `v-model`, and provide/inject define how data moves through compon
 - Coming from React, over-engineering Vue patterns unnecessarily → See [composition-api-vs-react-hooks-differences](reference/composition-api-vs-react-hooks-differences.md)
 
 ## Directives
-- Storing state across directive hooks → See [directive-arguments-read-only](reference/directive-arguments-read-only.md)
-- Applying custom directives to Vue components → See [directive-avoid-on-components](reference/directive-avoid-on-components.md)
-- Creating intervals or event listeners in directives → See [directive-cleanup-in-unmounted](reference/directive-cleanup-in-unmounted.md)
-- Simplifying directives with identical behavior → See [directive-function-shorthand](reference/directive-function-shorthand.md)
-- Using custom directives in script setup → See [directive-naming-v-prefix](reference/directive-naming-v-prefix.md)
-- Choosing between custom and built-in directives → See [directive-prefer-declarative-templating](reference/directive-prefer-declarative-templating.md)
-- Deciding between directives and components → See [directive-vs-component-decision](reference/directive-vs-component-decision.md)
-- Migrating Vue 2 directives to Vue 3 → See [directive-vue2-migration-hooks](reference/directive-vue2-migration-hooks.md)
 
+Directives are for DOM-level behavior and should stay small, side-effect safe, and easy to reason about.
+
+- Directive patterns, pitfalls → See [directives](reference/directives.md)
 
 ## Animation
 - Need to animate elements staying in DOM → See [animation-class-based-technique](reference/animation-class-based-technique.md)
