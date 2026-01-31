@@ -13,11 +13,11 @@ Vue 3 best practices, common gotchas, and performance optimization.
 - Core reactivity patterns for ref(), shallowRef(), external state, computed() and watchers → See [reactivity](reference/reactivity.md)
 
 ## Components
-- Distinguishing Vue components from native elements → See [component-naming-pascalcase](reference/component-naming-pascalcase.md)
-- Bundle includes components that aren't used → See [prefer-local-component-registration](reference/prefer-local-component-registration.md)
-- Tight coupling through component ref access → See [prefer-props-emit-over-component-refs](reference/prefer-props-emit-over-component-refs.md)
 
-## Component Data Flow
+### SFC (Single File Components)
+- SFC naming, registration, usage, structure, communication patterns and styling patterns → See [sfc](reference/sfc.md)
+
+### Component Data Flow
 
 Props, emits, `v-model`, and provide/inject define how data moves through component trees. Use them to keep state changes explicit and predictable across parent/child boundaries.
 
@@ -163,17 +163,6 @@ Directives are for DOM-level behavior and should stay small, side-effect safe, a
 - List performance degrading from deeply nested component structure → See [perf-avoid-component-abstraction-in-lists](reference/perf-avoid-component-abstraction-in-lists.md)
 - Computed properties returning objects triggering effects unexpectedly → See [perf-computed-object-stability](reference/perf-computed-object-stability.md)
 - Page load metrics suffering from client-side JavaScript execution delay → See [perf-ssr-ssg-for-page-load](reference/perf-ssr-ssg-for-page-load.md)
-
-## SFC (Single File Components)
-- Starting a Vue project with a build setup → See [sfc-recommended-for-build-projects](reference/sfc-recommended-for-build-projects.md)
-- Styling child component elements with scoped CSS → See [sfc-scoped-css-child-component-styling](reference/sfc-scoped-css-child-component-styling.md)
-- Styling content added dynamically with v-html → See [sfc-scoped-css-dynamic-content](reference/sfc-scoped-css-dynamic-content.md)
-- Optimizing scoped CSS selector performance → See [sfc-scoped-css-performance](reference/sfc-scoped-css-performance.md)
-- Styling content passed through component slots → See [sfc-scoped-css-slot-content](reference/sfc-scoped-css-slot-content.md)
-- Organizing component template, logic, and styles → See [sfc-separation-of-concerns-colocate](reference/sfc-separation-of-concerns-colocate.md)
-- Binding inline styles with property names → See [style-binding-camelcase](reference/style-binding-camelcase.md)
-- Building Tailwind classes with string concatenation → See [tailwind-dynamic-class-generation](reference/tailwind-dynamic-class-generation.md)
-- Recursive component needs to reference itself → See [self-referencing-component-name](reference/self-referencing-component-name.md)
 
 ## Plugins
 - Global properties not available in setup function → See [plugin-prefer-provide-inject-over-global-properties](reference/plugin-prefer-provide-inject-over-global-properties.md)

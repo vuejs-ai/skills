@@ -141,6 +141,11 @@ For development best practices and common gotchas, use `vue-best-practices`.
 ### SFC (Single File Components)
 - Trying to use named exports from component script blocks → See [sfc-named-exports-forbidden](reference/sfc-named-exports-forbidden.md)
 - Variables not updating in template after changes → See [sfc-script-setup-reactivity](reference/sfc-script-setup-reactivity.md)
+- Scoped styles not applying to child component elements → See [sfc-scoped-css-child-component-styling](reference/sfc-scoped-css-child-component-styling.md)
+- Scoped styles not applying to dynamic v-html content → See [sfc-scoped-css-dynamic-content](reference/sfc-scoped-css-dynamic-content.md)
+- Scoped styles not applying to slot content → See [sfc-scoped-css-slot-content](reference/sfc-scoped-css-slot-content.md)
+- Tailwind classes missing when built dynamically → See [tailwind-dynamic-class-generation](reference/tailwind-dynamic-class-generation.md)
+- Recursive components not rendering due to name conflicts → See [self-referencing-component-name](reference/self-referencing-component-name.md)
 
 ### Plugins
 - Debugging why global properties cause naming conflicts → See [plugin-global-properties-sparingly](reference/plugin-global-properties-sparingly.md)
