@@ -10,17 +10,7 @@ metadata:
 Vue 3 best practices, common gotchas, and performance optimization.
 
 ## Reactivity
-- Core reactivity patterns for ref(), shallowRef(), external state, and computed() → See [reactivity](reference/reactivity.md)
-
-## Watchers
-- Need to watch a reactive object property → See [watch-reactive-property-getter](reference/watch-reactive-property-getter.md)
-- Large nested data structures causing performance issues → See [watch-deep-performance](reference/watch-deep-performance.md)
-- Dependencies accessed after await not tracking → See [watcheffect-async-dependency-tracking](reference/watcheffect-async-dependency-tracking.md)
-- Need to access updated DOM in watchers → See [watch-flush-timing](reference/watch-flush-timing.md)
-- Uncertain whether to use watch or watchEffect → See [watch-vs-watcheffect](reference/watch-vs-watcheffect.md)
-- Duplicating initial calls and watch callbacks → See [watch-immediate-option](reference/watch-immediate-option.md)
-- Can't compare old and new values correctly → See [watch-deep-same-object-reference](reference/watch-deep-same-object-reference.md)
-- Template refs appearing null or stale → See [watcheffect-flush-post-for-refs](reference/watcheffect-flush-post-for-refs.md)
+- Core reactivity patterns for ref(), shallowRef(), external state, computed() and watchers → See [reactivity](reference/reactivity.md)
 
 ## Components
 - Distinguishing Vue components from native elements → See [component-naming-pascalcase](reference/component-naming-pascalcase.md)

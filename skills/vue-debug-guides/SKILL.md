@@ -26,6 +26,11 @@ For development best practices and common gotchas, use `vue-best-practices`.
 ### Watchers
 - Async operations overwriting with stale data → See [watch-async-cleanup](reference/watch-async-cleanup.md)
 - Creating watchers inside async callbacks → See [watch-async-creation-memory-leak](reference/watch-async-creation-memory-leak.md)
+- Watcher never triggers for reactive object properties → See [watch-reactive-property-getter](reference/watch-reactive-property-getter.md)
+- Async watchEffect misses dependencies after await → See [watcheffect-async-dependency-tracking](reference/watcheffect-async-dependency-tracking.md)
+- DOM reads are stale inside watcher callbacks → See [watch-flush-timing](reference/watch-flush-timing.md)
+- Deep watchers report identical old/new values → See [watch-deep-same-object-reference](reference/watch-deep-same-object-reference.md)
+- watchEffect runs before template refs update → See [watcheffect-flush-post-for-refs](reference/watcheffect-flush-post-for-refs.md)
 
 ### Components
 - Child component throws "component not found" error → See [local-components-not-in-descendants](reference/local-components-not-in-descendants.md)

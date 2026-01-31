@@ -203,6 +203,103 @@ const buttonClasses = computed(() => ({
 </template>
 ```
 
+## Watchers
+
+### Avoid deep watchers on large data
+
+**Incorrect:**
+```javascript
+import { reactive, watch } from 'vue'
+
+const state = reactive({
+  users: [],
+  settings: { theme: 'dark', locale: 'en' }
+})
+
+watch(
+  state,
+  () => {
+    console.log('State changed')
+  },
+  { deep: true }
+)
+```
+
+**Correct:**
+```javascript
+import { reactive, watch, watchEffect } from 'vue'
+
+const state = reactive({
+  users: [],
+  settings: { theme: 'dark', locale: 'en' }
+})
+
+// Watch specific properties instead
+watch(() => state.settings.theme, (theme) => {
+  applyTheme(theme)
+})
+
+// Or track only what you actually read
+watchEffect(() => {
+  setLocale(state.settings.locale)
+})
+```
+
+### Choose watch vs watchEffect based on control needs
+
+**Use `watchEffect` when the callback uses the same state it should react to.**
+```javascript
+import { ref, watchEffect } from 'vue'
+
+const todoId = ref(1)
+const data = ref(null)
+
+watchEffect(async () => {
+  const response = await fetch(`/api/todos/${todoId.value}`)
+  data.value = await response.json()
+})
+```
+
+**Use `watch` when you need old values, lazy execution, or precise sources.**
+```javascript
+import { ref, watch } from 'vue'
+
+const todoId = ref(1)
+
+watch(todoId, (newId, oldId) => {
+  console.log(`Changed from ${oldId} to ${newId}`)
+})
+```
+
+### Use `immediate: true` instead of duplicate initial calls
+
+**Incorrect:**
+```javascript
+import { ref, watch, onMounted } from 'vue'
+
+const userId = ref(1)
+
+function loadUser(id) {
+  // ...
+}
+
+onMounted(() => loadUser(userId.value))
+watch(userId, (id) => loadUser(id))
+```
+
+**Correct:**
+```javascript
+import { ref, watch } from 'vue'
+
+const userId = ref(1)
+
+watch(
+  userId,
+  (id) => loadUser(id),
+  { immediate: true }
+)
+```
+
 ## Reference
 - [Vue.js Reactivity Fundamentals](https://vuejs.org/guide/essentials/reactivity-fundamentals.html)
 - [Vue.js shallowRef API](https://vuejs.org/api/reactivity-advanced.html#shallowref)
@@ -210,3 +307,4 @@ const buttonClasses = computed(() => ({
 - [Vue.js watchEffect API](https://vuejs.org/api/reactivity-core.html#watcheffect)
 - [Vue.js Computed Caching vs Methods](https://vuejs.org/guide/essentials/computed.html#computed-caching-vs-methods)
 - [Vue.js Class and Style Bindings](https://vuejs.org/guide/essentials/class-and-style.html)
+- [Vue.js Watchers](https://vuejs.org/guide/essentials/watchers.html)
