@@ -48,27 +48,9 @@ Vue 3 best practices, common gotchas, and performance optimization.
 
 ## Component Data Flow
 
-### Props
-- Prop values being changed from a child component → See [props-are-read-only](reference/props-are-read-only.md)
-- Boolean prop not parsing as expected → See [prop-boolean-casting-order](reference/prop-boolean-casting-order.md)
-- Composable doesn't update when props change → See [prop-composable-reactivity-loss](reference/prop-composable-reactivity-loss.md)
-- Destructured props not updating watchers → See [prop-destructured-watch-getter](reference/prop-destructured-watch-getter.md)
-- Prop validation needs component instance data → See [prop-validation-before-instance](reference/prop-validation-before-instance.md)
+Props, emits, `v-model`, and provide/inject define how data moves through component trees. Use them to keep state changes explicit and predictable across parent/child boundaries.
 
-### Emits
-- Grandparent can't listen to grandchild emitted events → See [component-events-dont-bubble](reference/component-events-dont-bubble.md)
-- Event name inconsistency in templates and scripts → See [emit-kebab-case-in-templates](reference/emit-kebab-case-in-templates.md)
-- Event payloads need validation during development → See [emit-validation-for-complex-payloads](reference/emit-validation-for-complex-payloads.md)
-
-### Forms & v-model
-- Need to handle v-model modifiers in child → See [definemodel-hidden-modifier-props](reference/definemodel-hidden-modifier-props.md)
-- Need to use updated value immediately after change → See [definemodel-value-next-tick](reference/definemodel-value-next-tick.md)
-- Migrating Vue 2 components to Vue 3 → See [v-model-vue3-breaking-changes](reference/v-model-vue3-breaking-changes.md)
-
-### Provide/Inject
-- String keys collide in large applications → See [provide-inject-symbol-keys](reference/provide-inject-symbol-keys.md)
-- State mutations scattered across components → See [provide-inject-mutations-in-provider](reference/provide-inject-mutations-in-provider.md)
-- Passing props through many component layers → See [avoid-prop-drilling-use-provide-inject](reference/avoid-prop-drilling-use-provide-inject.md)
+- Data flow patterns for props, emits, v-model, and provide/inject → See [component-data-flow](reference/component-data-flow.md)
 
 ## Built-in Components
 
