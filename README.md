@@ -147,3 +147,11 @@ Development happens on the `dev` branch. The `main` branch is reserved for publi
 ## License
 
 MIT
+
+## Compatible Agents
+
+This skills package is compatible with:
+
+- [Claude Code](https://claude.ai/code) - Anthropic's official CLI
+- [AdaL](https://sylph.ai/adal) - Self-evolving AI coding agent with MCP support
+
