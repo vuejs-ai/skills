@@ -112,6 +112,7 @@ For development best practices and common gotchas, use `vue-best-practices`.
 - Parent component refs unable to access exposed properties → See [define-expose-before-await](reference/define-expose-before-await.md)
 
 ### Async Components
+- Route components misconfigured with defineAsyncComponent lazy loading → See [async-component-vue-router](reference/async-component-vue-router.md)
 - Network failures or timeouts loading components → See [async-component-error-handling](reference/async-component-error-handling.md)
 - Template refs undefined after component reactivation → See [async-component-keepalive-ref-issue](reference/async-component-keepalive-ref-issue.md)
 

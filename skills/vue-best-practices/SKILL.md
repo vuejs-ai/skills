@@ -29,6 +29,12 @@ In Vue, slots are placeholders in a child component where a parent can insert it
 
 - Component slot API patterns: wrapper rendering, TypeScript slot typing, fallback content, and renderless-vs-composable decisions → See [component-slots](reference/component-slots.md)
 
+### Async Components
+
+In Vue, Async Components are components that load only when they’re needed instead of with the initial app bundle, helping your app start faster. You create them with `defineAsyncComponent()` and use them when you want to lazy-load large or rarely used components to improve performance.
+
+- Async component patterns: SSR lazy hydration and loading-state delay tuning → See [component-async](reference/component-async.md)
+
 ### Fallthrough Attributes
 - Accessing hyphenated attributes in JavaScript code → See [attrs-hyphenated-property-access](reference/attrs-hyphenated-property-access.md)
 - Watching fallthrough attributes for changes with watch() → See [attrs-not-reactive](reference/attrs-not-reactive.md)
@@ -116,11 +122,6 @@ Directives are for DOM-level behavior and should stay small, side-effect safe, a
 - Animations not triggering on content changes → See [animation-key-for-rerender](reference/animation-key-for-rerender.md)
 - Building interactive animations with user input → See [animation-state-driven-technique](reference/animation-state-driven-technique.md)
 - Animating list changes causing noticeable lag → See [animation-transitiongroup-performance](reference/animation-transitiongroup-performance.md)
-
-## Async Components
-- Setting up Vue Router route component loading → See [async-component-vue-router](reference/async-component-vue-router.md)
-- Improving Time to Interactive with SSR apps → See [async-component-hydration-strategies](reference/async-component-hydration-strategies.md)
-- Loading spinner flashing on fast networks → See [async-component-loading-delay](reference/async-component-loading-delay.md)
 
 ## TypeScript
 - Declaring props with TypeScript in composition API components → See [ts-defineprops-type-based-declaration](reference/ts-defineprops-type-based-declaration.md)
