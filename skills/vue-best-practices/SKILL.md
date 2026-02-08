@@ -23,6 +23,10 @@ Props, emits, `v-model`, and provide/inject define how data moves through compon
 
 - Data flow patterns for props, emits, v-model, and provide/inject → See [component-data-flow](reference/component-data-flow.md)
 
+### Events & Modifiers
+- Need to handle same event only one time → See [event-once-modifier-for-single-use](reference/event-once-modifier-for-single-use.md)
+- Using left-handed mouse or non-standard input devices → See [mouse-button-modifiers-intent](reference/mouse-button-modifiers-intent.md)
+
 ### Slots
 
 In Vue, slots are placeholders in a child component where a parent can insert its own content, letting you make flexible, reusable components with custom inner content. Use them when you want the parent to control parts of a child’s layout or content without changing the child’s code.
@@ -46,6 +50,48 @@ In Vue, Async Components are components that load only when they’re needed ins
 Vue recommends using templates to build applications in the vast majority of cases. However, there are situations where we need the full programmatic power of JavaScript. That's where we can use the render function.
 
 - Render function patterns: keys, events, v-model, directives, and performance → See [render-functions](reference/render-functions.md)
+
+## Reusability
+
+### Composables
+
+- Building composables, designing options-object APIs, enforcing readonly state boundaries, deciding utility-vs-composable boundaries, and organizing composable code by feature concern → See [composables](reference/composables.md)
+
+### Directives
+
+Directives are for DOM-level behavior and should stay small, side-effect safe, and easy to reason about.
+
+- Directive patterns, pitfalls → See [directives](reference/directives.md)
+
+### Plugins
+
+- Creating a new Vue plugin from scratch → See [plugin-structure-install-method](reference/plugin-structure-install-method.md)
+- Preventing collisions between multiple plugins → See [plugin-symbol-injection-keys](reference/plugin-symbol-injection-keys.md)
+
+## Animation
+- Need to animate elements staying in DOM → See [animation-class-based-technique](reference/animation-class-based-technique.md)
+- Building interactive animations with user input → See [animation-state-driven-technique](reference/animation-state-driven-technique.md)
+
+## TypeScript
+- Declaring props with TypeScript in composition API components → See [ts-defineprops-type-based-declaration](reference/ts-defineprops-type-based-declaration.md)
+- Typing refs to child Vue components → See [ts-component-ref-typeof-instancetype](reference/ts-component-ref-typeof-instancetype.md)
+- Using custom directives with TypeScript support → See [ts-custom-directive-type-augmentation](reference/ts-custom-directive-type-augmentation.md)
+- Declaring component events with full type safety → See [ts-defineemits-type-based-syntax](reference/ts-defineemits-type-based-syntax.md)
+- Sharing data between components with type safety → See [ts-provide-inject-injection-key](reference/ts-provide-inject-injection-key.md)
+
+## SSR
+- Custom directives not displaying on server-rendered HTML → See [ssr-custom-directive-getssrprops](reference/ssr-custom-directive-getssrprops.md)
+
+## Performance
+- Rendering hundreds or thousands of items causing DOM performance issues → See [perf-virtualize-large-lists](reference/perf-virtualize-large-lists.md)
+- Static content re-evaluated on every parent component update → See [perf-v-once-v-memo-directives](reference/perf-v-once-v-memo-directives.md)
+- List performance degrading from deeply nested component structure → See [perf-avoid-component-abstraction-in-lists](reference/perf-avoid-component-abstraction-in-lists.md)
+- Page load metrics suffering from client-side JavaScript execution delay → See [perf-ssr-ssg-for-page-load](reference/perf-ssr-ssg-for-page-load.md)
+- Expensive operations slow performance drastically → See [updated-hook-performance](reference/updated-hook-performance.md)
+
+## App Configuration
+
+- Vue only controlling specific page sections → See [multiple-app-instances](reference/multiple-app-instances.md)
 
 ## Built-in Components
 
@@ -77,46 +123,3 @@ Vue recommends using templates to build applications in the vast majority of cas
 `<Suspense>` coordinates async dependencies (async components or async setup) and renders a fallback while they resolve. Use it when you want a loading boundary for async trees, route-level views, or data-driven UI.
 
 - Suspense best practices, composition patterns, and common gotchas → See [component-suspense](reference/component-suspense.md)
-
-## Events & Modifiers
-- Need to handle same event only one time → See [event-once-modifier-for-single-use](reference/event-once-modifier-for-single-use.md)
-- Using left-handed mouse or non-standard input devices → See [mouse-button-modifiers-intent](reference/mouse-button-modifiers-intent.md)
-
-## Lifecycle
-- Expensive operations slow performance drastically → See [updated-hook-performance](reference/updated-hook-performance.md)
-
-## Composables
-- Building composables, designing options-object APIs, enforcing readonly state boundaries, deciding utility-vs-composable boundaries, and organizing composable code by feature concern → See [composables](reference/composables.md)
-
-## Directives
-
-Directives are for DOM-level behavior and should stay small, side-effect safe, and easy to reason about.
-
-- Directive patterns, pitfalls → See [directives](reference/directives.md)
-
-## Animation
-- Need to animate elements staying in DOM → See [animation-class-based-technique](reference/animation-class-based-technique.md)
-- Building interactive animations with user input → See [animation-state-driven-technique](reference/animation-state-driven-technique.md)
-
-## TypeScript
-- Declaring props with TypeScript in composition API components → See [ts-defineprops-type-based-declaration](reference/ts-defineprops-type-based-declaration.md)
-- Typing refs to child Vue components → See [ts-component-ref-typeof-instancetype](reference/ts-component-ref-typeof-instancetype.md)
-- Using custom directives with TypeScript support → See [ts-custom-directive-type-augmentation](reference/ts-custom-directive-type-augmentation.md)
-- Declaring component events with full type safety → See [ts-defineemits-type-based-syntax](reference/ts-defineemits-type-based-syntax.md)
-- Sharing data between components with type safety → See [ts-provide-inject-injection-key](reference/ts-provide-inject-injection-key.md)
-
-## SSR
-- Custom directives not displaying on server-rendered HTML → See [ssr-custom-directive-getssrprops](reference/ssr-custom-directive-getssrprops.md)
-
-## Performance
-- Rendering hundreds or thousands of items causing DOM performance issues → See [perf-virtualize-large-lists](reference/perf-virtualize-large-lists.md)
-- Static content re-evaluated on every parent component update → See [perf-v-once-v-memo-directives](reference/perf-v-once-v-memo-directives.md)
-- List performance degrading from deeply nested component structure → See [perf-avoid-component-abstraction-in-lists](reference/perf-avoid-component-abstraction-in-lists.md)
-- Page load metrics suffering from client-side JavaScript execution delay → See [perf-ssr-ssg-for-page-load](reference/perf-ssr-ssg-for-page-load.md)
-
-## Plugins
-- Creating a new Vue plugin from scratch → See [plugin-structure-install-method](reference/plugin-structure-install-method.md)
-- Preventing collisions between multiple plugins → See [plugin-symbol-injection-keys](reference/plugin-symbol-injection-keys.md)
-
-## App Configuration
-- Vue only controlling specific page sections → See [multiple-app-instances](reference/multiple-app-instances.md)
