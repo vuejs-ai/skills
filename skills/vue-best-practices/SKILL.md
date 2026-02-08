@@ -40,6 +40,7 @@ In Vue, Async Components are components that load only when they’re needed ins
 - Async component patterns: SSR lazy hydration and loading-state delay tuning → See [component-async](reference/component-async.md)
 
 ### Fallthrough Attributes
+
 - Accessing hyphenated attributes in JavaScript code → See [attrs-hyphenated-property-access](reference/attrs-hyphenated-property-access.md)
 - Watching fallthrough attributes for changes with watch() → See [attrs-not-reactive](reference/attrs-not-reactive.md)
 
@@ -78,10 +79,6 @@ Directives are for DOM-level behavior and should stay small, side-effect safe, a
 - List performance degrading from deeply nested component structure → See [perf-avoid-component-abstraction-in-lists](reference/perf-avoid-component-abstraction-in-lists.md)
 - Page load metrics suffering from client-side JavaScript execution delay → See [perf-ssr-ssg-for-page-load](reference/perf-ssr-ssg-for-page-load.md)
 - Expensive operations slow performance drastically → See [updated-hook-performance](reference/updated-hook-performance.md)
-
-## App Configuration
-
-- Vue only controlling specific page sections → See [multiple-app-instances](reference/multiple-app-instances.md)
 
 ## Built-in Components
 
