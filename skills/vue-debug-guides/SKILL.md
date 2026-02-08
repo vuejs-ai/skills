@@ -85,6 +85,11 @@ For development best practices and common gotchas, use `vue-best-practices`.
 - SSR rendering differs from client hydration → See [lifecycle-ssr-awareness](reference/lifecycle-ssr-awareness.md)
 
 ### Slots
+- Accessing child component data in slot content returns undefined values → See [slot-render-scope-parent-only](reference/slot-render-scope-parent-only.md)
+- Mixing named and scoped slots together causes compilation errors → See [slot-named-scoped-explicit-default](reference/slot-named-scoped-explicit-default.md)
+- Using v-slot on native HTML elements causes compilation errors → See [slot-v-slot-on-components-or-templates-only](reference/slot-v-slot-on-components-or-templates-only.md)
+- Unexpected content placement from implicit default slot behavior → See [slot-implicit-default-content](reference/slot-implicit-default-content.md)
+- Scoped slot props missing expected name property → See [slot-name-reserved-prop](reference/slot-name-reserved-prop.md)
 - Wrapper components breaking child slot functionality → See [slot-forwarding-to-child-components](reference/slot-forwarding-to-child-components.md)
 
 ### Provide/Inject

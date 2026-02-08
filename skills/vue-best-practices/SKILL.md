@@ -23,6 +23,12 @@ Props, emits, `v-model`, and provide/inject define how data moves through compon
 
 - Data flow patterns for props, emits, v-model, and provide/inject → See [component-data-flow](reference/component-data-flow.md)
 
+### Slots
+
+In Vue, slots are placeholders in a child component where a parent can insert its own content, letting you make flexible, reusable components with custom inner content. Use them when you want the parent to control parts of a child’s layout or content without changing the child’s code.
+
+- Component slot API patterns: wrapper rendering, TypeScript slot typing, fallback content, and renderless-vs-composable decisions → See [component-slots](reference/component-slots.md)
+
 ### Advanced Component
 
 #### Render Functions
@@ -78,17 +84,6 @@ Vue recommends using templates to build applications in the vast majority of cas
 ## Lifecycle
 - Lifecycle hooks don't execute asynchronously → See [lifecycle-hooks-synchronous-registration](reference/lifecycle-hooks-synchronous-registration.md)
 - Expensive operations slow performance drastically → See [updated-hook-performance](reference/updated-hook-performance.md)
-
-## Slots
-- Accessing child component data in slot content → See [slot-render-scope-parent-only](reference/slot-render-scope-parent-only.md)
-- Mixing named and scoped slots together → See [slot-named-scoped-explicit-default](reference/slot-named-scoped-explicit-default.md)
-- Using v-slot on native HTML elements → See [slot-v-slot-on-components-or-templates-only](reference/slot-v-slot-on-components-or-templates-only.md)
-- Empty wrapper elements rendering unnecessarily → See [slot-conditional-rendering-with-slots](reference/slot-conditional-rendering-with-slots.md)
-- Scoped slot props lack TypeScript type safety → See [slot-define-slots-for-typescript](reference/slot-define-slots-for-typescript.md)
-- Rendering empty component slots without defaults → See [slot-fallback-content-default-values](reference/slot-fallback-content-default-values.md)
-- Confused about which slot content goes where → See [slot-implicit-default-content](reference/slot-implicit-default-content.md)
-- Expecting name property in scoped slot props → See [slot-name-reserved-prop](reference/slot-name-reserved-prop.md)
-- Choosing between renderless components and composables → See [slot-renderless-components-vs-composables](reference/slot-renderless-components-vs-composables.md)
 
 ## Attrs
 - Accessing hyphenated attributes in JavaScript code → See [attrs-hyphenated-property-access](reference/attrs-hyphenated-property-access.md)
