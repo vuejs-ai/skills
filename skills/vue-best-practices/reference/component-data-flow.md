@@ -3,7 +3,7 @@ title: Component Data Flow Best Practices
 impact: HIGH
 impactDescription: Clear data flow between components prevents state bugs, stale UI, and brittle coupling
 type: best-practice
-tags: [vue3, props, emits, v-model, provide-inject, data-flow]
+tags: [vue3, props, emits, v-model, provide-inject, data-flow, typescript]
 ---
 
 # Component Data Flow Best Practices
@@ -16,6 +16,7 @@ tags: [vue3, props, emits, v-model, provide-inject, data-flow]
 - Emits: explicit events up
 - `v-model`: predictable two-way bindings
 - Provide/Inject: shared context without prop drilling
+- Use TypeScript contracts for public component APIs
 
 ## Task Checklist
 
@@ -25,6 +26,7 @@ tags: [vue3, props, emits, v-model, provide-inject, data-flow]
 - [ ] Handle v-model modifiers deliberately in child components
 - [ ] Use symbols for provide/inject keys to avoid collisions
 - [ ] Keep mutations in the provider or expose explicit actions
+- [ ] In TypeScript projects, prefer type-based `defineProps`, `defineEmits`, and `InjectionKey`
 
 ## Props: One-Way Data Down
 
@@ -166,6 +168,62 @@ Use symbols for keys to avoid collisions in large apps:
 ```ts
 export const themeKey = Symbol('theme')
 export const themeActionsKey = Symbol('theme-actions')
+```
+
+## Use TypeScript Contracts for Public Component APIs
+
+In TypeScript projects, type component boundaries directly with `defineProps`, `defineEmits`, and `InjectionKey` so invalid payloads and mismatched injections fail at compile time.
+
+**Incorrect:**
+```vue
+<script setup lang="ts">
+import { inject } from 'vue'
+
+const props = defineProps({
+  userId: String
+})
+
+const emit = defineEmits(['save'])
+const settings = inject('settings')
+
+// Payload shape is not checked here
+emit('save', 123)
+
+// Key is string-based and not type-safe
+settings?.theme = 'dark'
+</script>
+```
+
+**Correct:**
+```vue
+<script setup lang="ts">
+import { inject, provide } from 'vue'
+import type { InjectionKey } from 'vue'
+
+interface Props {
+  userId: string
+}
+
+interface Emits {
+  save: [payload: { id: string; draft: boolean }]
+}
+
+interface Settings {
+  theme: 'light' | 'dark'
+}
+
+const settingsKey: InjectionKey<Settings> = Symbol('settings')
+
+const props = defineProps<Props>()
+const emit = defineEmits<Emits>()
+
+provide(settingsKey, { theme: 'light' })
+
+const settings = inject(settingsKey)
+if (settings) {
+  emit('save', { id: props.userId, draft: false })
+}
+</script>
 ```
 
 ## References

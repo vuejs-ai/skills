@@ -15,13 +15,13 @@ Vue 3 best practices, common gotchas, and performance optimization.
 ## Components
 
 ### SFC (Single File Components)
-- SFC naming, registration, usage, structure, communication patterns, styling, and template patterns (`v-html` safety, list filtering/sorting, `v-if` vs `v-show`) → See [sfc](reference/sfc.md)
+- SFC naming, registration, usage, structure, communication patterns, styling, template patterns (`v-html` safety, list filtering/sorting, `v-if` vs `v-show`), and TypeScript-safe component ref patterns → See [sfc](reference/sfc.md)
 
 ### Component Data Flow
 
 Props, emits, `v-model`, and provide/inject define how data moves through component trees. Use them to keep state changes explicit and predictable across parent/child boundaries.
 
-- Data flow patterns for props, emits, v-model, and provide/inject → See [component-data-flow](reference/component-data-flow.md)
+- Data flow patterns for props, emits, v-model, and provide/inject, including TypeScript-safe contracts with `defineProps`, `defineEmits`, and `InjectionKey` → See [component-data-flow](reference/component-data-flow.md)
 
 ### Events & Modifiers
 - Need to handle same event only one time → See [event-once-modifier-for-single-use](reference/event-once-modifier-for-single-use.md)
@@ -61,7 +61,7 @@ Vue recommends using templates to build applications in the vast majority of cas
 
 Directives are for DOM-level behavior and should stay small, side-effect safe, and easy to reason about.
 
-- Directive patterns, pitfalls → See [directives](reference/directives.md)
+- Directive patterns, pitfalls, SSR hooks, and TypeScript-safe custom directives → See [directives](reference/directives.md)
 
 ### Plugins
 
@@ -71,13 +71,6 @@ Directives are for DOM-level behavior and should stay small, side-effect safe, a
 ## Animation
 - Need to animate elements staying in DOM → See [animation-class-based-technique](reference/animation-class-based-technique.md)
 - Building interactive animations with user input → See [animation-state-driven-technique](reference/animation-state-driven-technique.md)
-
-## TypeScript
-- Declaring props with TypeScript in composition API components → See [ts-defineprops-type-based-declaration](reference/ts-defineprops-type-based-declaration.md)
-- Typing refs to child Vue components → See [ts-component-ref-typeof-instancetype](reference/ts-component-ref-typeof-instancetype.md)
-- Using custom directives with TypeScript support → See [ts-custom-directive-type-augmentation](reference/ts-custom-directive-type-augmentation.md)
-- Declaring component events with full type safety → See [ts-defineemits-type-based-syntax](reference/ts-defineemits-type-based-syntax.md)
-- Sharing data between components with type safety → See [ts-provide-inject-injection-key](reference/ts-provide-inject-injection-key.md)
 
 ## Performance
 - Rendering hundreds or thousands of items causing DOM performance issues → See [perf-virtualize-large-lists](reference/perf-virtualize-large-lists.md)

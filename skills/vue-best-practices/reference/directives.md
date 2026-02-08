@@ -3,7 +3,7 @@ title: Directive Best Practices
 impact: MEDIUM
 impactDescription: Custom directives are powerful but easy to misuse; following patterns prevents leaks, invalid usage, and unclear abstractions
 type: best-practice
-tags: [vue3, directives, custom-directives, composition]
+tags: [vue3, directives, custom-directives, composition, typescript]
 ---
 
 # Directive Best Practices
@@ -17,6 +17,7 @@ tags: [vue3, directives, custom-directives, composition]
 - Clean up side effects in `unmounted`
 - Prefer function shorthand for single-hook directives
 - Use the `v-` prefix and script setup registration
+- Type custom directives in TypeScript projects
 - Handle SSR with `getSSRProps`
 - Prefer declarative templates when possible
 - Decide between directives and components
@@ -27,6 +28,7 @@ tags: [vue3, directives, custom-directives, composition]
 - [ ] Do not mutate directive arguments or binding objects
 - [ ] Clean up timers, listeners, and observers in `unmounted`
 - [ ] Register directives in `<script setup>` with the `v-` prefix
+- [ ] In TypeScript projects, type directive values and augment template directive types
 - [ ] Prefer components or composables for complex behavior
 
 ## Treat Directive Arguments as Read-Only
@@ -86,6 +88,39 @@ const vFocus = (el) => el.focus()
 <template>
   <input v-focus />
 </template>
+```
+
+## Type Custom Directives in TypeScript Projects
+
+Use `Directive<Element, ValueType>` so `binding.value` is typed, and augment Vue's template types so directives are recognized in SFC templates.
+
+**Incorrect:**
+```ts
+// Untyped directive value and no template type augmentation
+export const vHighlight = {
+  mounted(el, binding) {
+    el.style.backgroundColor = binding.value
+  }
+}
+```
+
+**Correct:**
+```ts
+import type { Directive } from 'vue'
+
+type HighlightValue = string
+
+export const vHighlight = {
+  mounted(el, binding) {
+    el.style.backgroundColor = binding.value
+  }
+} satisfies Directive<HTMLElement, HighlightValue>
+
+declare module 'vue' {
+  interface ComponentCustomProperties {
+    vHighlight: typeof vHighlight
+  }
+}
 ```
 
 ## Handle SSR with `getSSRProps`

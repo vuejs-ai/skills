@@ -17,6 +17,7 @@ tags: [vue3, sfc, scoped-css, styles, build-tools, performance, template, v-html
 - [ ] Use PascalCase for component names in templates and filenames
 - [ ] Prefer local component registration (import in each component) by default
 - [ ] Use props/emit for component communication; reserve refs for imperative actions
+- [ ] When refs are required for imperative APIs, type them with `InstanceType<typeof Component> | null`
 - [ ] Prefer class selectors (not element selectors) in scoped CSS for performance
 - [ ] Use camelCase keys in `:style` bindings for consistency and IDE support
 - [ ] Never use `v-html` with untrusted/user-provided content
@@ -193,6 +194,56 @@ function handleSubmit(formData) {
 
 <template>
   <UserForm @submit="handleSubmit" />
+</template>
+```
+
+## Type component refs when imperative access is required
+
+Prefer props/emits by default. When a parent must call an exposed child method, type the ref explicitly and expose only the intended API from the child.
+
+**Incorrect:**
+```vue
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import DialogPanel from './DialogPanel.vue'
+
+const panelRef = ref(null)
+
+onMounted(() => {
+  panelRef.value.open()
+})
+</script>
+
+<template>
+  <DialogPanel ref="panelRef" />
+</template>
+```
+
+**Correct:**
+```vue
+<!-- DialogPanel.vue -->
+<script setup lang="ts">
+function open() {}
+
+defineExpose({ open })
+</script>
+```
+
+```vue
+<!-- Parent.vue -->
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
+import DialogPanel from './DialogPanel.vue'
+
+const panelRef = ref<InstanceType<typeof DialogPanel> | null>(null)
+
+onMounted(() => {
+  panelRef.value?.open()
+})
+</script>
+
+<template>
+  <DialogPanel ref="panelRef" />
 </template>
 ```
 
