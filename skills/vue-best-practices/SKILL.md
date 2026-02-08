@@ -87,18 +87,13 @@ Vue recommends using templates to build applications in the vast majority of cas
 
 ## Events & Modifiers
 - Need to handle same event only one time → See [event-once-modifier-for-single-use](reference/event-once-modifier-for-single-use.md)
-- Keyboard shortcuts fire with unintended modifier combinations → See [exact-modifier-for-precise-shortcuts](reference/exact-modifier-for-precise-shortcuts.md)
 - Using left-handed mouse or non-standard input devices → See [mouse-button-modifiers-intent](reference/mouse-button-modifiers-intent.md)
-- Preventing default browser action and scroll performance together → See [no-passive-with-prevent](reference/no-passive-with-prevent.md)
 
 ## Lifecycle
-- Lifecycle hooks don't execute asynchronously → See [lifecycle-hooks-synchronous-registration](reference/lifecycle-hooks-synchronous-registration.md)
 - Expensive operations slow performance drastically → See [updated-hook-performance](reference/updated-hook-performance.md)
 
 ## Composables
-- Composable has unexpected side effects affecting external state → See [composable-avoid-hidden-side-effects](reference/composable-avoid-hidden-side-effects.md)
 - Building complex logic from smaller focused composables → See [composable-composition-pattern](reference/composable-composition-pattern.md)
-- Inconsistent composable names or destructuring loses reactivity → See [composable-naming-return-pattern](reference/composable-naming-return-pattern.md)
 - Composable has many optional parameters or confusing argument order → See [composable-options-object-pattern](reference/composable-options-object-pattern.md)
 - Need to prevent uncontrolled mutations of composable state → See [composable-readonly-state](reference/composable-readonly-state.md)
 - Unsure whether logic belongs in composable or utility function → See [composable-vs-utility-functions](reference/composable-vs-utility-functions.md)
@@ -107,9 +102,7 @@ Vue recommends using templates to build applications in the vast majority of cas
 - Optimizing production bundle size and performance → See [composition-api-bundle-size-minification](reference/composition-api-bundle-size-minification.md)
 - Composition API code becoming scattered and hard to maintain → See [composition-api-code-organization](reference/composition-api-code-organization.md)
 - Fixing naming conflicts and unclear data origins in mixins → See [composition-api-mixins-replacement](reference/composition-api-mixins-replacement.md)
-- Applying functional patterns incorrectly to Vue state → See [composition-api-not-functional-programming](reference/composition-api-not-functional-programming.md)
 - Gradually migrating large Options API codebase → See [composition-api-options-api-coexistence](reference/composition-api-options-api-coexistence.md)
-- Coming from React, over-engineering Vue patterns unnecessarily → See [composition-api-vs-react-hooks-differences](reference/composition-api-vs-react-hooks-differences.md)
 
 ## Directives
 
@@ -119,45 +112,27 @@ Directives are for DOM-level behavior and should stay small, side-effect safe, a
 
 ## Animation
 - Need to animate elements staying in DOM → See [animation-class-based-technique](reference/animation-class-based-technique.md)
-- Animations not triggering on content changes → See [animation-key-for-rerender](reference/animation-key-for-rerender.md)
 - Building interactive animations with user input → See [animation-state-driven-technique](reference/animation-state-driven-technique.md)
-- Animating list changes causing noticeable lag → See [animation-transitiongroup-performance](reference/animation-transitiongroup-performance.md)
 
 ## TypeScript
 - Declaring props with TypeScript in composition API components → See [ts-defineprops-type-based-declaration](reference/ts-defineprops-type-based-declaration.md)
-- Providing default values to mutable prop types → See [ts-withdefaults-mutable-factory-function](reference/ts-withdefaults-mutable-factory-function.md)
-- Typing reactive state with ref unwrapping concerns → See [ts-reactive-no-generic-argument](reference/ts-reactive-no-generic-argument.md)
-- Accessing DOM elements after component mounts → See [ts-template-ref-null-handling](reference/ts-template-ref-null-handling.md)
 - Typing refs to child Vue components → See [ts-component-ref-typeof-instancetype](reference/ts-component-ref-typeof-instancetype.md)
 - Using custom directives with TypeScript support → See [ts-custom-directive-type-augmentation](reference/ts-custom-directive-type-augmentation.md)
 - Declaring component events with full type safety → See [ts-defineemits-type-based-syntax](reference/ts-defineemits-type-based-syntax.md)
-- Handling optional boolean props in TypeScript → See [ts-defineprops-boolean-default-false](reference/ts-defineprops-boolean-default-false.md)
-- Using imported types safely in defineProps → See [ts-defineprops-imported-types-limitations](reference/ts-defineprops-imported-types-limitations.md)
-- Handling DOM events with strict TypeScript checking → See [ts-event-handler-explicit-typing](reference/ts-event-handler-explicit-typing.md)
 - Sharing data between components with type safety → See [ts-provide-inject-injection-key](reference/ts-provide-inject-injection-key.md)
-- Storing Vue components in reactive state → See [ts-shallowref-for-dynamic-components](reference/ts-shallowref-for-dynamic-components.md)
-- Working with union types in Vue templates → See [ts-template-type-casting](reference/ts-template-type-casting.md)
 
 ## SSR
-- User data leaking between server requests → See [state-ssr-cross-request-pollution](reference/state-ssr-cross-request-pollution.md)
-- Code runs on both server and browser environments → See [ssr-platform-specific-apis](reference/ssr-platform-specific-apis.md)
 - Custom directives not displaying on server-rendered HTML → See [ssr-custom-directive-getssrprops](reference/ssr-custom-directive-getssrprops.md)
 
 ## Performance
-- Many list items re-rendering unnecessarily during state changes → See [perf-props-stability-update-optimization](reference/perf-props-stability-update-optimization.md)
 - Rendering hundreds or thousands of items causing DOM performance issues → See [perf-virtualize-large-lists](reference/perf-virtualize-large-lists.md)
 - Static content re-evaluated on every parent component update → See [perf-v-once-v-memo-directives](reference/perf-v-once-v-memo-directives.md)
 - List performance degrading from deeply nested component structure → See [perf-avoid-component-abstraction-in-lists](reference/perf-avoid-component-abstraction-in-lists.md)
-- Computed properties returning objects triggering effects unexpectedly → See [perf-computed-object-stability](reference/perf-computed-object-stability.md)
 - Page load metrics suffering from client-side JavaScript execution delay → See [perf-ssr-ssg-for-page-load](reference/perf-ssr-ssg-for-page-load.md)
 
 ## Plugins
-- Global properties not available in setup function → See [plugin-prefer-provide-inject-over-global-properties](reference/plugin-prefer-provide-inject-over-global-properties.md)
 - Creating a new Vue plugin from scratch → See [plugin-structure-install-method](reference/plugin-structure-install-method.md)
 - Preventing collisions between multiple plugins → See [plugin-symbol-injection-keys](reference/plugin-symbol-injection-keys.md)
-- Global properties missing TypeScript autocomplete support → See [plugin-typescript-type-augmentation](reference/plugin-typescript-type-augmentation.md)
 
 ## App Configuration
-- Need to chain app configuration methods after mount → See [mount-return-value](reference/mount-return-value.md)
 - Vue only controlling specific page sections → See [multiple-app-instances](reference/multiple-app-instances.md)
-- Migrating dynamic component registration to Vite → See [dynamic-component-registration-vite](reference/dynamic-component-registration-vite.md)

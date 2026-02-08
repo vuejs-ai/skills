@@ -77,12 +77,15 @@ For development best practices and common gotchas, use `vue-best-practices`.
 ### Events & Modifiers
 - Chaining multiple event modifiers produces unexpected results → See [event-modifier-order-matters](reference/event-modifier-order-matters.md)
 - Keyboard shortcuts don't fire with system modifier keys → See [keyup-modifier-timing](reference/keyup-modifier-timing.md)
+- Keyboard shortcuts fire with unintended modifier combinations → See [exact-modifier-for-precise-shortcuts](reference/exact-modifier-for-precise-shortcuts.md)
+- Combining passive and prevent modifiers breaks event behavior → See [no-passive-with-prevent](reference/no-passive-with-prevent.md)
 
 ### Lifecycle
 - Memory leaks from unremoved event listeners → See [cleanup-side-effects](reference/cleanup-side-effects.md)
 - DOM access fails before component mounts → See [lifecycle-dom-access-timing](reference/lifecycle-dom-access-timing.md)
 - DOM reads return stale values after state changes → See [dom-update-timing-nexttick](reference/dom-update-timing-nexttick.md)
 - SSR rendering differs from client hydration → See [lifecycle-ssr-awareness](reference/lifecycle-ssr-awareness.md)
+- Lifecycle hooks registered asynchronously never run → See [lifecycle-hooks-synchronous-registration](reference/lifecycle-hooks-synchronous-registration.md)
 
 ### Slots
 - Accessing child component data in slot content returns undefined values → See [slot-render-scope-parent-only](reference/slot-render-scope-parent-only.md)
@@ -106,10 +109,28 @@ For development best practices and common gotchas, use `vue-best-practices`.
 ### Composables
 - Composable called outside setup context or asynchronously → See [composable-call-location-restrictions](reference/composable-call-location-restrictions.md)
 - Composable reactive dependency not updating when input changes → See [composable-tovalue-inside-watcheffect](reference/composable-tovalue-inside-watcheffect.md)
+- Composable mutates external state unexpectedly → See [composable-avoid-hidden-side-effects](reference/composable-avoid-hidden-side-effects.md)
+- Destructuring composable returns breaks reactivity unexpectedly → See [composable-naming-return-pattern](reference/composable-naming-return-pattern.md)
 
 ### Composition API
 - Lifecycle hooks failing silently after async operations → See [composition-api-script-setup-async-context](reference/composition-api-script-setup-async-context.md)
 - Parent component refs unable to access exposed properties → See [define-expose-before-await](reference/define-expose-before-await.md)
+- Functional-programming patterns break expected Vue reactivity behavior → See [composition-api-not-functional-programming](reference/composition-api-not-functional-programming.md)
+- React Hook mental model causes incorrect Composition API usage → See [composition-api-vs-react-hooks-differences](reference/composition-api-vs-react-hooks-differences.md)
+
+### Animation
+- Animations fail to trigger when DOM nodes are reused → See [animation-key-for-rerender](reference/animation-key-for-rerender.md)
+- TransitionGroup list updates feel laggy under load → See [animation-transitiongroup-performance](reference/animation-transitiongroup-performance.md)
+
+### TypeScript
+- Mutable prop defaults leak state between component instances → See [ts-withdefaults-mutable-factory-function](reference/ts-withdefaults-mutable-factory-function.md)
+- reactive() generic typing causes ref unwrapping mismatches → See [ts-reactive-no-generic-argument](reference/ts-reactive-no-generic-argument.md)
+- Template refs throw null access errors before mount or after v-if unmount → See [ts-template-ref-null-handling](reference/ts-template-ref-null-handling.md)
+- Optional boolean props behave as false instead of undefined → See [ts-defineprops-boolean-default-false](reference/ts-defineprops-boolean-default-false.md)
+- Imported defineProps types fail with unresolvable or complex type references → See [ts-defineprops-imported-types-limitations](reference/ts-defineprops-imported-types-limitations.md)
+- Untyped DOM event handlers fail under strict TypeScript settings → See [ts-event-handler-explicit-typing](reference/ts-event-handler-explicit-typing.md)
+- Dynamic component refs trigger reactive component warnings → See [ts-shallowref-for-dynamic-components](reference/ts-shallowref-for-dynamic-components.md)
+- Union-typed template expressions fail type checks without narrowing → See [ts-template-type-casting](reference/ts-template-type-casting.md)
 
 ### Async Components
 - Route components misconfigured with defineAsyncComponent lazy loading → See [async-component-vue-router](reference/async-component-vue-router.md)
@@ -151,6 +172,12 @@ For development best practices and common gotchas, use `vue-best-practices`.
 
 ### SSR
 - HTML differs between server and client renders → See [ssr-hydration-mismatch-causes](reference/ssr-hydration-mismatch-causes.md)
+- User state leaks between requests from shared singleton stores → See [state-ssr-cross-request-pollution](reference/state-ssr-cross-request-pollution.md)
+- Browser-only APIs crash server rendering in universal code paths → See [ssr-platform-specific-apis](reference/ssr-platform-specific-apis.md)
+
+### Performance
+- List children re-render unnecessarily because parent passes unstable props → See [perf-props-stability-update-optimization](reference/perf-props-stability-update-optimization.md)
+- Computed objects retrigger effects despite equivalent values → See [perf-computed-object-stability](reference/perf-computed-object-stability.md)
 
 ### SFC (Single File Components)
 - Trying to use named exports from component script blocks → See [sfc-named-exports-forbidden](reference/sfc-named-exports-forbidden.md)
@@ -164,6 +191,10 @@ For development best practices and common gotchas, use `vue-best-practices`.
 ### Plugins
 - Debugging why global properties cause naming conflicts → See [plugin-global-properties-sparingly](reference/plugin-global-properties-sparingly.md)
 - Plugin not working or inject returns undefined → See [plugin-install-before-mount](reference/plugin-install-before-mount.md)
+- Plugin global properties are unavailable in setup-based components → See [plugin-prefer-provide-inject-over-global-properties](reference/plugin-prefer-provide-inject-over-global-properties.md)
+- Plugin type augmentation mistakes break ComponentCustomProperties typing → See [plugin-typescript-type-augmentation](reference/plugin-typescript-type-augmentation.md)
 
 ### App Configuration
 - App configuration methods not working after mount call → See [configure-app-before-mount](reference/configure-app-before-mount.md)
+- Chaining app config off mount() fails because mount returns component instance → See [mount-return-value](reference/mount-return-value.md)
+- require.context-based component auto-registration fails in Vite → See [dynamic-component-registration-vite](reference/dynamic-component-registration-vite.md)
