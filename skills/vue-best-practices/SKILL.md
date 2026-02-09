@@ -7,83 +7,101 @@ metadata:
   version: "17.0.0"
 ---
 
-Vue 3 best practices, common gotchas, and performance optimization.
+# Vue Best Practices Workflow
 
-## Reactivity
+Use this skill as an instruction set. Follow the workflow in order unless the user explicitly asks for a different order.
 
-- Core reactivity patterns for ref(), shallowRef(), external state, computed() and watchers → See [reactivity](reference/reactivity.md)
+## 1) Confirm architecture before coding (required)
 
-## Components
+- Default stack: Vue 3 + Composition API + `<script setup lang="ts">`.
+- If the project explicitly uses Options API, load `vue-options-api-best-practices` skill if available.
+- If the project explicitly uses JSX, load `vue-jsx-best-practices` skill if available.
 
-### SFC (Single File Components)
+### 1.1 Must-read core references (required)
 
-- SFC naming, registration, usage, structure, communication patterns, styling, template patterns (`v-html` safety, list filtering/sorting, `v-if` vs `v-show`), and TypeScript-safe component ref patterns → See [sfc](reference/sfc.md)
+- Before implementing any Vue task, make sure to read and apply these core references:
+  - `reference/reactivity.md`
+  - `reference/sfc.md`
+  - `reference/component-data-flow.md`
+  - `reference/composables.md`
+- Keep these references in active working context for the entire task, not only when a specific issue appears.
 
-### Component Data Flow
+## 2) Apply essential Vue foundations (required)
 
-Props, emits, `v-model`, and provide/inject define how data moves through component trees. Use them to keep state changes explicit and predictable across parent/child boundaries.
+These are essential, must-know foundations. Apply all of them in every Vue task using the core references already loaded in section `1.1`.
 
-- Data flow patterns for props, emits, v-model, and provide/inject, including TypeScript-safe contracts with `defineProps`, `defineEmits`, and `InjectionKey` → See [component-data-flow](reference/component-data-flow.md)
+### Reactivity
 
-### Slots
+- Must-read reference from `1.1`: [reactivity](reference/reactivity.md)
+- Keep source state minimal (`ref`/`reactive`), derive everything possible with `computed`.
+- Use watchers for side effects if needed.
+- Avoid recomputing expensive logic in templates.
 
-In Vue, slots are placeholders in a child component where a parent can insert its own content, letting you make flexible, reusable components with custom inner content. Use them when you want the parent to control parts of a child’s layout or content without changing the child’s code.
+### SFC structure and template safety
 
-- Component slot API patterns: wrapper rendering, TypeScript slot typing, fallback content, and renderless-vs-composable decisions → See [component-slots](reference/component-slots.md)
+- Must-read reference from `1.1`: [sfc](reference/sfc.md)
+- Keep SFC responsibilities focused; split large components.
+- Keep templates declarative; move branching/derivation to script.
+- Apply Vue template safety rules (`v-html`, list rendering, conditional rendering choices).
 
-### Async Components
+### Component data flow
 
-In Vue, Async Components are components that load only when they’re needed instead of with the initial app bundle, helping your app start faster. You create them with `defineAsyncComponent()` and use them when you want to lazy-load large or rarely used components to improve performance.
-
-- Async component patterns: SSR lazy hydration and loading-state delay tuning → See [component-async](reference/component-async.md)
-
-### Fallthrough Attributes
-
-- Accessing and handling fallthrough attributes (`$attrs` access patterns, event listener keys, and `useAttrs()` reactivity limits) → See [component-fallthrough-attrs](reference/component-fallthrough-attrs.md)
-
-### Built-in Components
-
-- `<Transition>` animates a single element or component entering/leaving. Use it for view swaps, toggling UI states, or simple enter/leave effects. See [transition](reference/component-transition.md)
-
-- `<TransitionGroup>` animates lists of items entering, leaving, and moving. Use it for `v-for` lists where items change over time. See [transition-group](reference/component-transition-group.md)
-
-- `<KeepAlive>` caches component instances to preserve state when switching between views. Use it for tabbed UIs, route-level caching, or any workflow where returning to a view should restore its state rather than re-mounting from scratch. See [component-keep-alive](reference/component-keep-alive.md)
-
-- `<Teleport>` renders part of a component in a different DOM location while preserving the Vue component hierarchy. Use it for overlays that must escape stacking contexts or overflow (modals, tooltips, toasts) and for layouts that switch between inline and overlay rendering. See [component-teleport](reference/component-teleport.md)
-
-- `<Suspense>` coordinates async dependencies (async components or async setup) and renders a fallback while they resolve. Use it when you want a loading boundary for async trees, route-level views, or data-driven UI. See [component-suspense](reference/component-suspense.md)
-
-### Render Functions (Advanced)
-
-Vue recommends using templates to build applications in the vast majority of cases. However, there are situations where we need the full programmatic power of JavaScript. That's where we can use the render function.
-
-- Render function patterns: keys, events, v-model, directives, and performance → See [render-functions](reference/render-functions.md)
-
-## Reusability
+- Must-read reference from `1.1`: [component-data-flow](reference/component-data-flow.md)
+- Use props down, events up as the primary model.
+- Use `v-model` only for true two-way component contracts.
+- Use provide/inject only for deep-tree dependencies or shared context.
+- Keep contracts explicit and typed with `defineProps`, `defineEmits`, and `InjectionKey` as needed.
 
 ### Composables
 
-- Building composables, designing options-object APIs, enforcing readonly state boundaries, deciding utility-vs-composable boundaries, and organizing composable code by feature concern → See [composables](reference/composables.md)
+- Must-read reference from `1.1`: [composables](reference/composables.md)
+- Extract logic into composables when it is reused, stateful, or side-effect heavy.
+- Keep composable APIs small, typed, and predictable.
+- Separate feature logic from presentational components.
 
-### Directives
+## 3) Consider optional features only when requirements call for them
 
-Directives are for DOM-level behavior and should stay small, side-effect safe, and easy to reason about.
+### 3.1 Standard optional features
 
-- Directive patterns, pitfalls, SSR hooks, and TypeScript-safe custom directives → See [directives](reference/directives.md)
+Do not add these by default. Load the matching reference only when the requirement exists.
 
-### Plugins
+- Slots: parent needs to control child content/layout -> [component-slots](reference/component-slots.md)
+- Fallthrough attributes: wrapper/base components must forward attrs/events safely -> [component-fallthrough-attrs](reference/component-fallthrough-attrs.md)
+- Built-in component `<KeepAlive>` for stateful view caching -> [component-keep-alive](reference/component-keep-alive.md)
+- Built-in component `<Teleport>` for overlays/portals -> [component-teleport](reference/component-teleport.md)
+- Built-in component `<Suspense>` for async subtree fallback boundaries -> [component-suspense](reference/component-suspense.md)
+- Animation-related features: pick the simplest approach that matches the required motion behavior.
+  - Built-in component `<Transition>` for enter/leave effects -> [transition](reference/component-transition.md)
+  - Built-in component `<TransitionGroup>` for animated list mutations -> [transition-group](reference/component-transition-group.md)
+  - Class-based animation for CSS-driven transitions -> [animation-class-based-technique](reference/animation-class-based-technique.md)
+  - State-driven animation for user-input-driven animation -> [animation-state-driven-technique](reference/animation-state-driven-technique.md)
 
-- Building and typing Vue plugins (`install()` structure, app registration patterns, and symbol-based injection keys) → See [plugins](reference/plugins.md)
+### 3.2 Less-common optional features
 
-## Animation
+Use these only when there is explicit product or technical need.
 
-- Need to animate elements staying in DOM → See [animation-class-based-technique](reference/animation-class-based-technique.md)
-- Building interactive animations with user input → See [animation-state-driven-technique](reference/animation-state-driven-technique.md)
+- Directives: behavior is DOM-specific and not a good composable/component fit -> [directives](reference/directives.md)
+- Async components: heavy/rarely-used UI should be lazy loaded -> [component-async](reference/component-async.md)
+- Render functions only when templates cannot express the requirement -> [render-functions](reference/render-functions.md)
+- Plugins when behavior must be installed app-wide -> [plugins](reference/plugins.md)
 
-## Performance
+## 4) Run performance optimization after behavior is correct
 
-- Rendering hundreds or thousands of items causing DOM performance issues → See [perf-virtualize-large-lists](reference/perf-virtualize-large-lists.md)
-- Static content re-evaluated on every parent component update → See [perf-v-once-v-memo-directives](reference/perf-v-once-v-memo-directives.md)
-- List performance degrading from deeply nested component structure → See [perf-avoid-component-abstraction-in-lists](reference/perf-avoid-component-abstraction-in-lists.md)
-- Page load metrics suffering from client-side JavaScript execution delay → See [perf-ssr-ssg-for-page-load](reference/perf-ssr-ssg-for-page-load.md)
-- Expensive operations slow performance drastically → See [updated-hook-performance](reference/updated-hook-performance.md)
+Performance work is a post-functionality pass. Do not optimize before core behavior is implemented and verified.
+
+- Large list rendering bottlenecks -> [perf-virtualize-large-lists](reference/perf-virtualize-large-lists.md)
+- Static subtrees re-rendering unnecessarily -> [perf-v-once-v-memo-directives](reference/perf-v-once-v-memo-directives.md)
+- Over-abstraction in hot list paths -> [perf-avoid-component-abstraction-in-lists](reference/perf-avoid-component-abstraction-in-lists.md)
+- Initial load dominated by client work -> [perf-ssr-ssg-for-page-load](reference/perf-ssr-ssg-for-page-load.md)
+- Expensive updates triggered too often -> [updated-hook-performance](reference/updated-hook-performance.md)
+
+## 5) Final self-check before finishing
+
+- Core behavior works and matches requirements.
+- All must-read references were read and applied.
+- Reactivity model is minimal and predictable.
+- SFC structure and template rules are followed.
+- Data flow contracts are explicit and typed.
+- Composables are used where reuse/complexity justifies them.
+- Optional features are used only when requirements demand them.
+- Performance changes were applied only after functionality was complete.
