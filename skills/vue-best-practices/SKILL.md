@@ -10,11 +10,13 @@ metadata:
 Vue 3 best practices, common gotchas, and performance optimization.
 
 ## Reactivity
+
 - Core reactivity patterns for ref(), shallowRef(), external state, computed() and watchers → See [reactivity](reference/reactivity.md)
 
 ## Components
 
 ### SFC (Single File Components)
+
 - SFC naming, registration, usage, structure, communication patterns, styling, template patterns (`v-html` safety, list filtering/sorting, `v-if` vs `v-show`), and TypeScript-safe component ref patterns → See [sfc](reference/sfc.md)
 
 ### Component Data Flow
@@ -22,10 +24,6 @@ Vue 3 best practices, common gotchas, and performance optimization.
 Props, emits, `v-model`, and provide/inject define how data moves through component trees. Use them to keep state changes explicit and predictable across parent/child boundaries.
 
 - Data flow patterns for props, emits, v-model, and provide/inject, including TypeScript-safe contracts with `defineProps`, `defineEmits`, and `InjectionKey` → See [component-data-flow](reference/component-data-flow.md)
-
-### Events & Modifiers
-- Need to handle same event only one time → See [event-once-modifier-for-single-use](reference/event-once-modifier-for-single-use.md)
-- Using left-handed mouse or non-standard input devices → See [mouse-button-modifiers-intent](reference/mouse-button-modifiers-intent.md)
 
 ### Slots
 
@@ -80,10 +78,12 @@ Directives are for DOM-level behavior and should stay small, side-effect safe, a
 - Preventing collisions between multiple plugins → See [plugin-symbol-injection-keys](reference/plugin-symbol-injection-keys.md)
 
 ## Animation
+
 - Need to animate elements staying in DOM → See [animation-class-based-technique](reference/animation-class-based-technique.md)
 - Building interactive animations with user input → See [animation-state-driven-technique](reference/animation-state-driven-technique.md)
 
 ## Performance
+
 - Rendering hundreds or thousands of items causing DOM performance issues → See [perf-virtualize-large-lists](reference/perf-virtualize-large-lists.md)
 - Static content re-evaluated on every parent component update → See [perf-v-once-v-memo-directives](reference/perf-v-once-v-memo-directives.md)
 - List performance degrading from deeply nested component structure → See [perf-avoid-component-abstraction-in-lists](reference/perf-avoid-component-abstraction-in-lists.md)
