@@ -100,6 +100,7 @@ Use these only when there is explicit product or technical need.
 - Async components: heavy/rarely-used UI should be lazy loaded -> [component-async](reference/component-async.md)
 - Render functions only when templates cannot express the requirement -> [render-functions](reference/render-functions.md)
 - Plugins when behavior must be installed app-wide -> [plugins](reference/plugins.md)
+- State management patterns: app-wide shared state crosses feature boundaries -> [state-management](reference/state-management.md)
 
 ## 4) Run performance optimization after behavior is correct
 
