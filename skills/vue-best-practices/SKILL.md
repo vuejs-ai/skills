@@ -73,7 +73,7 @@ Do not add these by default. Load the matching reference only when the requireme
 - Animation-related features: pick the simplest approach that matches the required motion behavior.
   - Built-in component `<Transition>` for enter/leave effects -> [transition](reference/component-transition.md)
   - Built-in component `<TransitionGroup>` for animated list mutations -> [transition-group](reference/component-transition-group.md)
-  - Class-based animation for CSS-driven transitions -> [animation-class-based-technique](reference/animation-class-based-technique.md)
+  - Class-based animation for non-enter/leave effects -> [animation-class-based-technique](reference/animation-class-based-technique.md)
   - State-driven animation for user-input-driven animation -> [animation-state-driven-technique](reference/animation-state-driven-technique.md)
 
 ### 3.2 Less-common optional features
