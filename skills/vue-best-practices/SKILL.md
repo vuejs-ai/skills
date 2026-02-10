@@ -27,10 +27,10 @@ Use this skill as an instruction set. Follow the workflow in order unless the us
 ### 1.1 Must-read core references (required)
 
 - Before implementing any Vue task, make sure to read and apply these core references:
-  - `reference/reactivity.md`
-  - `reference/sfc.md`
-  - `reference/component-data-flow.md`
-  - `reference/composables.md`
+  - `references/reactivity.md`
+  - `references/sfc.md`
+  - `references/component-data-flow.md`
+  - `references/composables.md`
 - Keep these references in active working context for the entire task, not only when a specific issue appears.
 
 ## 2) Apply essential Vue foundations (required)
@@ -39,14 +39,14 @@ These are essential, must-know foundations. Apply all of them in every Vue task 
 
 ### Reactivity
 
-- Must-read reference from `1.1`: [reactivity](reference/reactivity.md)
+- Must-read reference from `1.1`: [reactivity](references/reactivity.md)
 - Keep source state minimal (`ref`/`reactive`), derive everything possible with `computed`.
 - Use watchers for side effects if needed.
 - Avoid recomputing expensive logic in templates.
 
 ### SFC structure and template safety
 
-- Must-read reference from `1.1`: [sfc](reference/sfc.md)
+- Must-read reference from `1.1`: [sfc](references/sfc.md)
 - Keep SFC sections in this order: `<script>` → `<template>` → `<style>`.
 - Keep SFC responsibilities focused; split large components.
 - Keep templates declarative; move branching/derivation to script.
@@ -62,7 +62,7 @@ Split a component when it has **more than one clear responsibility** (e.g. data 
 
 ### Component data flow
 
-- Must-read reference from `1.1`: [component-data-flow](reference/component-data-flow.md)
+- Must-read reference from `1.1`: [component-data-flow](references/component-data-flow.md)
 - Use props down, events up as the primary model.
 - Use `v-model` only for true two-way component contracts.
 - Use provide/inject only for deep-tree dependencies or shared context.
@@ -70,7 +70,7 @@ Split a component when it has **more than one clear responsibility** (e.g. data 
 
 ### Composables
 
-- Must-read reference from `1.1`: [composables](reference/composables.md)
+- Must-read reference from `1.1`: [composables](references/composables.md)
 - Extract logic into composables when it is reused, stateful, or side-effect heavy.
 - Keep composable APIs small, typed, and predictable.
 - Separate feature logic from presentational components.
@@ -81,35 +81,35 @@ Split a component when it has **more than one clear responsibility** (e.g. data 
 
 Do not add these by default. Load the matching reference only when the requirement exists.
 
-- Slots: parent needs to control child content/layout -> [component-slots](reference/component-slots.md)
-- Fallthrough attributes: wrapper/base components must forward attrs/events safely -> [component-fallthrough-attrs](reference/component-fallthrough-attrs.md)
-- Built-in component `<KeepAlive>` for stateful view caching -> [component-keep-alive](reference/component-keep-alive.md)
-- Built-in component `<Teleport>` for overlays/portals -> [component-teleport](reference/component-teleport.md)
-- Built-in component `<Suspense>` for async subtree fallback boundaries -> [component-suspense](reference/component-suspense.md)
+- Slots: parent needs to control child content/layout -> [component-slots](references/component-slots.md)
+- Fallthrough attributes: wrapper/base components must forward attrs/events safely -> [component-fallthrough-attrs](references/component-fallthrough-attrs.md)
+- Built-in component `<KeepAlive>` for stateful view caching -> [component-keep-alive](references/component-keep-alive.md)
+- Built-in component `<Teleport>` for overlays/portals -> [component-teleport](references/component-teleport.md)
+- Built-in component `<Suspense>` for async subtree fallback boundaries -> [component-suspense](references/component-suspense.md)
 - Animation-related features: pick the simplest approach that matches the required motion behavior.
-  - Built-in component `<Transition>` for enter/leave effects -> [transition](reference/component-transition.md)
-  - Built-in component `<TransitionGroup>` for animated list mutations -> [transition-group](reference/component-transition-group.md)
-  - Class-based animation for non-enter/leave effects -> [animation-class-based-technique](reference/animation-class-based-technique.md)
-  - State-driven animation for user-input-driven animation -> [animation-state-driven-technique](reference/animation-state-driven-technique.md)
+  - Built-in component `<Transition>` for enter/leave effects -> [transition](references/component-transition.md)
+  - Built-in component `<TransitionGroup>` for animated list mutations -> [transition-group](references/component-transition-group.md)
+  - Class-based animation for non-enter/leave effects -> [animation-class-based-technique](references/animation-class-based-technique.md)
+  - State-driven animation for user-input-driven animation -> [animation-state-driven-technique](references/animation-state-driven-technique.md)
 
 ### 3.2 Less-common optional features
 
 Use these only when there is explicit product or technical need.
 
-- Directives: behavior is DOM-specific and not a good composable/component fit -> [directives](reference/directives.md)
-- Async components: heavy/rarely-used UI should be lazy loaded -> [component-async](reference/component-async.md)
-- Render functions only when templates cannot express the requirement -> [render-functions](reference/render-functions.md)
-- Plugins when behavior must be installed app-wide -> [plugins](reference/plugins.md)
-- State management patterns: app-wide shared state crosses feature boundaries -> [state-management](reference/state-management.md)
+- Directives: behavior is DOM-specific and not a good composable/component fit -> [directives](references/directives.md)
+- Async components: heavy/rarely-used UI should be lazy loaded -> [component-async](references/component-async.md)
+- Render functions only when templates cannot express the requirement -> [render-functions](references/render-functions.md)
+- Plugins when behavior must be installed app-wide -> [plugins](references/plugins.md)
+- State management patterns: app-wide shared state crosses feature boundaries -> [state-management](references/state-management.md)
 
 ## 4) Run performance optimization after behavior is correct
 
 Performance work is a post-functionality pass. Do not optimize before core behavior is implemented and verified.
 
-- Large list rendering bottlenecks -> [perf-virtualize-large-lists](reference/perf-virtualize-large-lists.md)
-- Static subtrees re-rendering unnecessarily -> [perf-v-once-v-memo-directives](reference/perf-v-once-v-memo-directives.md)
-- Over-abstraction in hot list paths -> [perf-avoid-component-abstraction-in-lists](reference/perf-avoid-component-abstraction-in-lists.md)
-- Expensive updates triggered too often -> [updated-hook-performance](reference/updated-hook-performance.md)
+- Large list rendering bottlenecks -> [perf-virtualize-large-lists](references/perf-virtualize-large-lists.md)
+- Static subtrees re-rendering unnecessarily -> [perf-v-once-v-memo-directives](references/perf-v-once-v-memo-directives.md)
+- Over-abstraction in hot list paths -> [perf-avoid-component-abstraction-in-lists](references/perf-avoid-component-abstraction-in-lists.md)
+- Expensive updates triggered too often -> [updated-hook-performance](references/updated-hook-performance.md)
 
 ## 5) Final self-check before finishing
 
