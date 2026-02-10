@@ -67,7 +67,8 @@ const state = reactive({
 
 state.count++ // ✅ reactive
 state.user.age = 31 // ✅ reactive
-state = reactive({ count: 1 }) // ❌ breaks reactivity
+// ❌ avoid replacing the reactive object reference:
+// state = reactive({ count: 1 })
 ```
 
 Use `shallowRef()` when the value is **opaque / should not be proxied** (class instances, external library objects, very large nested data) and you only want updates to trigger when you **replace** `state.value` (no deep tracking), usually used for:
@@ -105,30 +106,41 @@ state.user.age = 31 // ❌ not reactive
 
 ### Avoid destructuring from `reactive()` directly
 
-Bad: Destructuring breaks reactivity for primitives.
+**BAD:**
 
 ```ts
+import { reactive } from 'vue'
+
 const state = reactive({ count: 0 })
 const { count } = state // ❌ disconnected from reactivity
 ```
 
 ### Watch correctly for reactive
 
-Bad: passing a non-getter value into `watch()`
+**BAD:**
+
+passing a non-getter value into `watch()`
 
 ```ts
+import { reactive, watch } from 'vue'
+
 const state = reactive({ count: 0 })
 
 // ❌ watch expects a getter, ref, reactive object, or array of these
 watch(state.count, () => { /* ... */ })
 ```
 
-Good: preserve reactivity with `toRefs()` and use a getter for `watch()`
+**GOOD:**
+
+preserve reactivity with `toRefs()` and use a getter for `watch()`
 
 ```ts
+import { reactive, toRefs, watch } from 'vue'
+
 const state = reactive({ count: 0 })
 const { count } = toRefs(state) // ✅ count is a ref
 
+watch(count, () => { /* ... */ }) // ✅
 watch(() => state.count, () => { /* ... */ }) // ✅
 ```
 
@@ -136,7 +148,7 @@ watch(() => state.count, () => { /* ... */ }) // ✅
 
 ### Prefer `computed` over watcher-assigned derived refs
 
-**Incorrect:**
+**BAD:**
 ```ts
 import { ref, watchEffect } from 'vue'
 
@@ -148,7 +160,7 @@ watchEffect(() => {
 })
 ```
 
-**Correct:**
+**GOOD:**
 ```ts
 import { ref, computed } from 'vue'
 
@@ -160,7 +172,7 @@ const total = computed(() =>
 
 ### Keep filtered/sorted derivations out of templates
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <li v-for="item in items.filter(item => item.active)" :key="item.id">
@@ -186,7 +198,7 @@ function getSortedItems() {
 </script>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <script setup>
 import { ref, computed } from 'vue'
@@ -212,7 +224,7 @@ const visibleItems = computed(() =>
 
 ### Use `computed` for reusable class/style logic
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <button :class="{ btn: true, 'btn-primary': type === 'primary' && !disabled, 'btn-disabled': disabled }">
@@ -221,7 +233,7 @@ const visibleItems = computed(() =>
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <script setup>
 import { computed } from 'vue'
@@ -251,7 +263,9 @@ const buttonClasses = computed(() => ({
 A computed getter should only derive a value. No mutation, no API calls, no storage writes, no event emits.
 ([Reference](https://vuejs.org/guide/essentials/computed.html#best-practices))
 
-Bad: side effects inside computed
+**BAD:**
+
+side effects inside computed
 
 ```ts
 const count = ref(0)
@@ -263,7 +277,9 @@ const doubled = computed(() => {
 })
 ```
 
-Good: pure computed + `watch()` for side effects
+**GOOD:**
+
+pure computed + `watch()` for side effects
 
 ```ts
 const count = ref(0)
@@ -278,7 +294,7 @@ watch(count, (value) => {
 
 ### Use `immediate: true` instead of duplicate initial calls
 
-**Incorrect:**
+**BAD:**
 ```ts
 import { ref, watch, onMounted } from 'vue'
 
@@ -292,7 +308,7 @@ onMounted(() => loadUser(userId.value))
 watch(userId, (id) => loadUser(id))
 ```
 
-**Correct:**
+**GOOD:**
 ```ts
 import { ref, watch } from 'vue'
 
@@ -309,7 +325,7 @@ watch(
 
 When reacting to rapid changes (search boxes, filters), cancel the previous request.
 
-Good
+**GOOD:**
 
 ```ts
 const query = ref('')
@@ -327,7 +343,7 @@ watch(query, async (q, _prev, onCleanup) => {
 })
 ```
 
-## Reference
+## References
 - [Vue.js Reactivity Fundamentals](https://vuejs.org/guide/essentials/reactivity-fundamentals.html)
 - [Vue.js shallowRef API](https://vuejs.org/api/reactivity-advanced.html#shallowref)
 - [Vue.js reactive API](https://vuejs.org/api/reactivity-core.html#reactive)

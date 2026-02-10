@@ -13,20 +13,19 @@ tags: [vue3, sfc, scoped-css, styles, build-tools, performance, template, v-html
 ## Task Checklist
 
 - [ ] Use `.vue` SFCs instead of separate `.js`/`.ts` and `.css` files for components
-  - [ ] Colocate template, script, and styles in the same SFC by default
-  - [ ] Use PascalCase for component names in templates and filenames
-- [ ] Follow best practices for `<style>` block in SFCs
-  - [ ] Prefer component-scoped styles
-  - [ ] Prefer class selectors (not element selectors) in scoped CSS for performance
+- [ ] Colocate template, script, and styles in the same SFC by default
+- [ ] Use PascalCase for component names in templates and filenames
+- [ ] Prefer component-scoped styles
+- [ ] Prefer class selectors (not element selectors) in scoped CSS for performance
 - [ ] Access DOM / component refs with `useTemplateRef()` in Vue 3.5+
 - [ ] Use camelCase keys in `:style` bindings for consistency and IDE support
-- [ ] Used `v-for` and `v-if` correctly
+- [ ] Use `v-for` and `v-if` correctly
 - [ ] Never use `v-html` with untrusted/user-provided content
 - [ ] Choose `v-if` vs `v-show` based on toggle frequency and initial render cost
 
 ## Colocate template, script, and styles
 
-**Incorrect:**
+**BAD:**
 ```
 components/
 ├── UserCard.vue
@@ -34,7 +33,7 @@ components/
 └── UserCard.css
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <!-- components/UserCard.vue -->
 <script setup>
@@ -68,7 +67,7 @@ const displayName = computed(() =>
 
 ## Use PascalCase for component names
 
-**Less ideal:**
+**BAD:**
 ```vue
 <script setup>
 import userProfile from './user-profile.vue'
@@ -79,7 +78,7 @@ import userProfile from './user-profile.vue'
 </template>
 ```
 
-**Recommended:**
+**GOOD:**
 ```vue
 <script setup>
 import UserProfile from './UserProfile.vue'
@@ -94,11 +93,11 @@ import UserProfile from './UserProfile.vue'
 
 ### Prefer component-scoped styles
 
-* Use `<style scoped>` for styles that belong to a component.
-* Keep **global CSS** in a dedicated file (e.g. `src/assets/main.css`) for resets, typography, tokens, etc.
-* Use `:deep()` sparingly (edge cases only).
+- Use `<style scoped>` for styles that belong to a component.
+- Keep **global CSS** in a dedicated file (e.g. `src/assets/main.css`) for resets, typography, tokens, etc.
+- Use `:deep()` sparingly (edge cases only).
 
-Bad: global styles inside random components
+**BAD:**
 
 ```vue
 <style>
@@ -107,7 +106,7 @@ button { border-radius: 999px; }
 </style>
 ```
 
-Good: scoped by default
+**GOOD:**
 
 ```vue
 <style scoped>
@@ -115,7 +114,7 @@ Good: scoped by default
 </style>
 ```
 
-Good: global CSS belongs in a global entry
+**GOOD:**
 
 ```css
 /* src/assets/main.css */
@@ -125,7 +124,7 @@ Good: global CSS belongs in a global entry
 
 ### Use class selectors in scoped CSS
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <article>
@@ -141,7 +140,7 @@ p { line-height: 1.6; }
 </style>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <template>
   <article class="article">
@@ -179,7 +178,7 @@ onMounted(() => {
 
 ## Use camelCase in `:style` bindings
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <div :style="{ 'font-size': fontSize + 'px', 'background-color': bg }">
@@ -188,7 +187,7 @@ onMounted(() => {
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <template>
   <div :style="{ fontSize: fontSize + 'px', backgroundColor: bg }">
@@ -197,14 +196,14 @@ onMounted(() => {
 </template>
 ```
 
-## Used `v-for` and `v-if` correctly
+## Use `v-for` and `v-if` correctly
 
 ### Always provide a stable `:key`
 
-* Prefer primitive keys (`string | number`).
-* Avoid using objects as keys.
+- Prefer primitive keys (`string | number`).
+- Avoid using objects as keys.
 
-Good
+**GOOD:**
 
 ```vue
 <li v-for="item in items" :key="item.id">
@@ -218,7 +217,7 @@ It leads to unclear intent and unnecessary work.
 ([Reference](https://vuejs.org/guide/essentials/list.html#v-for-with-v-if))
 
 **To filter items**
-Bad
+**BAD:**
 
 ```vue
 <li v-for="user in users" v-if="user.active" :key="user.id">
@@ -226,7 +225,7 @@ Bad
 </li>
 ```
 
-Good: filter in computed
+**GOOD:**
 
 ```vue
 <script setup lang="ts">
@@ -243,7 +242,7 @@ const activeUsers = computed(() => users.value.filter(u => u.active))
 ```
 
 **To conditionally show/hide the entire list**
-Good: move `v-if` to a container element or `<template>`
+**GOOD:**
 
 ```vue
 <ul v-if="shouldShowUsers">
@@ -255,7 +254,7 @@ Good: move `v-if` to a container element or `<template>`
 
 ## Never render untrusted HTML with `v-html`
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <!-- DANGEROUS: untrusted input can inject scripts -->
@@ -263,7 +262,7 @@ Good: move `v-if` to a container element or `<template>`
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <script setup>
 import { computed } from 'vue'
@@ -288,7 +287,7 @@ const safeHtml = computed(() => DOMPurify.sanitize(props.trustedHtml ?? ''))
 
 ## Choose `v-if` vs `v-show` by toggle behavior
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <!-- Frequent toggles with v-if cause repeated mount/unmount -->
@@ -299,7 +298,7 @@ const safeHtml = computed(() => DOMPurify.sanitize(props.trustedHtml ?? ''))
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <template>
   <!-- Frequent toggles: keep in DOM, toggle display -->
@@ -310,7 +309,7 @@ const safeHtml = computed(() => DOMPurify.sanitize(props.trustedHtml ?? ''))
 </template>
 ```
 
-## Reference
+## References
 - [Vue.js Introduction - Single-File Components](https://vuejs.org/guide/introduction.html#single-file-components)
 - [Vue.js SFC Syntax Specification](https://vuejs.org/api/sfc-spec.html)
 - [Vue.js Scoped CSS](https://vuejs.org/api/sfc-css-features.html#scoped-css)

@@ -20,14 +20,14 @@ tags: [vue3, slots, components, typescript, composables]
 
 ## Shorthand syntax for named slots
 
-Bad: use verbose syntax
+**BAD:**
 ```vue
 <MyComponent>
   <template v-slot:header> ... </template>
 </MyComponent>
 ```
 
-Good: use shorthand syntax
+**GOOD:**
 ```vue
 <MyComponent>
   <template #header> ... </template>
@@ -38,7 +38,7 @@ Good: use shorthand syntax
 
 Use `$slots` checks when wrapper elements add spacing, borders, or layout constraints.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <!-- Card.vue -->
 <template>
@@ -58,7 +58,7 @@ Use `$slots` checks when wrapper elements add spacing, borders, or layout constr
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <!-- Card.vue -->
 <template>
@@ -82,7 +82,7 @@ Use `$slots` checks when wrapper elements add spacing, borders, or layout constr
 
 In `<script setup lang="ts">`, use `defineSlots` so slot consumers get autocomplete and static checks.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <!-- ProductList.vue -->
 <script setup lang="ts">
@@ -103,7 +103,7 @@ defineProps<{ products: Product[] }>()
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <!-- ProductList.vue -->
 <script setup lang="ts">
@@ -134,7 +134,7 @@ defineSlots<{
 
 Fallback content makes components resilient when parents omit optional slots.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <!-- SubmitButton.vue -->
 <template>
@@ -144,7 +144,7 @@ Fallback content makes components resilient when parents omit optional slots.
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <!-- SubmitButton.vue -->
 <template>
@@ -158,7 +158,7 @@ Fallback content makes components resilient when parents omit optional slots.
 
 Renderless components are still useful for slot-driven composition, but composables are usually cleaner for logic-only reuse.
 
-**Incorrect (unnecessary renderless abstraction):**
+**BAD:**
 ```vue
 <!-- MouseTracker.vue -->
 <script setup lang="ts">
@@ -181,7 +181,7 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
 </template>
 ```
 
-**Correct (composable for logic):**
+**GOOD:**
 ```ts
 // composables/useMouse.ts
 import { ref, onMounted, onUnmounted } from 'vue'
@@ -215,8 +215,7 @@ const { x, y } = useMouse()
 </template>
 ```
 
-## Reference
-
+## References
 - [Vue.js Slots](https://vuejs.org/guide/components/slots.html)
 - [Vue.js Slots - Conditional Slots](https://vuejs.org/guide/components/slots.html#conditional-slots)
 - [Vue.js Slots - Fallback Content](https://vuejs.org/guide/components/slots.html#fallback-content)

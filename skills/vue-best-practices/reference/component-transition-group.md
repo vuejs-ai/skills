@@ -10,13 +10,6 @@ tags: [vue3, transition-group, animation, lists, keys]
 
 **Impact: MEDIUM** - `<TransitionGroup>` animates lists of items entering, leaving, and moving. Use it for `v-for` lists or dynamic collections where individual items change over time.
 
-## Table of Contents
-
-- Use TransitionGroup for lists
-- Always provide stable keys
-- Do not use `mode` on TransitionGroup
-- Stagger list animations with data attributes
-
 ## Task Checklist
 
 - [ ] Use `<TransitionGroup>` only for lists and repeated items
@@ -29,7 +22,7 @@ tags: [vue3, transition-group, animation, lists, keys]
 
 `<TransitionGroup>` is designed for list items. Use `tag` to control the wrapper element when needed.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <TransitionGroup name="fade">
@@ -39,7 +32,7 @@ tags: [vue3, transition-group, animation, lists, keys]
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <template>
   <TransitionGroup name="list" tag="ul">
@@ -54,7 +47,7 @@ tags: [vue3, transition-group, animation, lists, keys]
 
 Keys are required. Without stable keys, Vue cannot track item positions and animations break.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <TransitionGroup name="list" tag="ul">
@@ -65,7 +58,7 @@ Keys are required. Without stable keys, Vue cannot track item positions and anim
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <template>
   <TransitionGroup name="list" tag="ul">
@@ -80,7 +73,7 @@ Keys are required. Without stable keys, Vue cannot track item positions and anim
 
 `mode` is only for `<Transition>` because it swaps a single element. Use `<Transition>` if you need in/out sequencing.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <TransitionGroup name="list" tag="div" mode="out-in">
@@ -89,7 +82,7 @@ Keys are required. Without stable keys, Vue cannot track item positions and anim
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <template>
   <Transition name="fade" mode="out-in">

@@ -18,8 +18,11 @@ tags: [vue3, teleport, modal, overlay, positioning, responsive]
 - [ ] Remember props, emits, and provide/inject still work through teleport
 - [ ] Avoid relying on parent stacking contexts or transforms for teleported UI
 
-## Incorrect
+## Teleport Overlays Out of Transformed Containers
 
+When an ancestor has `transform`, `filter`, or `perspective`, fixed-position overlays can behave like they are locally positioned. Teleport escapes that context.
+
+**BAD:**
 ```vue
 <template>
   <div class="animated-container">
@@ -43,8 +46,7 @@ tags: [vue3, teleport, modal, overlay, positioning, responsive]
 </style>
 ```
 
-## Correct
-
+**GOOD:**
 ```vue
 <template>
   <div class="animated-container">
@@ -105,7 +107,7 @@ Teleports to the same target append in declaration order:
 
 Use a shared container to keep stacking predictable, and apply z-index only when you need explicit layering.
 
-## Reference
+## References
 - [Vue.js Teleport - Basic Usage](https://vuejs.org/guide/built-ins/teleport.html#basic-usage)
 - [Vue.js Teleport - Disabling Teleport](https://vuejs.org/guide/built-ins/teleport.html#disabling-teleport)
 - [Vue.js Teleport - Multiple Teleports on the Same Target](https://vuejs.org/guide/built-ins/teleport.html#multiple-teleports-on-the-same-target)

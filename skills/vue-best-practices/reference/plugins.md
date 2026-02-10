@@ -24,7 +24,7 @@ A Vue plugin must be either:
 - An object with `install(app, options?)`
 - A function with the same signature
 
-**Incorrect:**
+**BAD:**
 ```ts
 const notAPlugin = {
   doSomething() {}
@@ -33,7 +33,7 @@ const notAPlugin = {
 app.use(notAPlugin)
 ```
 
-**Correct (object plugin):**
+**GOOD:**
 ```ts
 import type { App } from 'vue'
 
@@ -57,7 +57,7 @@ const myPlugin = {
 app.use(myPlugin, { prefix: 'custom', debug: true })
 ```
 
-**Correct (function plugin):**
+**GOOD:**
 ```ts
 import type { App } from 'vue'
 
@@ -76,7 +76,7 @@ Inside `install()`, wire behavior through Vue application APIs:
 - `app.provide()` for injectable services and config
 - `app.config.globalProperties` for optional global helpers (sparingly)
 
-**Incorrect (no app registration):**
+**BAD:**
 ```ts
 const uselessPlugin = {
   install(app, options) {
@@ -85,7 +85,7 @@ const uselessPlugin = {
 }
 ```
 
-**Correct:**
+**GOOD:**
 ```ts
 const usefulPlugin = {
   install(app, options) {
@@ -117,7 +117,7 @@ const myPlugin: Plugin<[MyOptions]> = {
 
 String keys can collide (`'http'`, `'config'`, `'i18n'`). Use symbol keys with `InjectionKey<T>` so injections are unique and typed.
 
-**Incorrect:**
+**BAD:**
 ```ts
 export default {
   install(app) {
@@ -127,7 +127,7 @@ export default {
 }
 ```
 
-**Correct:**
+**GOOD:**
 ```ts
 import type { InjectionKey } from 'vue'
 import type { AxiosInstance } from 'axios'

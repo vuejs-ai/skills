@@ -21,7 +21,7 @@ tags: [vue3, render-function, h, v-model, directives, performance, jsx]
 
 ## Prefer templates over render functions
 
-**Incorrect:**
+**BAD:**
 ```vue
 <script setup>
 import { h, ref } from 'vue'
@@ -31,7 +31,7 @@ const render = () => h('div', `Count: ${count.value}`)
 </script>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <script setup>
 import { ref } from 'vue'
@@ -46,7 +46,7 @@ const count = ref(0)
 
 ## Always add keys for list rendering
 
-**Incorrect:**
+**BAD:**
 ```javascript
 import { h, ref } from 'vue'
 
@@ -61,7 +61,7 @@ export default {
 }
 ```
 
-**Correct:**
+**GOOD:**
 ```javascript
 import { h, ref } from 'vue'
 
@@ -78,7 +78,7 @@ export default {
 
 ## Use `withModifiers` / `withKeys` for event modifiers
 
-**Incorrect:**
+**BAD:**
 ```javascript
 import { h } from 'vue'
 
@@ -94,7 +94,7 @@ export default {
 }
 ```
 
-**Correct:**
+**GOOD:**
 ```javascript
 import { h, withModifiers, withKeys } from 'vue'
 
@@ -117,7 +117,7 @@ export default {
 
 ## Implement `v-model` explicitly
 
-**Incorrect:**
+**BAD:**
 ```javascript
 import { h, ref } from 'vue'
 import CustomInput from './CustomInput.vue'
@@ -130,7 +130,7 @@ export default {
 }
 ```
 
-**Correct:**
+**GOOD:**
 ```javascript
 import { h, ref } from 'vue'
 import CustomInput from './CustomInput.vue'
@@ -148,7 +148,7 @@ export default {
 
 ## Use `withDirectives` for custom directives
 
-**Incorrect:**
+**BAD:**
 ```javascript
 import { h } from 'vue'
 
@@ -161,7 +161,7 @@ export default {
 }
 ```
 
-**Correct:**
+**GOOD:**
 ```javascript
 import { h, withDirectives } from 'vue'
 
@@ -176,7 +176,7 @@ export default {
 
 ## Prefer functional components for stateless UI
 
-**Incorrect:**
+**BAD:**
 ```javascript
 import { h } from 'vue'
 
@@ -187,7 +187,7 @@ export default {
 }
 ```
 
-**Correct:**
+**GOOD:**
 ```javascript
 import { h } from 'vue'
 
@@ -200,7 +200,7 @@ Badge.props = ['variant']
 export default Badge
 ```
 
-## Reference
+## References
 - [Vue.js Render Functions & JSX](https://vuejs.org/guide/extras/render-function.html)
 - [Vue.js Rendering Mechanism](https://vuejs.org/guide/extras/rendering-mechanism.html)
 - [Vue.js Render Function APIs](https://vuejs.org/api/render-function.html)

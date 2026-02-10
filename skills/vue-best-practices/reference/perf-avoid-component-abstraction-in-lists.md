@@ -20,7 +20,7 @@ Don't avoid abstraction entirely, but be mindful of component depth in frequentl
 - [ ] Profile component counts using Vue DevTools
 - [ ] Focus optimization efforts on the most-rendered components
 
-**Incorrect:**
+**BAD:**
 ```vue
 <!-- BAD: Deep abstraction in list items -->
 <template>
@@ -46,7 +46,7 @@ Don't avoid abstraction entirely, but be mindful of component depth in frequentl
      100 users = 500+ component instances -->
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <!-- GOOD: Flattened structure in list items -->
 <template>
@@ -158,5 +158,5 @@ onMounted(() => {
 | 1000 items | 1 (flat) | 1000 | High |
 | 1000 items | 5 (deeply nested) | 5000 | Very High |
 
-## Reference
+## References
 - [Vue.js Performance - Avoid Unnecessary Component Abstractions](https://vuejs.org/guide/best-practices/performance.html#avoid-unnecessary-component-abstractions)

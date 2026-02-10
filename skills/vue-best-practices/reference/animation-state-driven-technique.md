@@ -250,7 +250,7 @@ For smooth number animations (counters, stats), use watchers with animation libr
 </template>
 
 <script setup>
-import { ref, reactive, watch } from 'vue'
+import { computed, ref, reactive, watch } from 'vue'
 import gsap from 'gsap'
 
 const targetNumber = ref(0)
@@ -290,6 +290,6 @@ watch(targetNumber, (newValue) => {
 </style>
 ```
 
-## Reference
+## References
 - [Vue.js Animation Techniques - State-driven Animations](https://vuejs.org/guide/extras/animation.html#state-driven-animations)
 - [CSS Transitions MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions)

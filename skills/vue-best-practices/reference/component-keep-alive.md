@@ -10,16 +10,6 @@ tags: [vue3, keepalive, cache, performance, router, dynamic-components]
 
 **Impact: HIGH** - `<KeepAlive>` caches component instances instead of destroying them. Use it to preserve state across switches, but manage cache size and freshness explicitly to avoid memory growth or stale UI.
 
-## Table of Contents
-
-- When to use KeepAlive
-- Limit and control the cache (`max`, include/exclude)
-- Ensure component names match include/exclude
-- Cache invalidation strategies (keys and conditional caching)
-- Lifecycle hooks for cached components
-- Router caching and freshness
-- When NOT to use KeepAlive
-
 ## Task Checklist
 
 - [ ] Use KeepAlive only where state preservation improves UX
@@ -33,7 +23,7 @@ tags: [vue3, keepalive, cache, performance, router, dynamic-components]
 
 Use KeepAlive when switching between views where state should persist (tabs, multi-step forms, dashboards). Avoid it when each visit should start fresh.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <!-- State resets on every switch -->
@@ -41,7 +31,7 @@ Use KeepAlive when switching between views where state should persist (tabs, mul
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <template>
   <!-- State preserved between switches -->

@@ -20,7 +20,7 @@ tags: [vue3, composables, composition-api, code-organization, api-design, readon
 
 ## Compose Composables from Smaller Primitives
 
-**Incorrect:**
+**BAD:**
 ```vue
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
@@ -44,7 +44,7 @@ onUnmounted(() => window.removeEventListener('mousemove', onMove))
 </script>
 ```
 
-**Correct:**
+**GOOD:**
 ```javascript
 // composables/useEventListener.js
 import { onMounted, onUnmounted, toValue } from 'vue'
@@ -94,7 +94,7 @@ export function useMouseInElement(elementRef) {
 
 ## Use Options Object Pattern for Composable Parameters
 
-**Incorrect:**
+**BAD:**
 ```javascript
 export function useFetch(url, method, headers, timeout, retries, immediate) {
   // hard to read and easy to misorder
@@ -103,7 +103,7 @@ export function useFetch(url, method, headers, timeout, retries, immediate) {
 useFetch('/api/users', 'GET', null, 5000, 3, true)
 ```
 
-**Correct:**
+**GOOD:**
 ```javascript
 export function useFetch(url, options = {}) {
   const {
@@ -141,7 +141,7 @@ export function useCounter(options: UseCounterOptions = {}) {
 
 ## Return Readonly State with Explicit Actions
 
-**Incorrect:**
+**BAD:**
 ```javascript
 export function useCart() {
   const items = ref([])
@@ -153,7 +153,7 @@ const { items } = useCart()
 items.value.push({ id: 1, price: 10 })
 ```
 
-**Correct:**
+**GOOD:**
 ```javascript
 import { ref, computed, readonly } from 'vue'
 
@@ -188,7 +188,7 @@ export function useCart() {
 
 ## Keep Utilities as Utilities
 
-**Incorrect:**
+**BAD:**
 ```javascript
 export function useFormatters() {
   const formatDate = (date) => new Intl.DateTimeFormat('en-US').format(date)
@@ -200,7 +200,7 @@ export function useFormatters() {
 const { formatDate } = useFormatters()
 ```
 
-**Correct:**
+**GOOD:**
 ```javascript
 // utils/formatters.js
 export function formatDate(date) {
@@ -228,7 +228,7 @@ export function useInvoiceSummary(invoiceRef) {
 
 ## Organize Composable and Component Code by Feature Concern
 
-**Incorrect:**
+**BAD:**
 ```vue
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
@@ -249,7 +249,7 @@ onMounted(() => { /* ... */ })
 </script>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <script setup>
 import { useItems } from '@/composables/useItems'
@@ -289,7 +289,7 @@ export function useItems() {
 }
 ```
 
-## Reference
+## References
 - [Vue.js Composables](https://vuejs.org/guide/reusability/composables.html)
 - [Composition API FAQ - Better Logic Reuse](https://vuejs.org/guide/extras/composition-api-faq.html#better-logic-reuse)
 - [Composition API FAQ - More Flexible Code Organization](https://vuejs.org/guide/extras/composition-api-faq.html#more-flexible-code-organization)

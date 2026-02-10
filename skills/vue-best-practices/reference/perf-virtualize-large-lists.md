@@ -29,7 +29,7 @@ Use a virtualization library when dealing with lists that could exceed 50-100 it
 | `vue-virtual-scroll-grid` | Grid layouts | 2D virtualization |
 | `vueuc/VVirtualList` | Naive UI projects | Part of Naive UI ecosystem |
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <!-- BAD: Renders ALL 10,000 items immediately -->
@@ -55,7 +55,7 @@ onMounted(async () => {
 </script>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <template>
   <!-- GOOD: Only renders ~20 visible items at a time -->
@@ -186,7 +186,7 @@ import { DynamicScroller, DynamicScrollerItem } from 'vue-virtual-scroller'
 - Print layouts where all content must render
 - SEO-critical content that must be in initial HTML
 
-## Reference
+## References
 - [Vue.js Performance - Virtualize Large Lists](https://vuejs.org/guide/best-practices/performance.html#virtualize-large-lists)
 - [vue-virtual-scroller Documentation](https://github.com/Akryum/vue-virtual-scroller)
 - [TanStack Virtual](https://tanstack.com/virtual/latest)

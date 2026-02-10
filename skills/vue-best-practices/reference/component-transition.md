@@ -10,13 +10,6 @@ tags: [vue3, transition, animation, performance, keys]
 
 **Impact: MEDIUM** - `<Transition>` animates entering/leaving of a single element or component. It is ideal for toggling UI states, swapping views, or animating one component at a time.
 
-## Table of Contents
-
-- Use Transition for a single root element
-- Force transitions between same element types with `key`
-- Use `mode` to avoid overlap during swaps
-- Animate `transform` and `opacity` for performance
-
 ## Task Checklist
 
 - [ ] Wrap a single element or component inside `<Transition>`
@@ -28,7 +21,7 @@ tags: [vue3, transition, animation, performance, keys]
 
 `<Transition>` only supports one direct child. Wrap multiple nodes in a single element or component.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <Transition name="fade">
@@ -38,7 +31,7 @@ tags: [vue3, transition, animation, performance, keys]
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <template>
   <Transition name="fade">
@@ -54,7 +47,7 @@ tags: [vue3, transition, animation, performance, keys]
 
 Vue reuses the same DOM element when the tag type does not change. Add `key` so Vue treats it as a new element and triggers enter/leave.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <Transition name="fade">
@@ -64,7 +57,7 @@ Vue reuses the same DOM element when the tag type does not change. Add `key` so 
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <template>
   <Transition name="fade" mode="out-in">
@@ -78,7 +71,7 @@ Vue reuses the same DOM element when the tag type does not change. Add `key` so 
 
 When swapping components or views, use `mode="out-in"` to prevent both from being visible at the same time.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <Transition name="fade">
@@ -87,7 +80,7 @@ When swapping components or views, use `mode="out-in"` to prevent both from bein
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <template>
   <Transition name="fade" mode="out-in">
@@ -100,7 +93,7 @@ When swapping components or views, use `mode="out-in"` to prevent both from bein
 
 Avoid layout-triggering properties such as `height`, `margin`, or `top`. Use `transform` and `opacity` for smooth, GPU-friendly transitions.
 
-**Incorrect:**
+**BAD:**
 ```css
 .slide-enter-active,
 .slide-leave-active {
@@ -113,7 +106,7 @@ Avoid layout-triggering properties such as `height`, `margin`, or `top`. Use `tr
 }
 ```
 
-**Correct:**
+**GOOD:**
 ```css
 .slide-enter-active,
 .slide-leave-active {

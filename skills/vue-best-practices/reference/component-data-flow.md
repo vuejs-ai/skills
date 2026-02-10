@@ -10,7 +10,7 @@ tags: [vue3, props, emits, v-model, provide-inject, data-flow, typescript]
 
 **Impact: HIGH** - Vue components stay reliable when data flow is explicit: props go down, events go up, `v-model` handles two-way bindings, and provide/inject supports cross-tree dependencies. Blurring these boundaries leads to stale state, hidden coupling, and hard-to-debug UI.
 
-The main principle of data flow in Vue.js is **Props Down / Events Up**, this is the most maintainable default. One-way data flow scales well.
+The main principle of data flow in Vue.js is **Props Down / Events Up**. This is the most maintainable default, and one-way flow scales well.
 
 ## Task Checklist
 
@@ -26,9 +26,9 @@ The main principle of data flow in Vue.js is **Props Down / Events Up**, this is
 
 ## Props: One-Way Data Down
 
-Props are inputs. Do not mutate them in the child. If state needs to change, emit an event, use `v-model` or create a local copy.
+Props are inputs. Do not mutate them in the child.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <script setup>
 const props = defineProps({ count: Number })
@@ -39,9 +39,13 @@ function increment() {
 </script>
 ```
 
+**GOOD:**
+
+If state needs to change, emit an event, use `v-model` or create a local copy.
+
 ## Prefer props/emit over component refs
 
-**Incorrect:**
+**BAD:**
 ```vue
 <script setup>
 import { ref } from 'vue'
@@ -62,7 +66,7 @@ function submitForm() {
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <script setup>
 import UserForm from './UserForm.vue'
@@ -81,7 +85,7 @@ function handleSubmit(formData) {
 
 Prefer props/emits by default. When a parent must call an exposed child method, type the ref explicitly and expose only the intended API from the child with `defineExpose`.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
@@ -99,7 +103,7 @@ onMounted(() => {
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <!-- DialogPanel.vue -->
 <script setup lang="ts">
@@ -112,7 +116,7 @@ defineExpose({ open })
 ```vue
 <!-- Parent.vue -->
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, useTemplateRef } from 'vue'
 import DialogPanel from './DialogPanel.vue'
 
 // Vue 3.5+ with useTemplateRef
@@ -135,13 +139,13 @@ onMounted(() => {
 
 Component events do not bubble. If a parent needs to know about an event, re-emit it explicitly.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <!-- Parent expects "saved" from grandchild, but it won't bubble -->
 <Child @saved="onSaved" />
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <!-- Child.vue -->
 <script setup>
@@ -172,7 +176,7 @@ const emit = defineEmits(['updateUser'])
 
 Use `defineModel` by default for component bindings and emit updates on input. Only use the `modelValue` + `update:modelValue` pattern if you are on Vue < 3.4.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <script setup>
 const props = defineProps({ value: String })
@@ -183,7 +187,7 @@ const props = defineProps({ value: String })
 </template>
 ```
 
-**Correct (Modern, Vue 3.4+):**
+**GOOD (Vue 3.4+):**
 ```vue
 <script setup>
 const model = defineModel({ type: String })
@@ -194,7 +198,7 @@ const model = defineModel({ type: String })
 </template>
 ```
 
-**Correct (Outdated, Vue < 3.4):**
+**GOOD (Vue < 3.4):**
 ```vue
 <script setup>
 const props = defineProps({ modelValue: String })
@@ -215,7 +219,7 @@ If you need the updated value immediately after a change, use the input event va
 
 Use provide/inject for cross-tree state, but keep mutations centralized in the provider and expose explicit actions.
 
-**Incorrect:**
+**BAD:**
 ```vue
 // Provider.vue
 provide('theme', reactive({ dark: false }))
@@ -226,7 +230,7 @@ const theme = inject('theme')
 theme.dark = true
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 // Provider.vue
 const theme = reactive({ dark: false })
@@ -250,7 +254,7 @@ export const themeActionsKey = Symbol('theme-actions')
 
 In TypeScript projects, type component boundaries directly with `defineProps`, `defineEmits`, and `InjectionKey` so invalid payloads and mismatched injections fail at compile time.
 
-**Incorrect:**
+**BAD:**
 ```vue
 <script setup lang="ts">
 import { inject } from 'vue'
@@ -270,7 +274,7 @@ settings?.theme = 'dark'
 </script>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <script setup lang="ts">
 import { inject, provide } from 'vue'

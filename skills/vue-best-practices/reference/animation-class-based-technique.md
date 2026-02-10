@@ -253,6 +253,6 @@ const pulse = useAnimation(500)
 </template>
 ```
 
-## Reference
+## References
 - [Vue.js Animation Techniques - Class-based Animations](https://vuejs.org/guide/extras/animation.html#class-based-animations)
 - [CSS Animations MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations)

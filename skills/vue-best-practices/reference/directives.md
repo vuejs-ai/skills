@@ -10,18 +10,6 @@ tags: [vue3, directives, custom-directives, composition, typescript]
 
 **Impact: MEDIUM** - Directives are for low-level DOM access. Use them sparingly, keep them side-effect safe, and prefer components or composables when you need stateful or reusable UI behavior.
 
-## Table of Contents
-
-- Treat directive arguments as read-only
-- Avoid directives on components
-- Clean up side effects in `unmounted`
-- Prefer function shorthand for single-hook directives
-- Use the `v-` prefix and script setup registration
-- Type custom directives in TypeScript projects
-- Handle SSR with `getSSRProps`
-- Prefer declarative templates when possible
-- Decide between directives and components
-
 ## Task Checklist
 
 - [ ] Use directives only when you need direct DOM access
@@ -48,9 +36,21 @@ const vFocus = {
 
 Directives apply to DOM elements. When used on components, they attach to the root element and can break if the root changes.
 
+**BAD:**
 ```vue
-<!-- Prefer applying to an element inside the component -->
 <MyInput v-focus />
+```
+
+**GOOD:**
+```vue
+<!-- MyInput.vue -->
+<script setup>
+const vFocus = (el) => el.focus()
+</script>
+
+<template>
+  <input v-focus />
+</template>
 ```
 
 ## Clean Up Side Effects in `unmounted`
@@ -94,7 +94,7 @@ const vFocus = (el) => el.focus()
 
 Use `Directive<Element, ValueType>` so `binding.value` is typed, and augment Vue's template types so directives are recognized in SFC templates.
 
-**Incorrect:**
+**BAD:**
 ```ts
 // Untyped directive value and no template type augmentation
 export const vHighlight = {
@@ -104,7 +104,7 @@ export const vHighlight = {
 }
 ```
 
-**Correct:**
+**GOOD:**
 ```ts
 import type { Directive } from 'vue'
 
@@ -127,7 +127,7 @@ declare module 'vue' {
 
 Directive hooks such as `mounted` and `updated` do not run during SSR. If a directive sets attributes/classes that affect rendered HTML, provide an SSR equivalent via `getSSRProps` to avoid hydration mismatches.
 
-**Incorrect:**
+**BAD:**
 ```ts
 const vTooltip = {
   mounted(el, binding) {
@@ -137,7 +137,7 @@ const vTooltip = {
 }
 ```
 
-**Correct:**
+**GOOD:**
 ```ts
 const vTooltip = {
   mounted(el, binding) {

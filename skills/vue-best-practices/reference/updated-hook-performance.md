@@ -21,9 +21,9 @@ Use `updated`/`onUpdated` sparingly for post-DOM-update operations that cannot b
 - [ ] Use throttling/debouncing if updated operations are expensive
 - [ ] Reserve updated for low-level DOM synchronization tasks
 
-**Incorrect:**
+**BAD:**
 ```javascript
-// WRONG: API call in updated - fires on EVERY re-render
+// BAD: API call in updated - fires on every re-render
 export default {
   data() {
     return { items: [], lastUpdate: null }
@@ -39,20 +39,20 @@ export default {
 ```
 
 ```javascript
-// WRONG: State mutation in updated - INFINITE LOOP
+// BAD: State mutation in updated - infinite loop
 export default {
   data() {
     return { renderCount: 0 }
   },
   updated() {
     // This causes another update, which triggers updated again!
-    this.renderCount++ // INFINITE LOOP!
+    this.renderCount++ // Infinite loop
   }
 }
 ```
 
 ```javascript
-// WRONG: Heavy computation on every update
+// BAD: Heavy computation on every update
 export default {
   updated() {
     // Expensive operation runs on every keystroke, every state change
@@ -62,9 +62,11 @@ export default {
 }
 ```
 
-**Correct:**
+**GOOD:**
 ```javascript
-// CORRECT: Use watcher for specific data changes
+import debounce from 'lodash-es/debounce'
+
+// GOOD: Use watcher for specific data changes
 export default {
   data() {
     return { items: [] }
@@ -90,7 +92,7 @@ export default {
 ```
 
 ```vue
-<!-- CORRECT: Composition API with targeted watchers -->
+<!-- GOOD: Composition API with targeted watchers -->
 <script setup>
 import { ref, watch, onUpdated } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
@@ -118,7 +120,7 @@ onUpdated(() => {
 ```
 
 ```javascript
-// CORRECT: Conditional check in updated hook
+// GOOD: Conditional check in updated hook
 export default {
   data() {
     return {
@@ -144,7 +146,7 @@ export default {
 ## Valid Use Cases for Updated Hook
 
 ```javascript
-// CORRECT: Low-level DOM synchronization
+// GOOD: Low-level DOM synchronization
 export default {
   updated() {
     // Sync third-party library with Vue's DOM
@@ -161,7 +163,7 @@ export default {
 ## Prefer Computed Properties for Derived Data
 
 ```javascript
-// WRONG: Calculating derived data in updated
+// BAD: Calculating derived data in updated
 export default {
   data() {
     return { numbers: [1, 2, 3, 4, 5] }
@@ -171,7 +173,7 @@ export default {
   }
 }
 
-// CORRECT: Use computed property instead
+// GOOD: Use computed property instead
 export default {
   data() {
     return { numbers: [1, 2, 3, 4, 5] }
@@ -184,7 +186,7 @@ export default {
 }
 ```
 
-## Reference
+## References
 - [Vue.js Lifecycle Hooks](https://vuejs.org/guide/essentials/lifecycle.html)
 - [Vue.js Watchers](https://vuejs.org/guide/essentials/watchers.html)
 - [Vue.js Computed Properties](https://vuejs.org/guide/essentials/computed.html)

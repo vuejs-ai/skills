@@ -21,7 +21,7 @@ Use `v-once` for truly static content and `v-memo` for conditionally-static cont
 
 ## v-once: Render Once, Never Update
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <!-- BAD: Re-evaluated on every parent re-render -->
@@ -38,7 +38,7 @@ Use `v-once` for truly static content and `v-memo` for conditionally-static cont
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <template>
   <!-- GOOD: Rendered once, skipped on all future updates -->
@@ -65,7 +65,7 @@ const companyName = 'Acme Corp'
 
 ## v-memo: Conditional Memoization for Lists
 
-**Incorrect:**
+**BAD:**
 ```vue
 <template>
   <!-- BAD: All items re-render when selectedId changes -->
@@ -77,7 +77,7 @@ const companyName = 'Acme Corp'
 </template>
 ```
 
-**Correct:**
+**GOOD:**
 ```vue
 <template>
   <!-- GOOD: Items only re-render when their selection state changes -->
@@ -181,7 +181,7 @@ onUpdated(() => {
 </script>
 ```
 
-## Reference
+## References
 - [Vue.js v-once Directive](https://vuejs.org/api/built-in-directives.html#v-once)
 - [Vue.js v-memo Directive](https://vuejs.org/api/built-in-directives.html#v-memo)
 - [Vue.js Performance - Update Optimizations](https://vuejs.org/guide/best-practices/performance.html#update-optimizations)

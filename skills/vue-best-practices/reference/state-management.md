@@ -10,14 +10,6 @@ tags: [vue3, state-management, pinia, composables, ssr, vueuse]
 
 **Impact: HIGH** - Use the lightest state solution that fits your app architecture. SPA-only apps can use lightweight global composables, while SSR/Nuxt apps should default to Pinia for request-safe isolation and predictable tooling.
 
-## Table of Contents
-
-- Task Checklist
-- Choose the Lightest Correct Store Approach
-- Avoid Exporting Mutable Module State
-- Do Not Use Runtime Singletons in SSR
-- Use `createGlobalState` for Small SPA Global State
-
 ## Task Checklist
 
 - [ ] Keep state local first, then promote to shared/global only when needed
@@ -26,7 +18,7 @@ tags: [vue3, state-management, pinia, composables, ssr, vueuse]
 - [ ] Prefer Pinia for SSR/Nuxt, large apps, and advanced debugging/plugin needs
 - [ ] Avoid exporting mutable module-level reactive state directly
 
-## Choose the Lightest Correct Store Approach
+## Choose the Lightest Store Approach
 
 - **Feature composable:** Default for reusable logic with local/feature-level state.
 - **Singleton composable or VueUse `createGlobalState`:** Small non-SSR apps needing shared app state.
@@ -34,7 +26,7 @@ tags: [vue3, state-management, pinia, composables, ssr, vueuse]
 
 ## Avoid Exporting Mutable Module State
 
-**Incorrect:**
+**BAD:**
 ```ts
 // store/cart.ts
 import { reactive } from 'vue'
@@ -44,7 +36,7 @@ export const cart = reactive({
 })
 ```
 
-**Correct:**
+**GOOD:**
 ```ts
 // composables/useCartStore.ts
 import { reactive, readonly } from 'vue'
@@ -81,7 +73,7 @@ export function useCartStore() {
 
 Module singletons live for the runtime lifetime. In SSR this can leak state between requests.
 
-**Incorrect (SSR risk):**
+**BAD:**
 ```ts
 // shared singleton reused across requests
 const cartStore = useCartStore()
@@ -91,7 +83,7 @@ export function useServerCart() {
 }
 ```
 
-**Correct (SSR-safe with Pinia):**
+**GOOD:**
 
 > `pinia` dependency required.
 
