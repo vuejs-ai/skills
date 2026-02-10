@@ -24,7 +24,7 @@ An alternative for Claude Code users:
 /plugin install create-adaptable-composable@vue-skills
 
 # Install multiple skills
-/plugin install create-adaptable-composable@vue-skills vue-best-practices@vue-skills  vue-development-guides@vue-skills 
+/plugin install create-adaptable-composable@vue-skills vue-best-practices@vue-skills
 ```
 
 ## Usage
@@ -47,15 +47,12 @@ This explicitly triggers the skill and ensures the AI follows the documented pat
 | **vue-pinia-best-practices** | Pinia for state management | Store setup, reactivity, state patterns |
 | **vue-testing-best-practices** | Writing component or E2E tests | Vitest, Vue Test Utils, Playwright |
 | **vue-jsx-best-practices** | JSX in Vue | Syntax differences from React JSX |
-| **vue-development-guides** | Building a Vue/Nuxt project | Component splitting, data flow, core principles |
 | **vue-debug-guides** | Debugging Vue 3 issues | Runtime errors, warnings, async error handling, hydration issues |
 | **create-adaptable-composable** | Creating reusable composables | `MaybeRef`/`MaybeRefOrGetter` input patterns |
 
 ## Examples
 
-### vue-development-guides
-
-Original from `vue-best-practices` of [`serkodev/vue-skills`](https://github.com/serkodev/vue-skills/tree/main)
+### vue-best-practices
 
 #### Demo - Todo App
 
@@ -72,7 +69,7 @@ create a todo app
 - More readable [code](https://github.com/vuejs-ai/skills/tree/dev/demo/todo-app/with-skills/App.vue)
 - [Components](https://github.com/vuejs-ai/skills/tree/dev/demo/todo-app/with-skills/components) split
 - Moved states into composables ([useTodos.ts](https://github.com/vuejs-ai/skills/tree/dev/demo/todo-app/with-skills/composables/useTodos.ts))
-- Use `shallowRef` for primitive reactive data (see [Reactivity Guide](skills/vue-development-guides/references/reactivity-guide.md))
+- Use `shallowRef` for primitive reactive data (see [Reactivity](skills/vue-best-practices/references/reactivity.md) reference)
 
 ### create-adaptable-composable
 

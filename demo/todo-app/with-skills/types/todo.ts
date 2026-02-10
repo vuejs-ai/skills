@@ -1,8 +1,7 @@
-export type Filter = 'all' | 'active' | 'completed'
-
-export type Todo = {
+export interface Todo {
   id: string
-  title: string
+  text: string
   completed: boolean
-  createdAt: number
 }
+
+export type TodoFilter = 'all' | 'active' | 'completed'

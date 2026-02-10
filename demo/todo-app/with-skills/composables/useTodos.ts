@@ -1,121 +1,136 @@
-import { computed, ref, shallowRef, watch } from 'vue'
-import type { Filter, Todo } from '../types/todo'
+import { computed, readonly, ref, shallowRef, watch } from 'vue'
 
-const storageKey = 'todo-atlas-v1'
+import type { Todo, TodoFilter } from '@/types/todo'
 
-function createId() {
-  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
-    return crypto.randomUUID()
+const STORAGE_KEY = 'vue-agent-playground.todos'
+
+function isTodo(value: unknown): value is Todo {
+  if (!value || typeof value !== 'object') {
+    return false
   }
-  return `todo-${Date.now()}-${Math.random().toString(16).slice(2)}`
+
+  const candidate = value as Record<string, unknown>
+  return (
+    typeof candidate.id === 'string'
+    && typeof candidate.text === 'string'
+    && typeof candidate.completed === 'boolean'
+  )
 }
 
 function loadTodos(): Todo[] {
-  if (typeof localStorage === 'undefined') return []
-  const raw = localStorage.getItem(storageKey)
-  if (!raw) return []
+  if (typeof window === 'undefined') {
+    return []
+  }
+
+  const storedValue = window.localStorage.getItem(STORAGE_KEY)
+  if (!storedValue) {
+    return []
+  }
+
   try {
-    const parsed = JSON.parse(raw)
-    if (!Array.isArray(parsed)) return []
-    return parsed
-      .filter(
-        (item): item is Record<string, unknown> =>
-          Boolean(item) && typeof item === 'object',
-      )
-      .map((item) => {
-        const title = typeof item.title === 'string' ? item.title.trim() : ''
-        return {
-          id: typeof item.id === 'string' ? item.id : createId(),
-          title,
-          completed: Boolean(item.completed),
-          createdAt:
-            typeof item.createdAt === 'number' ? item.createdAt : Date.now(),
-        }
-      })
-      .filter((item) => item.title.length > 0)
+    const parsedValue: unknown = JSON.parse(storedValue)
+
+    if (!Array.isArray(parsedValue)) {
+      return []
+    }
+
+    return parsedValue.filter(isTodo)
   } catch {
     return []
   }
 }
 
-function saveTodos(value: Todo[]) {
-  if (typeof localStorage === 'undefined') return
-  try {
-    localStorage.setItem(storageKey, JSON.stringify(value))
-  } catch {
-    return
+function createTodoId(): string {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID()
   }
+
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`
 }
 
 export function useTodos() {
   const todos = ref<Todo[]>(loadTodos())
-  const filter = shallowRef<Filter>('all')
+  const filter = shallowRef<TodoFilter>('all')
 
-  const totalCount = computed(() => todos.value.length)
-  const remainingCount = computed(
-    () => todos.value.filter((todo) => !todo.completed).length,
-  )
-  const completedCount = computed(
-    () => totalCount.value - remainingCount.value,
-  )
-  const completionPercent = computed(() => {
-    if (totalCount.value === 0) return 0
-    return Math.round((completedCount.value / totalCount.value) * 100)
-  })
-
-  const filteredTodos = computed(() => {
+  const visibleTodos = computed(() => {
     if (filter.value === 'active') {
       return todos.value.filter((todo) => !todo.completed)
     }
+
     if (filter.value === 'completed') {
       return todos.value.filter((todo) => todo.completed)
     }
+
     return todos.value
   })
 
-  function addTodo(title: string) {
-    const trimmed = title.trim()
-    if (!trimmed) return
-    const newTodo: Todo = {
-      id: createId(),
-      title: trimmed,
-      completed: false,
-      createdAt: Date.now(),
+  const totalCount = computed(() => todos.value.length)
+  const activeCount = computed(
+    () => todos.value.filter((todo) => !todo.completed).length,
+  )
+  const completedCount = computed(() => totalCount.value - activeCount.value)
+
+  watch(
+    todos,
+    (nextTodos) => {
+      if (typeof window === 'undefined') {
+        return
+      }
+
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextTodos))
+    },
+    { deep: true },
+  )
+
+  function addTodo(text: string) {
+    const normalizedText = text.trim()
+    if (!normalizedText) {
+      return
     }
-    todos.value = [newTodo, ...todos.value]
+
+    todos.value = [
+      {
+        id: createTodoId(),
+        text: normalizedText,
+        completed: false,
+      },
+      ...todos.value,
+    ]
   }
 
   function toggleTodo(id: string) {
-    todos.value = todos.value.map((todo) =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo,
-    )
+    const todo = todos.value.find((item) => item.id === id)
+
+    if (!todo) {
+      return
+    }
+
+    todo.completed = !todo.completed
   }
 
   function removeTodo(id: string) {
     todos.value = todos.value.filter((todo) => todo.id !== id)
   }
 
+  function setFilter(nextFilter: TodoFilter) {
+    filter.value = nextFilter
+  }
+
   function clearCompleted() {
     todos.value = todos.value.filter((todo) => !todo.completed)
   }
 
-  function setFilter(next: Filter) {
-    filter.value = next
-  }
-
-  watch(todos, (value) => saveTodos(value))
-
   return {
-    filter,
+    todos: readonly(todos),
+    filter: readonly(filter),
+    visibleTodos,
     totalCount,
-    remainingCount,
+    activeCount,
     completedCount,
-    completionPercent,
-    filteredTodos,
     addTodo,
     toggleTodo,
     removeTodo,
-    clearCompleted,
     setFilter,
+    clearCompleted,
   }
 }

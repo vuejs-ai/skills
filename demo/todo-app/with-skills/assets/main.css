@@ -1,21 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap');
-
 :root {
-  color-scheme: light;
-  --font-display: 'Space Grotesk', 'Work Sans', sans-serif;
-  --font-body: 'Work Sans', 'Space Grotesk', sans-serif;
-  --color-ink: #1f2a2a;
-  --color-ink-soft: #4b5e5d;
-  --color-sand: #f7efe4;
-  --color-cream: #fefbf6;
-  --color-sage: #d8e4d3;
-  --color-teal: #2a8077;
-  --color-coral: #d66b4d;
-  --color-gold: #f0b35e;
-  --shadow-soft: 0 26px 60px rgba(24, 36, 35, 0.18);
-  --radius-lg: 26px;
-  --radius-md: 18px;
-  --radius-sm: 12px;
+  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 *,
@@ -27,69 +16,9 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: var(--font-body);
-  color: var(--color-ink);
-  background: linear-gradient(120deg, #f7efe4 0%, #e6f3ee 55%, #fefbf6 100%);
-  line-height: 1.5;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(240, 179, 94, 0.28), transparent 55%),
-    radial-gradient(circle at 80% 10%, rgba(42, 128, 119, 0.18), transparent 45%),
-    radial-gradient(circle at 70% 80%, rgba(214, 107, 77, 0.18), transparent 50%);
-  pointer-events: none;
-  z-index: -1;
+  color: #17233a;
 }
 
 #app {
   min-height: 100vh;
-}
-
-img,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-  color: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-:focus-visible {
-  outline: 2px solid rgba(42, 128, 119, 0.7);
-  outline-offset: 2px;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 1ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 1ms !important;
-    scroll-behavior: auto !important;
-  }
 }

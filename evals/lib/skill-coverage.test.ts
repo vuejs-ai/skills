@@ -7,7 +7,7 @@ const SKILLS_DIR = join(ROOT_DIR, "skills");
 const EVALS_DIR = join(ROOT_DIR, "evals/suites/skills");
 
 // Skills without evals yet (remove from list when evals are added)
-const SKIP_SKILLS = ["create-adaptable-composable", "vue-development-guides"];
+const SKIP_SKILLS = ["create-adaptable-composable"];
 
 function getSkills(): string[] {
   return readdirSync(SKILLS_DIR, { withFileTypes: true })
