@@ -109,7 +109,6 @@ Performance work is a post-functionality pass. Do not optimize before core behav
 - Large list rendering bottlenecks -> [perf-virtualize-large-lists](reference/perf-virtualize-large-lists.md)
 - Static subtrees re-rendering unnecessarily -> [perf-v-once-v-memo-directives](reference/perf-v-once-v-memo-directives.md)
 - Over-abstraction in hot list paths -> [perf-avoid-component-abstraction-in-lists](reference/perf-avoid-component-abstraction-in-lists.md)
-- Initial load dominated by client work -> [perf-ssr-ssg-for-page-load](reference/perf-ssr-ssg-for-page-load.md)
 - Expensive updates triggered too often -> [updated-hook-performance](reference/updated-hook-performance.md)
 
 ## 5) Final self-check before finishing
