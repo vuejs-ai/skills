@@ -47,6 +47,7 @@ These are essential, must-know foundations. Apply all of them in every Vue task 
 ### SFC structure and template safety
 
 - Must-read reference from `1.1`: [sfc](reference/sfc.md)
+- Keep SFC sections in this order: `<script>` → `<template>` → `<style>`.
 - Keep SFC responsibilities focused; split large components.
 - Keep templates declarative; move branching/derivation to script.
 - Apply Vue template safety rules (`v-html`, list rendering, conditional rendering choices).

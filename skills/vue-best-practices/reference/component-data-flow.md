@@ -10,29 +10,23 @@ tags: [vue3, props, emits, v-model, provide-inject, data-flow, typescript]
 
 **Impact: HIGH** - Vue components stay reliable when data flow is explicit: props go down, events go up, `v-model` handles two-way bindings, and provide/inject supports cross-tree dependencies. Blurring these boundaries leads to stale state, hidden coupling, and hard-to-debug UI.
 
-## Table of Contents
-
-- Props: one-way data down
-- Emits: explicit events up
-- `v-model`: predictable two-way bindings
-- Provide/Inject: shared context without prop drilling
-- Use TypeScript contracts for public component APIs
+The main principle of data flow in Vue.js is **Props Down / Events Up**, this is the most maintainable default. One-way data flow scales well.
 
 ## Task Checklist
 
 - [ ] Treat props as read-only inputs
 - [ ] Use props/emit for component communication; reserve refs for imperative actions
-- [ ] When refs are required for imperative APIs, type them with `InstanceType<typeof Component> | null`
+- [ ] When refs are required for imperative APIs, type them with template refs
 - [ ] Emit events instead of mutating parent state directly
 - [ ] Use `defineModel` for v-model in modern Vue (3.4+)
 - [ ] Handle v-model modifiers deliberately in child components
-- [ ] Use symbols for provide/inject keys to avoid collisions
+- [ ] Use symbols for provide/inject keys to avoid props drilling (over ~3 layers)
 - [ ] Keep mutations in the provider or expose explicit actions
 - [ ] In TypeScript projects, prefer type-based `defineProps`, `defineEmits`, and `InjectionKey`
 
 ## Props: One-Way Data Down
 
-Props are inputs. Do not mutate them in the child. If state needs to change, emit an event or create a local copy.
+Props are inputs. Do not mutate them in the child. If state needs to change, emit an event, use `v-model` or create a local copy.
 
 **Incorrect:**
 ```vue
@@ -41,18 +35,6 @@ const props = defineProps({ count: Number })
 
 function increment() {
   props.count++
-}
-</script>
-```
-
-**Correct:**
-```vue
-<script setup>
-const props = defineProps({ count: Number })
-const emit = defineEmits(['update:count'])
-
-function increment() {
-  emit('update:count', props.count + 1)
 }
 </script>
 ```
@@ -97,7 +79,7 @@ function handleSubmit(formData) {
 
 ## Type component refs when imperative access is required
 
-Prefer props/emits by default. When a parent must call an exposed child method, type the ref explicitly and expose only the intended API from the child.
+Prefer props/emits by default. When a parent must call an exposed child method, type the ref explicitly and expose only the intended API from the child with `defineExpose`.
 
 **Incorrect:**
 ```vue
@@ -133,7 +115,11 @@ defineExpose({ open })
 import { onMounted, ref } from 'vue'
 import DialogPanel from './DialogPanel.vue'
 
-const panelRef = ref<InstanceType<typeof DialogPanel> | null>(null)
+// Vue 3.5+ with useTemplateRef
+const panelRef = useTemplateRef('panelRef')
+
+// Before Vue 3.5 with manual typing and ref
+// const panelRef = ref<InstanceType<typeof DialogPanel> | null>(null)
 
 onMounted(() => {
   panelRef.value?.open()

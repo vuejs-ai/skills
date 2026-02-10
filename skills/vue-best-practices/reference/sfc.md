@@ -15,8 +15,12 @@ tags: [vue3, sfc, scoped-css, styles, build-tools, performance, template, v-html
 - [ ] Use `.vue` SFCs instead of separate `.js`/`.ts` and `.css` files for components
   - [ ] Colocate template, script, and styles in the same SFC by default
   - [ ] Use PascalCase for component names in templates and filenames
-- [ ] Prefer class selectors (not element selectors) in scoped CSS for performance
+- [ ] Follow best practices for `<style>` block in SFCs
+  - [ ] Prefer component-scoped styles
+  - [ ] Prefer class selectors (not element selectors) in scoped CSS for performance
+- [ ] Access DOM / component refs with `useTemplateRef()` in Vue 3.5+
 - [ ] Use camelCase keys in `:style` bindings for consistency and IDE support
+- [ ] Used `v-for` and `v-if` correctly
 - [ ] Never use `v-html` with untrusted/user-provided content
 - [ ] Choose `v-if` vs `v-show` based on toggle frequency and initial render cost
 
@@ -86,7 +90,40 @@ import UserProfile from './UserProfile.vue'
 </template>
 ```
 
-## Use class selectors in scoped CSS
+## Best practices for `<style>` block in SFCs
+
+### Prefer component-scoped styles
+
+* Use `<style scoped>` for styles that belong to a component.
+* Keep **global CSS** in a dedicated file (e.g. `src/assets/main.css`) for resets, typography, tokens, etc.
+* Use `:deep()` sparingly (edge cases only).
+
+Bad: global styles inside random components
+
+```vue
+<style>
+/* ❌ leaks everywhere */
+button { border-radius: 999px; }
+</style>
+```
+
+Good: scoped by default
+
+```vue
+<style scoped>
+.button { border-radius: 999px; }
+</style>
+```
+
+Good: global CSS belongs in a global entry
+
+```css
+/* src/assets/main.css */
+/* ✅ resets, tokens, typography, app-wide rules */
+:root { --radius: 999px; }
+```
+
+### Use class selectors in scoped CSS
 
 **Incorrect:**
 ```vue
@@ -120,6 +157,26 @@ p { line-height: 1.6; }
 </style>
 ```
 
+## Access DOM / component refs with `useTemplateRef()`
+
+For Vue 3.5+: use `useTemplateRef()` to access template refs.
+
+```vue
+<script setup lang="ts">
+import { onMounted, useTemplateRef } from 'vue'
+
+const inputRef = useTemplateRef<HTMLInputElement>('input')
+
+onMounted(() => {
+  inputRef.value?.focus()
+})
+</script>
+
+<template>
+  <input ref="input" />
+</template>
+```
+
 ## Use camelCase in `:style` bindings
 
 **Incorrect:**
@@ -138,6 +195,62 @@ p { line-height: 1.6; }
     Content
   </div>
 </template>
+```
+
+## Used `v-for` and `v-if` correctly
+
+### Always provide a stable `:key`
+
+* Prefer primitive keys (`string | number`).
+* Avoid using objects as keys.
+
+Good
+
+```vue
+<li v-for="item in items" :key="item.id">
+  <input v-model="item.text" />
+</li>
+```
+
+### Avoid `v-if` and `v-for` on the same element
+
+It leads to unclear intent and unnecessary work.
+([Reference](https://vuejs.org/guide/essentials/list.html#v-for-with-v-if))
+
+**To filter items**
+Bad
+
+```vue
+<li v-for="user in users" v-if="user.active" :key="user.id">
+  {{ user.name }}
+</li>
+```
+
+Good: filter in computed
+
+```vue
+<script setup lang="ts">
+import { computed } from 'vue'
+
+const activeUsers = computed(() => users.value.filter(u => u.active))
+</script>
+
+<template>
+  <li v-for="user in activeUsers" :key="user.id">
+    {{ user.name }}
+  </li>
+</template>
+```
+
+**To conditionally show/hide the entire list**
+Good: move `v-if` to a container element or `<template>`
+
+```vue
+<ul v-if="shouldShowUsers">
+  <li v-for="user in users" :key="user.id">
+    {{ user.name }}
+  </li>
+</ul>
 ```
 
 ## Never render untrusted HTML with `v-html`

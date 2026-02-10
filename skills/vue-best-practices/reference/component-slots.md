@@ -12,10 +12,27 @@ tags: [vue3, slots, components, typescript, composables]
 
 ## Task Checklist
 
+- [ ] Use shorthand syntax for named slots (`#` instead of `v-slot:`)
 - [ ] Render optional slot wrapper elements only when slot content exists (`$slots` checks)
 - [ ] Type scoped slot contracts with `defineSlots` in TypeScript components
 - [ ] Provide fallback content for optional slots
 - [ ] Prefer composables over renderless components for pure logic reuse
+
+## Shorthand syntax for named slots
+
+Bad: use verbose syntax
+```vue
+<MyComponent>
+  <template v-slot:header> ... </template>
+</MyComponent>
+```
+
+Good: use shorthand syntax
+```vue
+<MyComponent>
+  <template #header> ... </template>
+</MyComponent>
+```
 
 ## Conditionally Render Optional Slot Wrappers
 

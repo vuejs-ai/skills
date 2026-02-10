@@ -21,13 +21,6 @@ compatibility: Requires Vue 3 (or above) or Nuxt 3 (or above) project
 
 ---
 
-## Components
-
-IMPORTANT: You MUST follow the `references/sfc-guide.md` for best practices when working with Vue SFCs.
-
-- Prefer Vue Single-File Components (SFC) using **`<script setup lang="ts">`** (TypeScript) by default.
-- In Vue SFCs, keep sections in this order: `<script>` → `<template>` → `<style>`.
-
 ### Keep components focused
 
 Split a component when it has **more than one clear responsibility** (e.g. data orchestration + UI, or multiple independent UI sections).
@@ -39,11 +32,5 @@ Split a component when it has **more than one clear responsibility** (e.g. data 
 NOTE: This rule also applies to the entry component (e.g. App.vue) in a Vue / Nuxt project by default.
 
 ### Data Flow
-
-IMPORTANT: You MUST follow the `references/data-flow-guide.md` for passing and receiving data between components using:
-- Props
-- Emits
-- `v-model`
-- provide/inject
 
 For sharing data across the app, please follow the `references/state-management-guide.md` and consider using a Store for state management solution.
