@@ -51,6 +51,7 @@ These are essential, must-know foundations. Apply all of them in every Vue task 
 
 - Must-read reference from `1.1`: [reactivity](references/reactivity.md)
 - Keep source state minimal (`ref`/`reactive`), derive everything possible with `computed`.
+- Wrap exported static objects and arrays in `Object.freeze()` to prevent accidental mutation. Do not freeze intentionally mutable values; remember that freezing is shallow.
 - Use watchers for side effects if needed.
 - Avoid recomputing expensive logic in templates.
 
