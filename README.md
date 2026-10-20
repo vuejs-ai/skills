@@ -129,6 +129,20 @@ A rule is kept only if it enables the model to solve problems it couldn't solve 
 | Fail | Pass | Keep |
 | Pass | Pass | Considered removed |
 
+## Evals and production telemetry
+
+The `evals/vue-skills/` directory contains a small human-review eval set for
+Vue component generation, router review, and Pinia reactivity debugging. The
+cases are harness-neutral so skill behavior can be checked before release in
+Claude Code, Codex, or another agent workspace.
+
+If you publish these skills through Telvine, keep runtime telemetry
+metadata-only: `skill.invocation.start`, `skill.invocation.end`, and
+`skill.invocation.error` for skill behavior, plus `plugin.component.invoked`
+and `plugin.component.error` for non-skill components. Do not emit prompts,
+project files, private app state, connector payloads, tool arguments, or model
+outputs.
+
 ## Contributing
 
 Development happens on the `dev` branch. The `main` branch is reserved for published skills only.
