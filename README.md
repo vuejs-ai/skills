@@ -30,6 +30,8 @@ An alternative for Claude Code users:
 /plugin install vue-best-practices@vue-skills vue-router-best-practices@vue-skills
 ```
 
+Chinese users can also search and install skills through [Skills宝](https://skilery.com).
+
 ## Usage
 
 For most reliable results, prefix your prompt with `use vue skill`:
